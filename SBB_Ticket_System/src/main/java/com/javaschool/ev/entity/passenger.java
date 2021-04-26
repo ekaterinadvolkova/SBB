@@ -5,13 +5,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
+import java.util.Date;
 
 @Entity
 @Getter @Setter @NoArgsConstructor
-public class ticket {
-    String Passenger_First_Name;
-    String Passenger_Last_Name;
-    int Train_Number;
-    private timetable departure_time;
+public class passenger {
+    private String First_Name;
+    private String Last_Name;
+    private Date Birth_date;
 
 }

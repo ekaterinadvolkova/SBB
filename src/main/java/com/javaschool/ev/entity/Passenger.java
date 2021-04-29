@@ -1,27 +1,41 @@
 package com.javaschool.ev.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import java.util.Calendar;
 import java.util.Date;
 
-@Entity
-@Getter @Setter @NoArgsConstructor
+
 public class Passenger {
     private String firstName;
     private String lastName;
-    private Date birthDate;
-    private Long id;
+    //private Calendar birthDate;
 
-    public void setId(Long id) {
-        this.id = id;
+    public Passenger(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        //this.birthDate = birthDate;
     }
 
-    @Id
-    public Long getId() {
-        return id;
+    public String getFirstName() {
+        return firstName;
     }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    /*public Calendar getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Calendar birthDate) {
+        this.birthDate = birthDate;
+    }*/
 }

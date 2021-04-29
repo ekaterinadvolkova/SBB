@@ -1,25 +1,11 @@
 package com.javaschool.ev.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import java.time.Clock;
 
-
-@Entity
-@Getter
-@Setter
-@NoArgsConstructor
 public class Train {
     private int number;
-    private int available_seats;
-    private Long id;
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Id
-    public Long getId() {
-        return id;
-    }
+    private int availableSeats;
+    private int bookedSeats;
+    private String occurence;
+    private Clock departureTime;
 }

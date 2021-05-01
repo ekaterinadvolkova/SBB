@@ -56,7 +56,7 @@ There are the following types of entities: <br>
 - The client must have a graphical interface.
 - The application must handle hardware and software errors. 
 
-<h3>Technologies Used :construction: </h3>
+<h3>Technologies :construction: </h3>
 
 - IDE - Any (Eclipse, IDEA)
 - Tomcat 

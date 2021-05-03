@@ -1,12 +1,10 @@
-package com.javaschool.ev.entity;
+package com.javaschool.ev.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.Calendar;
 
 @Configuration
 @ComponentScan (basePackages = "com.javaschool.ev")

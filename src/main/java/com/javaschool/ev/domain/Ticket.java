@@ -1,4 +1,4 @@
-package com.javaschool.ev.entity;
+package com.javaschool.ev.domain;
 
 public class Ticket {
 

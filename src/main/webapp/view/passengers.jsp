@@ -11,9 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1> Swiss Federal Railways - SBB </h1>
-
-
+<h1> passengers page is under development now</h1>
 
 </body>
 </html>

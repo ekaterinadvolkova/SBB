@@ -1,16 +1,8 @@
-package com.javaschool.ev.entity;
+package com.javaschool.ev.domain;
 
-import java.util.Calendar;
-import java.util.Date;
-
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
 
 
 @Getter @Setter @NoArgsConstructor

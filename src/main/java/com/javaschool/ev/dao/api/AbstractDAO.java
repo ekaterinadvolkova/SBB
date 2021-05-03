@@ -1,16 +1,19 @@
-//package com.javaschool.ev.dao.api;
-//import java.util.List;
-//import java.util.Optional;
+package com.javaschool.ev.dao.api;
+import java.util.List;
 
-//public interface AbstractDAO <T> {
 
-    //Optional<T> get(long id);
+public interface AbstractDAO <E,ID> {
 
-    //List<T> getAll();
+    E findById(ID id);
 
-    //void save(T t);
+    List<E> getAll();
 
-    //void update(T t, String[] params);
+    E save(E entity);
 
-    //void delete(T t);
-//}
+    E update (E entity);
+
+    E delete (E entity);
+
+    E deleteById (ID entityId);
+
+}

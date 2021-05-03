@@ -4,7 +4,7 @@
 
 <p>The task is to write an application that simulates the operation of an information system for a passenger rail company. The subject area and technical requirements are described in more detail below. </p> <br>
 
-<h2> Subject area </h2> <br>
+<h2> Subject Area </h2> <br>
 There are the following types of entities: <br>
 
 <h4> Station :station: </h4>
@@ -48,7 +48,7 @@ There are the following types of entities: <br>
   - view all passengers registered on the train
   - View all trains;
 
-<h3> Technical requirements :warning: </h3>
+<h3> Technical Requirements :warning: </h3>
 
 - The final requirement is for a multi-user, client-server application with network connectivity.
 - All data is stored on the server side. 
@@ -56,7 +56,7 @@ There are the following types of entities: <br>
 - The client must have a graphical interface.
 - The application must handle hardware and software errors. 
 
-<h3>Technologies used :construction: </h3>
+<h3>Technologies :construction: </h3>
 
 - IDE - Any (Eclipse, IDEA)
 - Tomcat 

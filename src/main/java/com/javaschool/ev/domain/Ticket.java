@@ -1,6 +1,6 @@
 package com.javaschool.ev.domain;
 
-public class Ticket {
+public class Ticket extends AbstractDomain {
 
 
 

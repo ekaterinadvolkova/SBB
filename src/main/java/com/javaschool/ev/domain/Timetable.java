@@ -9,7 +9,7 @@ import java.time.Clock;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Timetable {
+public class Timetable extends AbstractDomain {
     private Clock departureTime;
 
 }

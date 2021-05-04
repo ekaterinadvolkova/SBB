@@ -6,10 +6,10 @@ import lombok.Setter;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
-@ComponentScan (basePackages = "com.javaschool.ev")
+
 @Getter  @Setter @NoArgsConstructor
-public class Train {
+
+public class Train extends AbstractDomain {
 
     private int number;
     private int availableSeats;

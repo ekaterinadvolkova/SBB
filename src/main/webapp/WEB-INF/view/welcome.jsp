@@ -8,11 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Srart page</title>
+    <title>Start page</title>
 </head>
 <body>
 
 <h1>Welcome to Swiss Federal Railways</h1>
+<h2><a href ="/train/add">train add </a></h2>
 
 </body>
 </html>

@@ -5,7 +5,7 @@ use sbb;
 
 create table train
 (
-  trainID INT PRIMARY KEY NOT NULL
+  trainID INT PRIMARY KEY NOT NULL AUTO_INCREMENT
 , Number INT NOT NULL
 , AvailableSeats INT NOT NULL
 , BookedSeats INT NOT NULL
@@ -17,7 +17,7 @@ create table train
 
 create table passenger
 (
-  passengerID INT PRIMARY KEY NOT NULL
+  passengerID INT PRIMARY KEY NOT NULL AUTO_INCREMENT
 , FirstName VARCHAR(50) NOT NULL
 , LastName  VARCHAR(50) NOT NULL
 , BirthDate DATE NOT NULL
@@ -26,7 +26,7 @@ create table passenger
 )  engine=InnoDB;
 
 create table station (
-  StationID INT PRIMARY KEY NOT NULL
+  StationID INT PRIMARY KEY NOT NULL AUTO_INCREMENT
 , Name VARCHAR( 50) NOT NULL
 
 ) engine = InnoDB;
@@ -34,9 +34,9 @@ create table station (
 create table timetable (
 
   TimetableID INT NOT NULL AUTO_INCREMENT PRIMARY KEY
-, StationID INT
-, TrainID INT
-, DepartureTime timestamp
+, StationID INT NOT NULL
+, TrainID INT NOT NULL
+, DepartureTime TIMESTAMP NOT NULL
 , foreign key (StationID) references station (StationID)
 , foreign key (TrainID) references train (TrainID)
 

@@ -15,7 +15,7 @@ public class WebConfig {
     @Bean
     ViewResolver viewResolver(){
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setPrefix("webapp/WEB-INF/view/");
+        viewResolver.setPrefix("/view/");
         viewResolver.setSuffix(".jsp");
         return viewResolver;
     }

@@ -1,64 +1,40 @@
 package com.javaschool.ev.domain;
 
-import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
 
-@Entity
-@Table(name = "passenger")
 @Getter @Setter @NoArgsConstructor
+public class Passenger {
 
-public class Passenger extends AbstractDomain {
-
-    //include passengerID
-    //@OneToOne
-    //@JoinColumn(name="PassengerID", nullable = false)
-    //private passengerID;
-
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    @Column(name="FirstName")
+    @Id
+    private Long passengerID;
     private String firstName;
-
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    @Column(name="LasttName")
     private String lastName;
+    //private SimpleDateFormat birthDate;
+    private String birthDate;
 
-    //what format should the birthdate be? Calendar?
-    //private Calendar birthDate;
 
-
-    public Passenger(String firstName, String lastName) {
+    public Passenger(String firstName, String lastName, String birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.birthDate = birthDate;
     }
 
-    public java.lang.String getFirstName() {
-        return firstName;
+    /*private Passenger(SimpleDateFormat birthDate){
+        String pattern = "dd-MM-yyyy";
+        birthDate = new SimpleDateFormat(pattern);
     }
 
-    public void setFirstName(java.lang.String firstName) {
-        this.firstName = firstName;
-    }
+    method to transform the BirthDate
+    String pattern = "MM-dd-yyyy";
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+    String date = simpleDateFormat.format(new Date());
+    System.out.println(date);
 
-    public java.lang.String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(java.lang.String lastName) {
-        this.lastName = lastName;
-    }
-
-    @Override
-    public String toString() {
-        return "Passenger{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
-    }
+    Source:
+    https://stackoverflow.com/questions/2923227/displaying-date-of-birth-in-java-by-using-date-util
+    */
 
 }

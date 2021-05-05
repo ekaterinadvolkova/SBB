@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Passenger {
 
     @Id
-    private Long passengerID;
+    private int passengerID;
     private String firstName;
     private String lastName;
     //private SimpleDateFormat birthDate;

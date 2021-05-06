@@ -8,5 +8,7 @@
 
 <h1>edit Passenger Page</h1>
 
+<h2><a href="${pageContext.request.contextPath}/">Go back</a> </h2>
+
 </body>
 </html>

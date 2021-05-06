@@ -8,8 +8,8 @@ import javax.persistence.*;
 @Getter @Setter @NoArgsConstructor
 public class Passenger {
 
-    @Id
-    private Long passengerID;
+
+    private int passengerID;
     private String firstName;
     private String lastName;
     //private SimpleDateFormat birthDate;
@@ -20,6 +20,11 @@ public class Passenger {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Passenger " + firstName + " " + lastName + " " + birthDate;
     }
 
     /*private Passenger(SimpleDateFormat birthDate){

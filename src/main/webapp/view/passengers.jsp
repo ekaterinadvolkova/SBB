@@ -5,9 +5,10 @@
 </head>
 <body>
 
-<h2>Passenger List</h2>
+<h2>${passenger}</h2>
 
 <h2><a href="${pageContext.request.contextPath}/editPassenger">Edit Passenger</a> </h2>
+
 
 
 </body>

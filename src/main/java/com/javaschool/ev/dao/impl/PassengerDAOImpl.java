@@ -12,12 +12,11 @@ public class PassengerDAOImpl implements PassengerDAO {
     static {
         Passenger passenger1 = new Passenger();
         passenger1.setPassengerID(AUTO_ID.getAndIncrement());
-        passenger1.setFirstName("Anna");
-        passenger1.setLastName("Middleton");
+        passenger1.setFirstName("Ann");
+        passenger1.setLastName("Rowling");
         passenger1.setBirthDate("19-04-1997");
         passengers.put(passenger1.getPassengerID(), passenger1);
     }
-
 
     @Override
     public List<Passenger> allPassengers() {
@@ -38,7 +37,6 @@ public class PassengerDAOImpl implements PassengerDAO {
     @Override
     public void edit(Passenger passenger) {
         passengers.put(passenger.getPassengerID(), passenger);
-
     }
 
     @Override

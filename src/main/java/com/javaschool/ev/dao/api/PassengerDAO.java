@@ -1,7 +1,6 @@
 package com.javaschool.ev.dao.api;
 
 import com.javaschool.ev.domain.Passenger;
-
 import java.util.List;
 
 public interface PassengerDAO {

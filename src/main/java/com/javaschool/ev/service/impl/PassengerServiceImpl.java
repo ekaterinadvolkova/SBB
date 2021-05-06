@@ -26,12 +26,12 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public void edit(Passenger film) {
-        passengerDAO.edit(film);
+    public void edit(Passenger passenger) {
+        passengerDAO.edit(passenger);
     }
 
     @Override
-    public Passenger getById(int id) {
-        return passengerDAO.getById(id);
+    public Passenger getById(int passengerID) {
+        return passengerDAO.getById(passengerID);
     }
 }

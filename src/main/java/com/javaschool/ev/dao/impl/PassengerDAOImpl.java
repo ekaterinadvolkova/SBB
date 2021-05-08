@@ -2,9 +2,12 @@ package com.javaschool.ev.dao.impl;
 
 import com.javaschool.ev.dao.api.PassengerDAO;
 import com.javaschool.ev.domain.Passenger;
+import org.springframework.stereotype.Repository;
+
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+@Repository
 public class PassengerDAOImpl implements PassengerDAO {
 
     /*

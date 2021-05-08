@@ -3,6 +3,7 @@ package com.javaschool.ev.controller;
 import com.javaschool.ev.domain.Passenger;
 import com.javaschool.ev.service.api.PassengerService;
 import com.javaschool.ev.service.impl.PassengerServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,23 +16,15 @@ import java.util.List;
 @Controller
 public class PassengerController {
 
-    //add service to call its methods later
-    private final PassengerService passengerService = new PassengerServiceImpl();
-
     /*
-    first controller
-    all passengers list in a table
-    value="/" is deleted
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!passengeRR
-
-    private static Passenger passengerr;
-    @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView allPassengers() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("passengers");
-        modelAndView.addObject("passenger", passengerr);
-        return modelAndView;
-    }*/
+    add service to call its methods later
+    @Autowired annotation not to create new objects of the class
+     */
+    private PassengerService passengerService;
+    @Autowired
+    public void setPassengerService (PassengerService passengerService){
+        this.passengerService=passengerService;
+    }
 
     /*
     all passengers list in a table

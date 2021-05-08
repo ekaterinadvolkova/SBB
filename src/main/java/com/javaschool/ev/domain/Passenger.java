@@ -15,7 +15,6 @@ public class Passenger {
     //private SimpleDateFormat birthDate;
     private String birthDate;
 
-
     public Passenger(String firstName, String lastName, String birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;

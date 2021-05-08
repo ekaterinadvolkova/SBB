@@ -4,7 +4,6 @@ import com.javaschool.ev.dao.api.PassengerDAO;
 import com.javaschool.ev.dao.impl.PassengerDAOImpl;
 import com.javaschool.ev.domain.Passenger;
 import com.javaschool.ev.service.api.PassengerService;
-
 import java.util.List;
 
 public class PassengerServiceImpl implements PassengerService {

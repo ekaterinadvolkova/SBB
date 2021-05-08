@@ -58,7 +58,7 @@ public class PassengerController {
     /*
     get to the EditPassenger Page with ID
      */
-    @RequestMapping(value = "/editPassenger/{passengerID}", method = RequestMethod.GET)
+    @RequestMapping(value = "editPassenger/{passengerID}", method = RequestMethod.GET)
     public ModelAndView editPassenger(@PathVariable("passengerID") int passengerID) {
         Passenger passenger = passengerService.getById(passengerID);
         ModelAndView modelAndView = new ModelAndView();

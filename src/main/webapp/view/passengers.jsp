@@ -22,8 +22,8 @@
             <td>${passenger.lastName}</td>
             <td>${passenger.birthDate}</td>
             <td>
-                <a href="/editPassenger/${passenger.passengerID}">Edit</a>
-                <a href="/deletePassenger/${passenger.passengerID}">Delete</a>
+                <a href="editPassenger/${passenger.passengerID}">Edit</a>
+                <a href="deletePassenger/${passenger.passengerID}">Delete</a>
             </td>
         </tr>
     </c:forEach>

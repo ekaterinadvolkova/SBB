@@ -2,11 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-    <title>SBB Staff - Passengers</title>
+    <title>Passengers Data STAFF ONLY </title>
 </head>
 <body>
 <h2>SBB Passengers</h2>
-<h2><a href="${pageContext.request.contextPath}/editPassenger">Edit Passenger</a> </h2>
+<h2><a href="${pageContext.request.contextPath}/editPassenger">Edit or Add Passenger</a> </h2>
 <table>
     <tr>
         <th>Passenger ID</th>

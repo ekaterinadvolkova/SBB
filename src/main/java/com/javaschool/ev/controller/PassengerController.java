@@ -102,6 +102,19 @@ public class PassengerController {
         passengerService.add(passenger);
         return modelAndView;
     }
+
+    /*
+    delete passenger from the list
+    "/" at the beginning is deleted
+     */
+    @RequestMapping(value="deletePassenger/{passengerID}", method = RequestMethod.GET)
+    public ModelAndView deletePassenger(@PathVariable("passengerID") int passengerID) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/");
+        Passenger passenger = passengerService.getById(passengerID);
+        passengerService.delete(passenger);
+        return modelAndView;
+    }
 }
 
 

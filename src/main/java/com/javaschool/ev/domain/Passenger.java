@@ -6,13 +6,24 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Getter @Setter @NoArgsConstructor
+@Entity
+@Table(name="passenger")
 public class Passenger {
 
 
+    @Id
+    @Column(name="passengerID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int passengerID;
+
+    @Column(name="firstName")
     private String firstName;
+
+    @Column(name="lastName")
     private String lastName;
+
     //private SimpleDateFormat birthDate;
+    @Column(name="birthDate")
     private String birthDate;
 
     public Passenger(String firstName, String lastName, String birthDate) {

@@ -48,6 +48,7 @@ public class PassengerController {
         modelAndView.setViewName("editPassenger");
         return modelAndView;
     }
+
     /*
     get to the EditPassenger Page with ID
      */

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
+import java.util.Date;
 
 @Getter @Setter @NoArgsConstructor
 @Entity
@@ -24,9 +25,9 @@ public class Passenger {
 
     //private SimpleDateFormat birthDate;
     @Column(name="birthDate")
-    private String birthDate;
+    private Date birthDate;
 
-    public Passenger(String firstName, String lastName, String birthDate) {
+    public Passenger(String firstName, String lastName, Date birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;

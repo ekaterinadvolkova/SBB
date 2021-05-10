@@ -6,9 +6,10 @@ import javax.servlet.Filter;
 
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer  {
 
+    //add hibernate configuration
     @Override
     protected Class<?>[] getRootConfigClasses(){
-        return new Class[0];
+        return new Class[]{HibernateConfig.class};
     }
 
     //web-config where view-solvers are defined
@@ -30,4 +31,6 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
         characterEncodingFilter.setForceEncoding(true);
         return new Filter[] {characterEncodingFilter};
     }
+
+
 }

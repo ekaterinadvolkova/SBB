@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) {
-        String url = "jdbc:mysql://localhost:3306/SBB_Data";
+        String url = "jdbc:mysql://localhost:3306/SBB_Data?serverTimezone=UTC&useSSL=false\";";
         String username = "root";
         String password = "SBB_Offer_Received1!";
         System.out.println("Connecting...");

@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Passengers Data STAFF ONLY </title>
+    <link href="<c:url value="/res/style.css"/>" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <h2>SBB Passengers</h2>

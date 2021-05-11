@@ -7,8 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.List;
 
 @Repository
 public class PassengerDAOImpl implements PassengerDAO {
@@ -32,19 +31,32 @@ public class PassengerDAOImpl implements PassengerDAO {
     Passenger list
     нужен параметризированный list,  запрос просто на list --> @SuppressWarnings()
      */
-    @Override
+
+
     @SuppressWarnings("unchecked")
     public List<Passenger> allPassengers() {
         Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("from Passenger").list();
+        return session.createQuery("from Passenger")/*.setFirstResult(10 * (page - 1)).setMaxResults(10)*/.list();
     }
 
     /*
-    passenger add
-    Old version:
-    passenger.setPassengerID(AUTO_ID.getAndIncrement());
-    passengers.put(passenger.getPassengerID(), passenger);
-     */
+    Pagination:
+    I.e., if this is page 1, output a maximum of 10 records, starting from page 0, and if this is page 5,
+    then 10 records starting from page 40
+    (the numbering in the database starts with 0).
+
+    public int passengersCount() {
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("select count(*) from Passenger", Number.class).getSingleResult().intValue();
+    }*/
+
+
+    /*
+                passenger add
+                Old version:
+                passenger.setPassengerID(AUTO_ID.getAndIncrement());
+                passengers.put(passenger.getPassengerID(), passenger);
+                 */
     @Override
     public void add(Passenger passenger) {
         Session session = sessionFactory.getCurrentSession();

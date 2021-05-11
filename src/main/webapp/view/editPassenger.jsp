@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>For SBB Staff</title>
+    <link href="<c:url value="/res/style.css"/>" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>

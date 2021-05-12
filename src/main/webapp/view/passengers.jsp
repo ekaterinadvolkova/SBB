@@ -7,14 +7,13 @@
     <link href="<c:url value="/res/style.css"/>" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-
 <fmt:formatDate value="${bean.date}" pattern="dd-MM-yyyy"/>
 <table class="style">
     <caption class="heading">SBB Passengers</caption>
-    <tr>
-        <th class="left-side">ID</th>
-        <th style="width: 100%" class="cental-side">First Name</th>
-        <th style="width: 100%" class="cental-side">Last Name</th>
+    <tr class="left-side">
+        <th>ID</th>
+        <th style="width: 100%">First Name</th>
+        <th style="width: 100%">Last Name</th>
         <th>Birth Date</th>
         <th>Action</th>
     </tr>
@@ -25,13 +24,14 @@
             <td class="title"class="left-side">${passenger.lastName}</td>
             <td  type="date" class="left-side">${passenger.birthDate}</td>
             <td class="right-side">
-                <a href="editPassenger/${passenger.passengerID}">Edit</a>
-                <a href="deletePassenger/${passenger.passengerID}">Delete</a>
+                <a href="edit/${passenger.passengerID}">Edit</a>
+                <a href="delete/${passenger.passengerID}">Delete</a>
             </td>
         </tr>
     </c:forEach>
 </table>
-<c:url value="/editPassenger" var="add"/>
-<p class="heading"> <a href="${add}">Add Passenger</a> </p>
+<table class="style">
+    <tr class="left-side"><th><a href="/add">Add Passenger</a> </th></tr>
+</table>
 </body>
 </html>

@@ -1,5 +1,5 @@
 body {
-    background: url("/images/train.jpg") no-repeat 50% 50% fixed;
+    background: url("tlotr.png") no-repeat 50% 50% fixed;
 }
 
 a {
@@ -58,7 +58,7 @@ a:active {
     margin-right: 10px;
     margin-left: 10px;
     vertical-align: bottom;
-    //background: url("icons.png") no-repeat;
+    background: url("icons.png") no-repeat;
 }
 
 .icon-add {

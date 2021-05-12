@@ -10,8 +10,6 @@ import java.util.List;
 
 @RestController
 public class PassengerController {
-
-
     /*
     add service to call its methods later
     @Autowired annotation not to create new objects of the class
@@ -21,12 +19,11 @@ public class PassengerController {
     public void setPassengerService (PassengerService passengerService){
         this.passengerService=passengerService;
     }
-
     /*
     all passengers list in a table
     value="/" is added again to work later with redirect
      */
-    @RequestMapping(value="/", method = RequestMethod.GET)
+    @RequestMapping(value="staff/passengers/", method = RequestMethod.GET)
     public ModelAndView allPassengers() {
         List<Passenger> passengers = passengerService.allPassengers();
         ModelAndView modelAndView = new ModelAndView();
@@ -34,11 +31,10 @@ public class PassengerController {
         modelAndView.addObject("passengerList", passengers);
         return modelAndView;
     }
-
     /*
      get to the EditPassenger without ID
      */
-    @RequestMapping(value = "/editPassenger", method = RequestMethod.GET)
+    @RequestMapping(value = "/staff/passengers/edit", method = RequestMethod.GET)
     public ModelAndView editPassenger() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("editPassenger");
@@ -47,7 +43,7 @@ public class PassengerController {
     /*
     get to the EditPassenger Page with ID
      */
-    @RequestMapping(value = "editPassenger/{passengerID}", method = RequestMethod.GET)
+    @RequestMapping(value = "/staff/passengers/edit/{passengerID}", method = RequestMethod.GET)
     public ModelAndView editPassenger(@PathVariable("passengerID") int passengerID) {
         Passenger passenger = passengerService.getById(passengerID);
         ModelAndView modelAndView = new ModelAndView();
@@ -61,7 +57,7 @@ public class PassengerController {
     with POST the data is transferred
     "redirect:/" is for redirectinf to the "/" address
     */
-    @RequestMapping(value = "/editPassenger", method = RequestMethod.POST)
+    @RequestMapping(value = "staff/passengers/edit", method = RequestMethod.POST)
     public ModelAndView editPassengerPage(@ModelAttribute("passenger") Passenger passenger) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");
@@ -72,7 +68,7 @@ public class PassengerController {
     method to get to the page "add new passenger"
     jsp looks same as edit --> one jsp for editing and adding the passenger
      */
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @RequestMapping(value = "staff/passengers/add", method = RequestMethod.GET)
     public ModelAndView addPassenger() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("editPassenger");
@@ -90,31 +86,28 @@ public class PassengerController {
     ================================
     add feature of checking if the passenger exists
      */
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "staff/passengers/add", method = RequestMethod.POST)
     public ModelAndView addPassenger(@ModelAttribute("passenger") Passenger passenger) {
         ModelAndView modelAndView = new ModelAndView();
 
         if (passengerService.checkPassenger(passenger.getFirstName(), passenger.getLastName(), passenger.getBirthDate())) {
-            modelAndView.setViewName("redirect:/");
+            modelAndView.setViewName("redirect:/staff/passengers/");
             passengerService.add(passenger);
         } else {
-            modelAndView.addObject("message","part with title \"" + passenger.getFirstName()
-                    + passenger.getLastName()+ passenger.getBirthDate() + "\" already exists");
-
-            modelAndView.setViewName("redirect:/add");
+            modelAndView.addObject("message", "part with title \"" + passenger.getFirstName()
+                    + passenger.getLastName() + passenger.getBirthDate() + "\" already exists");
+            modelAndView.setViewName("redirect:/staff/passengers/");
         }
         return modelAndView;
-
     }
-
     /*
     delete passenger from the list
     "/" at the beginning is deleted
      */
-    @RequestMapping(value="deletePassenger/{passengerID}", method = RequestMethod.GET)
+    @RequestMapping(value="/staff/passengers/delete/{passengerID}", method = RequestMethod.GET)
     public ModelAndView deletePassenger(@PathVariable("passengerID") int passengerID) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/");
+        modelAndView.setViewName("redirect:/staff/passengers/");
         Passenger passenger = passengerService.getById(passengerID);
         passengerService.delete(passenger);
         return modelAndView;

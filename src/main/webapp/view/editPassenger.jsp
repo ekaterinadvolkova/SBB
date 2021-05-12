@@ -22,7 +22,7 @@
     <c:choose>
     <c:when test="${!empty passenger.firstName && !empty passenger.lastName && !empty passenger.birthDate}">
     <p class="heading">Edit passenger</p>
-    <input type="hidden" name="id" value="${passenger.passengerID}">
+    <input style="display: none" type="text" name="passengerID" value="${passenger.passengerID}">
     </c:when>
     <c:otherwise>
     <p class="heading">Add new passenger</p>

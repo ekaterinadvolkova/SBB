@@ -1,7 +1,10 @@
 package com.javaschool.ev.domain;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter @Setter @NoArgsConstructor
@@ -22,10 +25,11 @@ public class Passenger {
     private String lastName;
 
     //private SimpleDateFormat birthDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name="birthDate")
-    private Date birthDate;
+    private LocalDate birthDate;
 
-    public Passenger(String firstName, String lastName, Date birthDate) {
+    public Passenger(String firstName, String lastName, LocalDate birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;

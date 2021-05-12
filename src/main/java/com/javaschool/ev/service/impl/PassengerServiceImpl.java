@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -56,7 +57,7 @@ public class PassengerServiceImpl implements PassengerService {
 
     @Override
     @Transactional
-    public boolean checkPassenger(String firstName, String lastName, Date birthDate) {
+    public boolean checkPassenger(String firstName, String lastName, LocalDate birthDate) {
         return passengerDAO.checkPassenger(firstName,lastName,birthDate);
     }
 }

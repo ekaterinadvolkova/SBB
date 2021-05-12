@@ -8,6 +8,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -99,7 +100,7 @@ public class PassengerDAOImpl implements PassengerDAO {
     }
 
     @Override
-    public boolean checkPassenger(String firstName, String lastName, Date birthDate) {
+    public boolean checkPassenger(String firstName, String lastName, LocalDate birthDate) {
         Session session = sessionFactory.getCurrentSession();
         Query query;
 

@@ -31,7 +31,7 @@
     </c:forEach>
 </table>
 <table class="style">
-    <tr class="left-side"><th><a href="/add">Add Passenger</a> </th></tr>
+    <tr class="left-side"><th><a href="add/">Add Passenger</a> </th></tr>
 </table>
 </body>
 </html>

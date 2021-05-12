@@ -1,33 +1,50 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-    <title>For SBB Staff</title>
     <link href="<c:url value="/res/style.css"/>" rel="stylesheet" type="text/css"/>
-</head>
 
+    <c:choose>
+        <c:when test="${empty passenger.firstName && empty passenger.lastName && empty passenger.birthDate}">
+            <title>Add</title>
+        </c:when>
+        <c:otherwise>
+            <title>Edit</title>
+        </c:otherwise>
+    </c:choose>
+
+</head>
 <body>
 
-<h1>edit Passenger Page</h1>
+<c:url value="/add" var="add"/>
+<c:url value="/editPassenger" var="edit"/>
 
-<h2><a href="${pageContext.request.contextPath}/">Go back</a> </h2>
+<form class="style" action="${(empty passenger.firstName && empty passenger.lastName && empty passenger.birthDate) ? add : editPassenger}" name="passenger" method="POST">
+    <c:choose>
+    <c:when test="${!empty passenger.firstName && !empty passenger.lastName && !empty passenger.birthDate}">
+    <p class="heading">Edit passenger</p>
+    <input type="hidden" name="id" value="${passenger.passengerID}">
+    </c:when>
+    <c:otherwise>
+    <p class="heading">Add new passenger</p>
+    </c:otherwise>
+    </c:choose>
 
-<c:url value="/editPassenger" var="var"/>
-<form action="${var}" method="POST">
-    <input type="number" name="passengerID" value="${passenger.passengerID}"  id="passengerID">
 
-    <label for="firstName">First Name</label>
-    <input type="text" name="firstName" id="firstName">
+    <p><input type="text" name="firstName" id="firstName" placeholder="firstName" value="${passenger.firstName}" maxlength="50" required autofocus pattern="^[^\s]+(\s.*)?$">
+    <p><input type="text" name="lastName" id="lastName" placeholder="lastName" value="${passenger.lastName}" maxlength="50" required autofocus pattern="^[^\s]+(\s.*)?$">
+    <fmt:formatDate value="${bean.date}" pattern="dd-MM-yyyy"/>
+    <p><input class ="input" type="date" name="birthDate" id="birthDate" placeholder="birthDate" value="${passenger.birthDate}" maxlength="50" required autofocus pattern="^[^\s]+(\s.*)?$">
 
-    <label for="lastName">Last Name</label>
-    <input type="text" name="lastName" id="lastName">
+    <p>
+        <c:set value="add" var="add"/>
+        <c:set value="editPassenger" var="editPassenger"/>
+        <input type="submit" value="${(empty passenger.firstName && empty passenger.lastName && empty passenger.birthDate) ? add : edit}">
+    </p>
 
-    <label for="birthDate">Birth Date</label>
-    <input type="text" name="birthDate" id="birthDate">
-
-    <input type="submit" value="Submit">
+    <p class="heading"><a href="${pageContext.request.contextPath}/">Go back</a> </p>
 
 </form>
-
 </body>
 </html>

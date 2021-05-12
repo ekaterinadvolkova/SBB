@@ -2,19 +2,15 @@ package com.javaschool.ev.controller;
 
 import com.javaschool.ev.domain.Passenger;
 import com.javaschool.ev.service.api.PassengerService;
-import com.javaschool.ev.service.impl.PassengerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
-@Controller
+@RestController
 public class PassengerController {
+
 
     /*
     add service to call its methods later
@@ -48,7 +44,6 @@ public class PassengerController {
         modelAndView.setViewName("editPassenger");
         return modelAndView;
     }
-
     /*
     get to the EditPassenger Page with ID
      */
@@ -61,7 +56,6 @@ public class PassengerController {
         modelAndView.addObject("passenger", passengerService.getById(passengerID));
         return modelAndView;
     }
-
     /*
     edit passenger method
     with POST the data is transferred
@@ -74,7 +68,6 @@ public class PassengerController {
         passengerService.edit(passenger);
         return modelAndView;
     }
-
     /*
     method to get to the page "add new passenger"
     jsp looks same as edit --> one jsp for editing and adding the passenger
@@ -85,16 +78,33 @@ public class PassengerController {
         modelAndView.setViewName("editPassenger");
         return modelAndView;
     }
-
     /*
     method of adding passenger
+    ================================
+    old code:
+    modelAndView.setViewName("redirect:/");
+        passengerService.add(passenger);
+        return modelAndView;
+    ================================
+    Bad request error 400
+    ================================
+    add feature of checking if the passenger exists
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ModelAndView addPassenger(@ModelAttribute("passenger") Passenger passenger) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/");
-        passengerService.add(passenger);
+
+        if (passengerService.checkPassenger(passenger.getFirstName(), passenger.getLastName(), passenger.getBirthDate())) {
+            modelAndView.setViewName("redirect:/");
+            passengerService.add(passenger);
+        } else {
+            modelAndView.addObject("message","part with title \"" + passenger.getFirstName()
+                    + passenger.getLastName()+ passenger.getBirthDate() + "\" already exists");
+
+            modelAndView.setViewName("redirect:/add");
+        }
         return modelAndView;
+
     }
 
     /*

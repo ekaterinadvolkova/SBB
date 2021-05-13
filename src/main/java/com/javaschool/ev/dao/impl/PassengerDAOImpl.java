@@ -34,7 +34,6 @@ public class PassengerDAOImpl implements PassengerDAO {
     нужен параметризированный list,  запрос просто на list --> @SuppressWarnings()
      */
 
-
     @SuppressWarnings("unchecked")
     public List<Passenger> allPassengers() {
         Session session = sessionFactory.getCurrentSession();
@@ -51,7 +50,6 @@ public class PassengerDAOImpl implements PassengerDAO {
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("select count(*) from Passenger", Number.class).getSingleResult().intValue();
     }*/
-
 
     /*
                 passenger add

@@ -1,15 +1,12 @@
 package com.javaschool.ev.dao.impl;
 
-import com.javaschool.ev.dao.api.PassengerDAO;
 import com.javaschool.ev.dao.api.TrainDAO;
-import com.javaschool.ev.domain.Passenger;
 import com.javaschool.ev.domain.Train;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 @Repository
@@ -54,12 +51,21 @@ public class TrainDAOImpl implements TrainDAO {
     }
 
     @Override
-    public boolean checkTrain(int number) {
-        Session session = sessionFactory.getCurrentSession();
-        Query query;
+    public boolean checkTrain(int number, int availableSeats, int bookedSeats, String occurence) {
+        Session session = sessionFactory.openSession();
 
+        Query query;
         query = session.createQuery("from Train where number = :number");
         query.setParameter("number", number);
+
+        query = session.createQuery("from Train where availableSeats = :availableSeats");
+        query.setParameter("availableSeats", availableSeats);
+
+        query = session.createQuery("from Train where bookedSeats = :bookedSeats");
+        query.setParameter("bookedSeats", bookedSeats);
+
+        query = session.createQuery("from Train where occurence = :occurence");
+        query.setParameter("occurence", occurence);
 
         return query.list().isEmpty();
     }

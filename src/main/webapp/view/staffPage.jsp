@@ -14,7 +14,7 @@
     <tr><td><a href="trains/">View all Trains</a></td></tr>
     <tr><th>View passengers on the Train</th></tr>
     <tr><th>Add Station</th></tr>
-    <tr><th>Add Train</th></tr>
+    <tr><td><a href="trains/add/">Add Train</a></td></tr>
 </table>
 </body>
 </html>

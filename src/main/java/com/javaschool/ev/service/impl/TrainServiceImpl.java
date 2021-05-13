@@ -50,7 +50,7 @@ public class TrainServiceImpl implements TrainService {
 
     @Override
     @Transactional
-    public boolean checkTrain(int number) {
-        return trainDAO.checkTrain(number);
+    public boolean checkTrain(int number, int availableSeats, int bookedSeats, String occurence) {
+        return trainDAO.checkTrain(number, availableSeats, bookedSeats, occurence);
     }
 }

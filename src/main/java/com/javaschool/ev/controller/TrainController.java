@@ -26,6 +26,7 @@ public class TrainController {
         modelAndView.addObject("trainList", trains);
         return modelAndView;
     }
+
     @RequestMapping(value = "/staff/trains/edit", method = RequestMethod.GET)
     public ModelAndView editTrain() {
         ModelAndView modelAndView = new ModelAndView();
@@ -43,7 +44,7 @@ public class TrainController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "staff/trains/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "staff/trains/edit", method = RequestMethod.PUT)
     public ModelAndView editTrainPage(@ModelAttribute("train") Train train) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");

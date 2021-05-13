@@ -41,7 +41,12 @@ public class TrainDAOImpl implements TrainDAO {
     @Override
     public void edit(Train train) {
         Session session = sessionFactory.getCurrentSession();
-        session.update(train);
+
+        Train dbTrain =getById(train.getTrainID());
+        dbTrain.setOccurence((dbTrain.getOccurence()));
+
+        session.update(dbTrain);
+        //session.update(train);
     }
 
     @Override

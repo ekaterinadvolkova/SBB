@@ -23,7 +23,7 @@
     <c:choose>
         <c:when test="${!empty train.number && !empty train.availableSeats && !empty train.bookedSeats && !empty train.occurence}">
             <p class="heading">Edit train</p>
-            <input style="display: none" type="text" name="passengerID" value="${passenger.passengerID}">
+            <input style="display: none" type="text" name="passengerID" value="${train.trainID}">
         </c:when>
         <c:otherwise>
             <p class="heading">Add new train</p>

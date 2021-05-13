@@ -10,11 +10,12 @@
 
 <table class="style">
     <caption class="heading">Staff Page</caption>
-    <tr><td><a href="passengers/">Passeners List</a></td></tr>
-    <tr><td><a href="trains/">View all Trains</a></td></tr>
+    <tr><td><a href="passengers/">View Passengers</a></td></tr>
+    <tr><td><a href="trains/">View trains</a></td></tr>
     <tr><th>View passengers on the Train</th></tr>
-    <tr><th>Add Station</th></tr>
-    <tr><td><a href="trains/add/">Add Train</a></td></tr>
+    <tr><th><a href="stations/">View stations</a></th></tr>
+    <tr><th><a href="editStation/">Add station</a></th></tr>
+    <tr><td><a href="trains/add/">Add train</a></td></tr>
 </table>
 </body>
 </html>

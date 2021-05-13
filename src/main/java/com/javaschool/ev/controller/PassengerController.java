@@ -21,6 +21,7 @@ public class PassengerController {
         this.passengerService=passengerService;
     }
 
+
     /*
     all passengers list in a table
     value="/" is added again to work later with redirect

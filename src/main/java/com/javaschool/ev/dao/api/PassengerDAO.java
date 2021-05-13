@@ -1,9 +1,7 @@
 package com.javaschool.ev.dao.api;
 
 import com.javaschool.ev.domain.Passenger;
-
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public interface PassengerDAO<date> {

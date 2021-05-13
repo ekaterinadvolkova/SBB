@@ -10,8 +10,8 @@
 
 <table class="style">
     <caption class="heading">Staff Page</caption>
-    <tr><th><a href="passengers/">Passeners List</a></th></tr>
-    <tr><th>View all Trains</th></tr>
+    <tr><td><a href="passengers/">Passeners List</a></td></tr>
+    <tr><td><a href="trains/">View all Trains</a></td></tr>
     <tr><th>View passengers on the Train</th></tr>
     <tr><th>Add Station</th></tr>
     <tr><th>Add Train</th></tr>

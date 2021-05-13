@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 public class PassengerController {
+
     /*
     add service to call its methods later
     @Autowired annotation not to create new objects of the class
@@ -19,6 +20,7 @@ public class PassengerController {
     public void setPassengerService (PassengerService passengerService){
         this.passengerService=passengerService;
     }
+
     /*
     all passengers list in a table
     value="/" is added again to work later with redirect

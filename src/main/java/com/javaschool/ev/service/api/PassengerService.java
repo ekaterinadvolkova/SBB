@@ -3,7 +3,6 @@ package com.javaschool.ev.service.api;
 import com.javaschool.ev.domain.Passenger;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public interface PassengerService {

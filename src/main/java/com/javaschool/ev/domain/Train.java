@@ -11,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name="train")
-public class train {
+public class Train {
 
     @Id
     @Column(name="trainID")
@@ -21,15 +21,19 @@ public class train {
     @Column(name="number")
     private int number;
 
+    @Column(name="availableSeats")
+    private int availableSeats;
+
     @Column(name="bookedSeats")
     private int bookedSeats;
 
     @Column(name="occurence")
     private String occurence;
 
-    public train(int trainID, int number, int bookedSeats, String occurence) {
+    public Train(int trainID, int number, int availableSeats, int bookedSeats, String occurence) {
         this.trainID = trainID;
         this.number = number;
+        this.availableSeats = availableSeats;
         this.bookedSeats = bookedSeats;
         this.occurence = occurence;
     }

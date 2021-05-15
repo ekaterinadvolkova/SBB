@@ -7,10 +7,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.time.LocalDate;
 import java.util.List;
 
 @Repository
+@Transactional
 public class TrainDAOImpl implements TrainDAO {
 
     private SessionFactory sessionFactory;
@@ -44,10 +47,13 @@ public class TrainDAOImpl implements TrainDAO {
         Session session = sessionFactory.getCurrentSession();
 
         Train dbTrain =getById(train.getTrainID());
-        dbTrain.setOccurence((dbTrain.getOccurence()));
+        dbTrain.setNumber(train.getNumber());
+        dbTrain.setOccurence((train.getOccurence()));
+        dbTrain.setAvailableSeats((train.getAvailableSeats()));
+        dbTrain.setBookedSeats(train.getBookedSeats());
 
         session.update(dbTrain);
-        //session.update(train);
+        
     }
 
     @Override
@@ -58,24 +64,12 @@ public class TrainDAOImpl implements TrainDAO {
 
     @Override
     public boolean checkTrain(int number, int availableSeats,
-                              int bookedSeats, String occurence, LocalDate localDate) {
+                              int bookedSeats, String occurence) {
         Session session = sessionFactory.openSession();
 
         Query query;
         query = session.createQuery("from Train where number = :number");
         query.setParameter("number", number);
-
-        query = session.createQuery("from Train where availableSeats = :availableSeats");
-        query.setParameter("availableSeats", availableSeats);
-
-        query = session.createQuery("from Train where bookedSeats = :bookedSeats");
-        query.setParameter("bookedSeats", bookedSeats);
-
-        query = session.createQuery("from Train where occurence = :occurence");
-        query.setParameter("occurence", occurence);
-
-        query = session.createQuery("from Train where localDate = :localDate");
-        query.setParameter("localDate", localDate);
 
         return query.list().isEmpty();
     }

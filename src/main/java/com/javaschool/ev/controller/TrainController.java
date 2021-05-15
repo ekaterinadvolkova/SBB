@@ -36,19 +36,17 @@ public class TrainController {
 
     @RequestMapping(value = "/staff/trains/edit/{trainID}", method = RequestMethod.GET)
     public ModelAndView editTrain(@PathVariable("trainID") int trainID) {
-        Train train = trainService.getById(trainID);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("editTrain");
-        modelAndView.addObject("train", train);
         modelAndView.addObject("train", trainService.getById(trainID));
         return modelAndView;
     }
 
-    @RequestMapping(value = "staff/trains/edit", method = RequestMethod.PUT)
+    @RequestMapping(value = "staff/trains/edit", method = RequestMethod.POST)
     public ModelAndView editTrainPage(@ModelAttribute("train") Train train) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/");
         trainService.edit(train);
+        modelAndView.setViewName("redirect:/staff/trains/");
         return modelAndView;
     }
 
@@ -63,7 +61,7 @@ public class TrainController {
     public ModelAndView addTrain(@ModelAttribute("train") Train train) {
         ModelAndView modelAndView = new ModelAndView();
 
-        if (trainService.checkTrain(train.getNumber(), train.getAvailableSeats(), train.getBookedSeats(), train.getOccurence(), train.getLocalDate())) {
+        if (trainService.checkTrain(train.getNumber(), train.getAvailableSeats(), train.getBookedSeats(), train.getOccurence())) {
             modelAndView.setViewName("redirect:/staff/trains/");
             trainService.add(train);
         } else {

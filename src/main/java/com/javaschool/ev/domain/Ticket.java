@@ -26,14 +26,12 @@ public class Ticket {
     @ManyToOne
     @JoinColumn(name = "passengerID")
     @NonNull
-    private Passenger passengerID;
+    private Passenger passenger;
 
 
-    @ManyToMany
-    @JoinTable(name = "train",
-            joinColumns = { @JoinColumn(name = "trainID") },
-            inverseJoinColumns = { @JoinColumn(name = "trainID") })
-    private Set<Train> authors = new HashSet<Train>();
+    @ManyToOne
+    @JoinColumn (name="trainID")
+    private Train train;
 
 
 

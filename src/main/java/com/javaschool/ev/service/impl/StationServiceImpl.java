@@ -12,16 +12,16 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class StationServiceImpl implements StationService {
 
-    private StationDAO stationDAO = new StationDAOImpl();
+    private StationDAO stationDAO;
     @Autowired
     public void setPassengerDAO (StationDAO stationDAO){
         this.stationDAO=stationDAO;
     }
 
     @Override
-    @Transactional
     public List<Station> allStations() {
         return stationDAO.allStations();
     }

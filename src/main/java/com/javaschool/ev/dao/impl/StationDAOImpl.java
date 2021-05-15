@@ -2,16 +2,19 @@ package com.javaschool.ev.dao.impl;
 
 
 import com.javaschool.ev.dao.api.StationDAO;
+import com.javaschool.ev.domain.Passenger;
 import com.javaschool.ev.domain.Station;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.List;
 
+@Transactional
 @Repository
 public class StationDAOImpl implements StationDAO {
 
@@ -42,7 +45,12 @@ public class StationDAOImpl implements StationDAO {
     @Override
     public void edit(Station station) {
         Session session = sessionFactory.getCurrentSession();
-        session.update(station);
+
+        Station dbStation=getById(station.getStationID());
+
+        //dbStation.setName(station.setName());
+        session.update(dbStation);
+
     }
 
     @Override

@@ -10,32 +10,31 @@ import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
-@Table(name="timetable")
+@Table(name = "timetable")
 public class Timetable {
     @Id
-    @Column(name="timetableID")
+    @Column(name = "timetableID")
     @NonNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int timetableID;
 
-
-
     @ManyToMany
-    @JoinTable(name = "train",
-            joinColumns = { @JoinColumn(name = "trainID") },
-            inverseJoinColumns = { @JoinColumn(name = "trainID") })
+    @JoinTable(name = "train_to_timetable",
+            joinColumns = {@JoinColumn(name = "timetableID", referencedColumnName = "timetableID")},
+            inverseJoinColumns = {@JoinColumn(name = "trainID", referencedColumnName = "trainID")})
     private Set<Train> trains = new HashSet<Train>();
 
     @OneToOne
     @NonNull
-    @Column(name="stationID")
+    @JoinColumn(name = "stationID")
     private Station stationID;
 
     @NonNull
-    @Column(name="departureTime")
+    @Column(name = "departureTime")
     private Timestamp departureTime;
-
 
 }

@@ -82,7 +82,13 @@ public class PassengerDAOImpl implements PassengerDAO {
     @Override
     public void edit(Passenger passenger) {
         Session session = sessionFactory.getCurrentSession();
-        session.update(passenger);
+
+        Passenger dbPassenger=getById(passenger.getPassengerID());
+        dbPassenger.setFirstName(passenger.getFirstName());
+        dbPassenger.setLastName(passenger.getLastName());
+        dbPassenger.setBirthDate(passenger.getBirthDate());
+
+        session.update(dbPassenger);
     }
 
     /*

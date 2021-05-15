@@ -19,7 +19,10 @@
 <c:url value="/staff/trains/add" var="add"/>
 <c:url value="/staff/trains/edit" var="edit"/>
 
-<form class="style" action="${(empty train.number && empty train.availableSeats && empty train.bookedSeats && empty train.occurence) ? add : edit}" name="train" method="POST">
+<c:set value="POST" var="POST"/>
+<c:set value="PUT" var="PUT"/>
+<form class="style" action="${(empty train.trainID) ? add : edit}" name="train" method="POST">
+
     <c:choose>
         <c:when test="${!empty train.number && !empty train.availableSeats && !empty train.bookedSeats && !empty train.occurence}">
             <p class="heading">Edit train</p>
@@ -37,7 +40,7 @@
     <p>
         <c:set value="add" var="add"/>
         <c:set value="edit" var="edit"/>
-        <input type="submit" value="${(empty train.number && empty train.availableSeats && empty train.bookedSeats && empty train.occurence) ? add : edit}">
+        <input type="submit" value="${(empty train.trainID) ? add : edit}">
     </p>
     <p class="heading"><a href="${pageContext.request.contextPath}/">Go back</a> </p>
 </form>

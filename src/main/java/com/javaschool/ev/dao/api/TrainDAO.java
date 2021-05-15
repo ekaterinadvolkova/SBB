@@ -12,5 +12,5 @@ public interface TrainDAO <date> {
     void edit(Train train);
     Train getById(int trainID);
     boolean checkTrain(int number, int availableSeats,
-                       int bookedSeats, String occurence, LocalDate localDate);
+                       int bookedSeats, String occurence);
 }

@@ -7,8 +7,6 @@ import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter @Setter @NoArgsConstructor
 @Entity
@@ -43,9 +41,6 @@ public class Train {
     private Set<Ticket> trains = new HashSet<Ticket>();*/
 
 
-    @NonNull
-    @Column(name="localDate")
-    private LocalDate localDate;
 
     public Train(int trainID, int number, int availableSeats, int bookedSeats,
                  String occurence, LocalDate localDate) {
@@ -54,7 +49,7 @@ public class Train {
         this.availableSeats = availableSeats;
         this.bookedSeats = bookedSeats;
         this.occurence = occurence;
-        this.localDate = localDate;
+
     }
 
     @Override
@@ -65,7 +60,7 @@ public class Train {
                 ", availableSeats=" + availableSeats +
                 ", bookedSeats=" + bookedSeats +
                 ", occurence='" + occurence + '\'' +
-                ", localDate=" + localDate +
+
                 '}';
     }
 }

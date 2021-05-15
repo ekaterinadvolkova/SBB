@@ -12,6 +12,5 @@ public interface TrainService {
     void edit(Train train);
     Train getById(int trainID);
 
-    boolean checkTrain(int number, int availableSeats, int bookedSeats, String occurence,
-                       LocalDate localDate);
+    boolean checkTrain(int number, int availableSeats, int bookedSeats, String occurence);
 }

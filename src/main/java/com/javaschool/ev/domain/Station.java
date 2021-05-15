@@ -1,6 +1,7 @@
 package com.javaschool.ev.domain;
 
 import lombok.*;
+import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 
@@ -11,9 +12,11 @@ public class Station {
 
     @Id
     @Column(name="stationID")
+    @NonNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int stationID;
 
+    @NonNull
     @Column(name="name")
     private String name;
 

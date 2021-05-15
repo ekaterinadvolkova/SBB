@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -50,7 +51,8 @@ public class TrainServiceImpl implements TrainService {
 
     @Override
     @Transactional
-    public boolean checkTrain(int number, int availableSeats, int bookedSeats, String occurence) {
-        return trainDAO.checkTrain(number, availableSeats, bookedSeats, occurence);
+    public boolean checkTrain(int number, int availableSeats, int bookedSeats,
+                              String occurence, LocalDate localDate) {
+        return trainDAO.checkTrain(number, availableSeats, bookedSeats, occurence, localDate);
     }
 }

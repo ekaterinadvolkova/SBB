@@ -63,7 +63,7 @@ public class TrainController {
     public ModelAndView addTrain(@ModelAttribute("train") Train train) {
         ModelAndView modelAndView = new ModelAndView();
 
-        if (trainService.checkTrain(train.getNumber(), train.getAvailableSeats(), train.getBookedSeats(), train.getOccurence())) {
+        if (trainService.checkTrain(train.getNumber(), train.getAvailableSeats(), train.getBookedSeats(), train.getOccurence(), train.getLocalDate())) {
             modelAndView.setViewName("redirect:/staff/trains/");
             trainService.add(train);
         } else {

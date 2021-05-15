@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -56,7 +57,8 @@ public class TrainDAOImpl implements TrainDAO {
     }
 
     @Override
-    public boolean checkTrain(int number, int availableSeats, int bookedSeats, String occurence) {
+    public boolean checkTrain(int number, int availableSeats,
+                              int bookedSeats, String occurence, LocalDate localDate) {
         Session session = sessionFactory.openSession();
 
         Query query;
@@ -71,6 +73,9 @@ public class TrainDAOImpl implements TrainDAO {
 
         query = session.createQuery("from Train where occurence = :occurence");
         query.setParameter("occurence", occurence);
+
+        query = session.createQuery("from Train where localDate = :localDate");
+        query.setParameter("localDate", localDate);
 
         return query.list().isEmpty();
     }

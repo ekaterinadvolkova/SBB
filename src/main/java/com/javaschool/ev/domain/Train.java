@@ -7,6 +7,8 @@ import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter @Setter @NoArgsConstructor
 @Entity
@@ -33,6 +35,12 @@ public class Train {
     @NonNull
     @Column(name="occurence")
     private String occurence;
+
+    /*@ManyToMany
+    @JoinTable(name = "ticket",
+            joinColumns = { @JoinColumn(name = "ticketID") },
+            inverseJoinColumns = { @JoinColumn(name = "ticketID") })
+    private Set<Ticket> trains = new HashSet<Ticket>();*/
 
 
     @NonNull

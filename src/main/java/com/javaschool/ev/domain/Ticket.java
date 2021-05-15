@@ -6,36 +6,35 @@ import lombok.Setter;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
-@Table(name="timetable")
-public class Timetable {
+@Table(name="ticket")
+public class Ticket {
+
     @Id
-    @Column(name="timetableID")
+    @Column(name="ticketID")
     @NonNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int timetableID;
+    private int ticketID;
 
+
+    @ManyToOne
+    @JoinColumn(name = "passengerID")
+    @NonNull
+    private Passenger passengerID;
 
 
     @ManyToMany
     @JoinTable(name = "train",
             joinColumns = { @JoinColumn(name = "trainID") },
             inverseJoinColumns = { @JoinColumn(name = "trainID") })
-    private Set<Train> trains = new HashSet<Train>();
+    private Set<Train> authors = new HashSet<Train>();
 
-    @OneToOne
-    @NonNull
-    @Column(name="stationID")
-    private Station stationID;
-
-    @NonNull
-    @Column(name="departureTime")
-    private Timestamp departureTime;
 
 
 }

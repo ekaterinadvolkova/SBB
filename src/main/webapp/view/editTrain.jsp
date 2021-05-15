@@ -26,12 +26,13 @@
     <c:choose>
         <c:when test="${!empty train.number && !empty train.availableSeats && !empty train.bookedSeats && !empty train.occurence}">
             <p class="heading">Edit train</p>
-            <input style="display: none" type="text" name="passengerID" value="${train.trainID}">
+
         </c:when>
         <c:otherwise>
             <p class="heading">Add new train</p>
         </c:otherwise>
     </c:choose>
+    <p><input type="number" name="trainID" id="trainID"  value="${train.trainID}" disabled>
     <p><input type="number" name="number" id="number" placeholder="number" value="${train.number}" maxlength="50" required autofocus pattern="^[^\s]+(\s.*)?$">
     <p><input type="availableSeats" name="availableSeats" id="availableSeats" placeholder="availableSeats" value="${train.availableSeats}" maxlength="50" required autofocus pattern="^[^\s]+(\s.*)?$">
     <p><input type="bookedSeats" name="bookedSeats" id="bookedSeats" placeholder="bookedSeats" value="${train.bookedSeats}" maxlength="50" required autofocus pattern="^[^\s]+(\s.*)?$">

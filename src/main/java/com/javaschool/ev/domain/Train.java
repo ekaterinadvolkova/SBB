@@ -6,7 +6,9 @@ import lombok.Setter;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Getter @Setter @NoArgsConstructor
 @Entity
@@ -30,14 +32,26 @@ public class Train {
     @Column(name="occurence")
     private String occurence;
 
+    //add first Date to the class to generate timetable
+    LocalDate firstDate = LocalDate.now();
+
+    //add last date for the timetable
+    LocalDate lastDate = firstDate.plusMonths(3);
+
+    //unclear how the station should be declared just in class
+    //private String station;
+    private Set<Station> stations;
+
+    //add departure time
+    private Timestamp departureTime;
 
     public Train(int trainID, int number, int availableSeats,
-                 String occurence, LocalDate localDate) {
+                 String occurence, LocalDate firstDate) {
         this.trainID = trainID;
         this.number = number;
         this.availableSeats = availableSeats;
         this.occurence = occurence;
-
+        this.firstDate=firstDate;
     }
 
     @Override

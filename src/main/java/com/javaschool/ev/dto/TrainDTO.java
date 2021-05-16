@@ -14,7 +14,6 @@ import java.util.List;
 @Getter @Setter @NoArgsConstructor
 public class TrainDTO {
 
-
     private int trainID;
 
     private int number;
@@ -24,7 +23,5 @@ public class TrainDTO {
     private String occurence;
 
     List<TimetableItemDTO> timetable;
-
-
 
 }

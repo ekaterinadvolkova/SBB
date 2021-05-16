@@ -20,9 +20,10 @@
 <c:url value="/staff/stations/add" var="add"/>
 <c:url value="/staff/stations/edit" var="edit"/>
 
-<form class="style" action="${(empty station.name) ? add : edit}" name="station" method="POST">
+<form class="style" action="${(empty station.stationID) ? add : edit}" name="station" method="POST">
     <c:choose>
-        <c:when test="${!empty station.name}">
+        <c:when test="${!empty station.stationID}">
+            <p><input type="hidden" name="stationID" id="stationID"  value="${station.stationID}" >
             <p class="heading">Edit station</p>
             <input style="display: none" type="text" name="stationID" value="${station.stationID}">
         </c:when>
@@ -35,7 +36,7 @@
     <p>
         <c:set value="add" var="add"/>
         <c:set value="edit" var="edit"/>
-        <input type="submit" value="${(empty passenger.firstName && empty passenger.lastName && empty passenger.birthDate) ? add : edit}">
+        <input type="submit" value="${(empty station.stationID) ? add : edit}">
     </p>
     <p class="heading"><a href="${pageContext.request.contextPath}/">Go back</a> </p>
 </form>

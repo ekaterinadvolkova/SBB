@@ -47,8 +47,8 @@ public class StationDAOImpl implements StationDAO {
         Session session = sessionFactory.getCurrentSession();
 
         Station dbStation=getById(station.getStationID());
-
-        //dbStation.setName(station.setName());
+        dbStation.setStationID((station.getStationID()));
+        dbStation.setName(station.getName());
         session.update(dbStation);
 
     }

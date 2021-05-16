@@ -26,17 +26,9 @@ public class Train {
     @Column(name="availableSeats")
     private int availableSeats;
 
-
     @NonNull
     @Column(name="occurence")
     private String occurence;
-
-    /*@ManyToMany
-    @JoinTable(name = "ticket",
-            joinColumns = { @JoinColumn(name = "ticketID") },
-            inverseJoinColumns = { @JoinColumn(name = "ticketID") })
-    private Set<Ticket> trains = new HashSet<Ticket>();*/
-
 
 
     public Train(int trainID, int number, int availableSeats,

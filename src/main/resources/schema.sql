@@ -9,14 +9,11 @@ create table train
 , number INT NOT NULL
 , availableSeats INT NOT NULL
 , occurence VARCHAR(50) NOT NULL
-
-
 )  engine=InnoDB;
-
 
 create table passenger
 (
-  passengerID INT PRIMARY KEY NOT NULL AUTO_INCREMENT
+passengerID INT PRIMARY KEY NOT NULL AUTO_INCREMENT
 , firstName VARCHAR(50) NOT NULL
 , lastName  VARCHAR(50) NOT NULL
 , birthDate DATE NOT NULL
@@ -32,27 +29,47 @@ create table station (
 
 create table timetable (
 
-  timetableID INT NOT NULL AUTO_INCREMENT PRIMARY KEY
+timetableID INT NOT NULL AUTO_INCREMENT PRIMARY KEY
 , stationID INT NOT NULL
 , departureTime TIMESTAMP NOT NULL
+, routeID INT NOT NULL
 , foreign key (stationID) references station (stationID)
+, foreign key (routeID) references route (routeID)
+
+)  engine=InnoDB;
+
+create table route
+(
+routeID INT NOT NULL AUTO_INCREMENT PRIMARY KEY
+, trainID INT NOT NULL
+, foreign key (trainID) references train (trainID)
+
+) engine=InnoDB;
+
+create table seat (
+
+seatID INT NOT NULL AUTO_INCREMENT PRIMARY KEY
+, number INT NOT NULL
 
 )  engine=InnoDB;
 
 create table ticket (
 
-  passengerID INT NOT NULL
-, trainID INT NOT NULL
-, timetableID INT NOT NULL
+ticketID INT NOT NULL AUTO_INCREMENT PRIMARY KEY
+, passengerID INT NOT NULL
+, routeID INT NOT NULL
+, seatID INT NOT NULL
 , foreign key (passengerID) references passenger (passengerID)
-, foreign key (trainID) references train (trainID)
+, foreign key (seatID) references seat (seatID)
+, foreign key (routeID) references route (routeID)
 
 )  engine=InnoDB;
+
 create table train_to_timetable
 (
-    trainID INT NOT NULL
-    , timetableID INT NOT NULL
-    , foreign key (trainID) references train (trainID)
-    , foreign key (timetableID) references timetable (timetableID)
+  trainID INT NOT NULL
+, timetableID INT NOT NULL
+, foreign key (trainID) references train (trainID)
+, foreign key (timetableID) references timetable (timetableID)
 
 ) engine=InnoDB;

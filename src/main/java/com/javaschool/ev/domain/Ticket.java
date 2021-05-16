@@ -4,14 +4,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.lang.NonNull;
-
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
-@Getter
-@Setter
-@NoArgsConstructor
+
+@Getter @Setter @NoArgsConstructor
 @Entity
 @Table(name="ticket")
 public class Ticket {
@@ -22,17 +18,36 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ticketID;
 
-
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "passengerID")
     @NonNull
     private Passenger passenger;
 
+    @ManyToOne
+    @Column(name="routeID")
+    @NonNull
+    private Route routeID;
 
     @ManyToOne
-    @JoinColumn (name="trainID")
-    private Train train;
+    @Column(name="seatID")
+    @NonNull
+    private Seat number;
 
 
+    public Ticket(int ticketID, @NonNull Passenger passenger, @NonNull Seat number, Route routeID) {
+        this.ticketID = ticketID;
+        this.passenger = passenger;
+        this.number = number;
+        this.routeID = routeID;
+    }
 
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "ticketID=" + ticketID +
+                ", passenger=" + passenger +
+                ", routeID=" + routeID +
+                ", number=" + number +
+                '}';
+    }
 }

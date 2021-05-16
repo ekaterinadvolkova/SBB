@@ -53,15 +53,15 @@ public class TrainController {
     @RequestMapping(value = "staff/trains/add", method = RequestMethod.GET)
     public ModelAndView addTrain() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("editTrain");
+        modelAndView.setViewName("addTrain");
         return modelAndView;
     }
 
-    @RequestMapping(value = "staff/trains/add", method = RequestMethod.POST)
+    @RequestMapping(value = "staff/trains/add/add", method = RequestMethod.POST)
     public ModelAndView addTrain(@ModelAttribute("train") Train train) {
         ModelAndView modelAndView = new ModelAndView();
 
-        if (trainService.checkTrain(train.getNumber(), train.getAvailableSeats(),  train.getOccurence())) {
+        if (trainService.checkTrain(train.getNumber())) {
             modelAndView.setViewName("redirect:/staff/trains/");
             trainService.add(train);
         } else {

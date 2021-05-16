@@ -1,8 +1,6 @@
 package com.javaschool.ev.service.api;
 
 import com.javaschool.ev.domain.Train;
-
-import java.time.LocalDate;
 import java.util.List;
 
 public interface TrainService {
@@ -12,5 +10,5 @@ public interface TrainService {
     void edit(Train train);
     Train getById(int trainID);
 
-    boolean checkTrain(int number, int availableSeats, String occurence);
+    boolean checkTrain(int number);
 }

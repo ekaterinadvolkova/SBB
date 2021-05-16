@@ -5,31 +5,28 @@ use sbb_data;
 
 create table train
 (
-  trainID INT PRIMARY KEY NOT NULL AUTO_INCREMENT
-, number INT NOT NULL
-, availableSeats INT NOT NULL
-, occurence VARCHAR(50) NOT NULL
-)  engine=InnoDB;
-
-create table passenger
-(
-passengerID INT PRIMARY KEY NOT NULL AUTO_INCREMENT
-, firstName VARCHAR(50) NOT NULL
-, lastName  VARCHAR(50) NOT NULL
-, birthDate DATE NOT NULL
-, UNIQUE KEY (firstName, lastName, birthDate)
+    trainID INT PRIMARY KEY NOT NULL AUTO_INCREMENT
+    , number INT NOT NULL
+    , availableSeats INT NOT NULL
+    , occurence VARCHAR(50) NOT NULL
 
 )  engine=InnoDB;
+
+create table route (
+routeID INT PRIMARY KEY AUTO_INCREMENT NOT NULL
+, trainID INT NOT NULL
+, foreign key (trainID) references train (trainID)
+) engine = InnoDB;
 
 create table station (
-  stationID INT PRIMARY KEY NOT NULL AUTO_INCREMENT
+stationID INT PRIMARY KEY NOT NULL AUTO_INCREMENT
 , name VARCHAR( 50) NOT NULL
 
 ) engine = InnoDB;
 
 create table timetable (
 
-timetableID INT NOT NULL AUTO_INCREMENT PRIMARY KEY
+  timetableID INT NOT NULL AUTO_INCREMENT PRIMARY KEY
 , stationID INT NOT NULL
 , departureTime TIMESTAMP NOT NULL
 , routeID INT NOT NULL
@@ -38,25 +35,28 @@ timetableID INT NOT NULL AUTO_INCREMENT PRIMARY KEY
 
 )  engine=InnoDB;
 
-create table route
+
+create table passenger
 (
-routeID INT NOT NULL AUTO_INCREMENT PRIMARY KEY
-, trainID INT NOT NULL
-, foreign key (trainID) references train (trainID)
-
-) engine=InnoDB;
-
-create table seat (
-
-seatID INT NOT NULL AUTO_INCREMENT PRIMARY KEY
-, number INT NOT NULL
+    passengerID INT PRIMARY KEY NOT NULL AUTO_INCREMENT
+    , firstName VARCHAR(50) NOT NULL
+    , lastName  VARCHAR(50) NOT NULL
+    , birthDate DATE NOT NULL
+    , UNIQUE KEY (firstName, lastName, birthDate)
 
 )  engine=InnoDB;
 
-create table ticket (
 
-ticketID INT NOT NULL AUTO_INCREMENT PRIMARY KEY
-, passengerID INT NOT NULL
+create table seat (
+
+seatID INT PRIMARY KEY AUTO_INCREMENT
+, number INT NOT NULL
+
+) engine=InnoDB;
+
+create table ticket (
+ticketID INT PRIMARY KEY AUTO_INCREMENT NOT NULL
+,  passengerID INT NOT NULL
 , routeID INT NOT NULL
 , seatID INT NOT NULL
 , foreign key (passengerID) references passenger (passengerID)
@@ -67,9 +67,9 @@ ticketID INT NOT NULL AUTO_INCREMENT PRIMARY KEY
 
 create table train_to_timetable
 (
-  trainID INT NOT NULL
-, timetableID INT NOT NULL
-, foreign key (trainID) references train (trainID)
-, foreign key (timetableID) references timetable (timetableID)
+    trainID INT NOT NULL
+    , timetableID INT NOT NULL
+    , foreign key (trainID) references train (trainID)
+    , foreign key (timetableID) references timetable (timetableID)
 
 ) engine=InnoDB;

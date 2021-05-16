@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -27,7 +26,7 @@ public class TrainDAOImpl implements TrainDAO {
     @Override
     public List<Train> allTrains() {
         Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("").list();
+        return session.createQuery("from Train").list();
     }
 
     @Override
@@ -45,14 +44,12 @@ public class TrainDAOImpl implements TrainDAO {
     @Override
     public void edit(Train train) {
         Session session = sessionFactory.getCurrentSession();
-
         Train dbTrain =getById(train.getTrainID());
+        dbTrain.setTrainID(train.getTrainID());
         dbTrain.setNumber(train.getNumber());
         dbTrain.setOccurence((train.getOccurence()));
         dbTrain.setAvailableSeats((train.getAvailableSeats()));
-
         session.update(dbTrain);
-        
     }
 
     @Override
@@ -62,14 +59,12 @@ public class TrainDAOImpl implements TrainDAO {
     }
 
     @Override
-    public boolean checkTrain(int number, int availableSeats, String occurence) {
+    public boolean checkTrain(int number) {
         Session session = sessionFactory.openSession();
 
         Query query;
-        //query = session.createQuery("from Train where number = :number");
-        query = session.createQuery("");
+        query = session.createQuery("from Train where number = :number");
         query.setParameter("number", number);
-
         return query.list().isEmpty();
     }
 }

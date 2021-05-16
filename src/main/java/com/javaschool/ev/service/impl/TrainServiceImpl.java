@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
+@Transactional
 public class TrainServiceImpl implements TrainService {
 
     private TrainDAO trainDAO = new TrainDAOImpl();
@@ -21,13 +22,11 @@ public class TrainServiceImpl implements TrainService {
     }
 
     @Override
-    @Transactional
     public List<Train> allTrains() {
         return trainDAO.allTrains();
     }
 
     @Override
-    @Transactional
     public void add(Train train) {
         trainDAO.add(train);
     }
@@ -38,20 +37,17 @@ public class TrainServiceImpl implements TrainService {
     }
 
     @Override
-    @Transactional
     public void edit(Train train) {
         trainDAO.edit(train);
     }
 
     @Override
-    @Transactional
     public Train getById(int trainID) {
         return trainDAO.getById(trainID);
     }
 
     @Override
-    @Transactional
-    public boolean checkTrain(int number, int availableSeats, String occurence) {
-        return trainDAO.checkTrain(number, availableSeats, occurence);
+    public boolean checkTrain(int number) {
+        return trainDAO.checkTrain(number);
     }
 }

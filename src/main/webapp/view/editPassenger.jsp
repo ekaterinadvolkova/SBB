@@ -15,8 +15,7 @@
 </head>
 <body>
 
-<c:url value="/staff/passengers/add" var="add"/>
-<c:url value="/staff/passengers/edit" var="edit"/>
+
 
 <form class="style" action="${(empty passenger.firstName && empty passenger.lastName && empty passenger.birthDate) ? add : edit}" name="passenger" method="POST">
     <c:choose>

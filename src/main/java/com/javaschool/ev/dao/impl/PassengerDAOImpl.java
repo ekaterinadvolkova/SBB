@@ -37,7 +37,7 @@ public class PassengerDAOImpl implements PassengerDAO {
     @SuppressWarnings("unchecked")
     public List<Passenger> allPassengers() {
         Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("from Passenger")/*.setFirstResult(10 * (page - 1)).setMaxResults(10)*/.list();
+        return session.createQuery("from Passenger").list();
     }
 
     /*
@@ -84,6 +84,8 @@ public class PassengerDAOImpl implements PassengerDAO {
         Session session = sessionFactory.getCurrentSession();
 
         Passenger dbPassenger=getById(passenger.getPassengerID());
+
+        dbPassenger.setPassengerID(passenger.getPassengerID());
         dbPassenger.setFirstName(passenger.getFirstName());
         dbPassenger.setLastName(passenger.getLastName());
         dbPassenger.setBirthDate(passenger.getBirthDate());
@@ -110,10 +112,10 @@ public class PassengerDAOImpl implements PassengerDAO {
         query = session.createQuery("from Passenger where firstName = :firstName");
         query.setParameter("firstName", firstName);
 
-        query = session.createQuery("from Passenger where lastName = :lastName");
+
         query.setParameter("lastName", lastName);
 
-        query = session.createQuery("from Passenger where birthDate = :birthDate");
+
         query.setParameter("birthDate", birthDate);
 
         return query.list().isEmpty();

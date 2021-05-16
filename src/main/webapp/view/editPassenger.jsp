@@ -5,7 +5,7 @@
 <head>
     <link href="<c:url value="/res/style.css"/>" rel="stylesheet" type="text/css"/>
     <c:choose>
-        <c:when test="${empty passenger.firstName && empty passenger.lastName && empty passenger.birthDate}">
+        <c:when test="${empty passenger.passengerID}">
             <title>Add</title>
         </c:when>
         <c:otherwise>
@@ -17,16 +17,17 @@
 
 
 
-<form class="style" action="${(empty passenger.firstName && empty passenger.lastName && empty passenger.birthDate) ? add : edit}" name="passenger" method="POST">
+<form class="style" action="${(empty passenger.passengerID) ? add : edit}" name="passenger" method="POST">
     <c:choose>
-    <c:when test="${!empty passenger.firstName && !empty passenger.lastName && !empty passenger.birthDate}">
+    <c:when test="${!empty passenger.passengerID}">
     <p class="heading">Edit passenger</p>
-    <input style="display: none" type="text" name="passengerID" value="${passenger.passengerID}">
+        <p><input type="hidden" name="passengerID" id="passengerID"  value="${passenger.passengerID}" >
     </c:when>
     <c:otherwise>
     <p class="heading">Add new passenger</p>
     </c:otherwise>
     </c:choose>
+
     <p><input type="text" name="firstName" id="firstName" placeholder="firstName" value="${passenger.firstName}" maxlength="50" required autofocus pattern="^[^\s]+(\s.*)?$">
     <p><input type="text" name="lastName" id="lastName" placeholder="lastName" value="${passenger.lastName}" maxlength="50" required autofocus pattern="^[^\s]+(\s.*)?$">
     <fmt:formatDate value="${bean.date}" pattern="dd-MM-yyyy"/>

@@ -78,15 +78,7 @@ public class PassengerController {
         return modelAndView;
     }
     /*
-    method of adding passenger
-    ================================
-    old code:
-    modelAndView.setViewName("redirect:/");
-        passengerService.add(passenger);
-        return modelAndView;
-    ================================
-    Bad request error 400
-    ================================
+
     add feature of checking if the passenger exists
      */
     @RequestMapping(value = "staff/passengers/add", method = RequestMethod.POST)

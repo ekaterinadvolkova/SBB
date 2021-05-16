@@ -24,7 +24,7 @@
 <form class="style" action="${(empty train.trainID) ? add : edit}" name="train" method="POST">
 
     <c:choose>
-        <c:when test="${!empty train.number && !empty train.availableSeats && !empty train.bookedSeats && !empty train.occurence}">
+        <c:when test="${!empty train.number && !empty train.availableSeats && !empty train.occurence}">
             <p class="heading">Edit train</p>
 
         </c:when>
@@ -35,7 +35,6 @@
     <p><input type="number" name="trainID" id="trainID"  value="${train.trainID}" disabled>
     <p><input type="number" name="number" id="number" placeholder="number" value="${train.number}" maxlength="50" required autofocus pattern="^[^\s]+(\s.*)?$">
     <p><input type="availableSeats" name="availableSeats" id="availableSeats" placeholder="availableSeats" value="${train.availableSeats}" maxlength="50" required autofocus pattern="^[^\s]+(\s.*)?$">
-    <p><input type="bookedSeats" name="bookedSeats" id="bookedSeats" placeholder="bookedSeats" value="${train.bookedSeats}" maxlength="50" required autofocus pattern="^[^\s]+(\s.*)?$">
     <p><input type="text" name="occurence" id="occurence" placeholder="occurence" value="${train.occurence}" maxlength="50" required autofocus pattern="^[^\s]+(\s.*)?$">
 
     <p>

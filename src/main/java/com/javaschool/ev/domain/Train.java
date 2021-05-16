@@ -26,9 +26,6 @@ public class Train {
     @Column(name="availableSeats")
     private int availableSeats;
 
-    @NonNull
-    @Column(name="bookedSeats")
-    private int bookedSeats;
 
     @NonNull
     @Column(name="occurence")
@@ -42,12 +39,11 @@ public class Train {
 
 
 
-    public Train(int trainID, int number, int availableSeats, int bookedSeats,
+    public Train(int trainID, int number, int availableSeats,
                  String occurence, LocalDate localDate) {
         this.trainID = trainID;
         this.number = number;
         this.availableSeats = availableSeats;
-        this.bookedSeats = bookedSeats;
         this.occurence = occurence;
 
     }
@@ -58,7 +54,6 @@ public class Train {
                 "trainID=" + trainID +
                 ", number=" + number +
                 ", availableSeats=" + availableSeats +
-                ", bookedSeats=" + bookedSeats +
                 ", occurence='" + occurence + '\'' +
 
                 '}';

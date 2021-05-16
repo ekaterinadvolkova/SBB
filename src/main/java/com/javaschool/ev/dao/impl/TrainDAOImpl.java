@@ -27,7 +27,7 @@ public class TrainDAOImpl implements TrainDAO {
     @Override
     public List<Train> allTrains() {
         Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("from Train").list();
+        return session.createQuery("").list();
     }
 
     @Override
@@ -50,7 +50,6 @@ public class TrainDAOImpl implements TrainDAO {
         dbTrain.setNumber(train.getNumber());
         dbTrain.setOccurence((train.getOccurence()));
         dbTrain.setAvailableSeats((train.getAvailableSeats()));
-        dbTrain.setBookedSeats(train.getBookedSeats());
 
         session.update(dbTrain);
         
@@ -63,12 +62,12 @@ public class TrainDAOImpl implements TrainDAO {
     }
 
     @Override
-    public boolean checkTrain(int number, int availableSeats,
-                              int bookedSeats, String occurence) {
+    public boolean checkTrain(int number, int availableSeats, String occurence) {
         Session session = sessionFactory.openSession();
 
         Query query;
-        query = session.createQuery("from Train where number = :number");
+        //query = session.createQuery("from Train where number = :number");
+        query = session.createQuery("");
         query.setParameter("number", number);
 
         return query.list().isEmpty();

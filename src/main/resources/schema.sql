@@ -8,7 +8,6 @@ create table train
   trainID INT PRIMARY KEY NOT NULL AUTO_INCREMENT
 , number INT NOT NULL
 , availableSeats INT NOT NULL
-, bookedSeats INT NOT NULL
 , occurence VARCHAR(50) NOT NULL
 
 

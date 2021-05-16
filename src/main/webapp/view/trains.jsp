@@ -14,9 +14,8 @@
         <th>ID</th>
         <th style="width: 100%">Number</th>
         <th style="width: 100%">Seats</th>
-        <th style="width: 100%">Booked</th>
         <th>Occurence</th>
-        <th>Action</th>
+        <th> </th>
     </tr>
 
     <c:forEach var="train" items="${trainList}">
@@ -24,7 +23,6 @@
         <td class="left-side">${train.trainID}</td>
         <td class="title" class="left-side">${train.number}</td>
         <td class="title"class="left-side">${train.availableSeats}</td>
-        <td  type="date" class="left-side">${train.bookedSeats}</td>
         <td class="right-side">${train.occurence} </td>
         <td class="right-side">
             <a href="edit/${train.trainID}">Edit</a>

@@ -24,12 +24,12 @@ public class Ticket {
     private Passenger passenger;
 
     @ManyToOne
-    @Column(name="routeID")
+    @JoinColumn(name="routeID")
     @NonNull
     private Route routeID;
 
     @ManyToOne
-    @Column(name="seatID")
+    @JoinColumn(name="seatID")
     @NonNull
     private Seat number;
 

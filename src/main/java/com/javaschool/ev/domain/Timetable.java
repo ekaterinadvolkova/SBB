@@ -27,7 +27,7 @@ public class Timetable {
 
     @ManyToOne
     @NonNull
-    @Column(name = "routeID")
+    @JoinColumn(name = "routeID")
     private Route routeID;
 
     @NonNull

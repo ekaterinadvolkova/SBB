@@ -18,7 +18,7 @@ public class Route {
 
     @ManyToOne
     @NonNull
-    @Column(name = "trainID")
+    @JoinColumn(name = "trainID")
     private Train trainID;
 
     public Route(int routeID,  Train trainID) {

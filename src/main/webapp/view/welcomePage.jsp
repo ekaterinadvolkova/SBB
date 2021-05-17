@@ -10,9 +10,9 @@
 
 <table class="style">
     <caption class="heading">Welcome to Swiss Federal Railways!</caption>
-    <tr><th>Search for train</th></tr>
-    <tr><th>Check Timetable</th></tr>
-    <tr><th>Buy a Ticket</th></tr>
+    <tr><td>Search for train</td></tr>
+    <tr><td><a href="timetables/">Check Timetable</a></td></tr>
+    <tr><td>Buy a Ticket</td></tr>
     <tr><td><a href="staff/">for Staff</a></td></tr>
 </table>
 </body>

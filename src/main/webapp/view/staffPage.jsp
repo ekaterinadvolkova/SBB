@@ -15,6 +15,7 @@
     <tr><td>View passengers on the Train</td></tr>
     <tr><td><a href="stations/">View stations</a></td></tr>
     <tr><td><a href="trains/add/">Add train</a></td></tr>
+    <tr><td><a href="/timetables/">Timetables</a></td></tr>
 </table>
 </body>
 </html>

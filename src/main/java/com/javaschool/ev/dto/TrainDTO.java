@@ -14,16 +14,10 @@ import java.util.List;
 
 @Getter @Setter @NoArgsConstructor
 public class TrainDTO {
-
     private int trainID;
-
     private int number;
-
     private int availableSeats;
-
     private Occurence occurence;
-
     List<TimetableItemDTO> timetable;
-
 
 }

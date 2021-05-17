@@ -1,6 +1,7 @@
 package com.javaschool.ev.controller;
 
 import com.javaschool.ev.domain.Train;
+import com.javaschool.ev.dto.TrainDTO;
 import com.javaschool.ev.service.api.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -58,7 +59,7 @@ public class TrainController {
     }
 
     @RequestMapping(value = "staff/trains/add/add", method = RequestMethod.POST)
-    public ModelAndView addTrain(@ModelAttribute("train") Train train) {
+    public ModelAndView addTrain(@ModelAttribute("train") TrainDTO train) {
         ModelAndView modelAndView = new ModelAndView();
 
         if (trainService.checkTrain(train.getNumber())) {

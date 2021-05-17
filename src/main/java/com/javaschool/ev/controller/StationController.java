@@ -19,7 +19,7 @@ public class StationController {
     }
 
 
-    @RequestMapping(value = "staff/stations/", method = RequestMethod.GET)
+    @RequestMapping(value = "/staff/stations/", method = RequestMethod.GET)
     public ModelAndView allStations() {
         List<Station> stations = stationService.allStations();
         ModelAndView modelAndView = new ModelAndView();

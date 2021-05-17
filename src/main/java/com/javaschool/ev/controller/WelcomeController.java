@@ -1,6 +1,8 @@
 package com.javaschool.ev.controller;
 
+import com.javaschool.ev.domain.Station;
 import com.javaschool.ev.domain.Train;
+import com.javaschool.ev.service.api.StationService;
 import com.javaschool.ev.service.api.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,11 +15,19 @@ import java.util.List;
 @RestController
 public class WelcomeController {
 
+    private StationService stationService;
+
+    @Autowired
+    public void setStationService(StationService stationService) {
+        this.stationService = stationService;
+    }
+
     private TrainService trainService;
     @Autowired
     public void setTrainService (TrainService trainService){
         this.trainService=trainService;
     }
+
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView welcomePage() {
@@ -34,8 +44,10 @@ public class WelcomeController {
     public ModelAndView staffPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("staffPage");
+
+        List<Station> stations = stationService.allStations();
+        modelAndView.addObject("stationList", stations);
         return modelAndView;
     }
-
 
 }

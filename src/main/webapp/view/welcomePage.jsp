@@ -23,17 +23,17 @@
         <div class="collapse navbar-collapse" id="navbarsExample03">
             <ul class="navbar-nav me-auto mb-2 mb-sm-0">
 
-                <li class="nav-item"><a class="nav-link">Search for Train</a></li>
+                <li class="nav-item"><a class="nav-link">Train Search</a></li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="timetables/">Check Timetable</a>
+                    <a class="nav-link" href="timetables/">Timetable</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" >Buy a Ticket</a>
+                    <a class="nav-link" >Tickets</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="staff/">for Staff</a>
+                    <a class="nav-link" href="staff/">Staff</a>
                 </li>
             </ul>
         </div>
@@ -61,9 +61,9 @@
             <table class="table">
                 <thead>
                 <tr>
+<%--                    <th <td style="display:none">>ID</th>--%>
                     <th>#</th>
-                    <th>Seats</th>
-                    <th>Booked</th>
+<%--                    <th <td style="display:none">>Seats</th>--%>
                     <th>Occurrence</th>
                     <th>Action</th>
                 </tr>
@@ -72,9 +72,9 @@
                 <tbody>
                 <c:forEach var="train" items="${trainList}">
                     <tr>
-                        <td>${train.trainID}</td>
+<%--                        <td <td style="display:none">>${train.trainID}</td>--%>
                         <td>${train.number}</td>
-                        <td>${train.availableSeats}</td>
+<%--                        <td <td style="display:none">>${train.availableSeats}</td>--%>
                         <td>${train.occurence}</td>
                         <td>
                             <div class="btn-group">

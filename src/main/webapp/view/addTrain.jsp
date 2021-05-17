@@ -22,7 +22,7 @@
     <p><input type="text" name="occurence" id="occurence" placeholder="occurence" value="${train.occurence}" maxlength="50" required autofocus pattern="^[^\s]+(\s.*)?$">
 
 
-    <p><input type="date" name="firstDate" id="firstDate" placeholder="firstDate" value="${train.firstDate}" maxlength="50" required autofocus pattern="^[^\s]+(\s.*)?$">
+    <p><input type="date" name="firstDate" id="firstDate" placeholder="firstDate" value="${timetable.departureDate}" maxlength="50" required autofocus pattern="^[^\s]+(\s.*)?$">
 
 
     <c:forEach var="station" items="${train.stations}">${station},

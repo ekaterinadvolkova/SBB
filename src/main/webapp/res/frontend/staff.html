@@ -3,9 +3,9 @@
     
     <title>Swiss Federal Railways</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/bootstrap-icons.css">
-    <link rel="stylesheet" href="./css/template.styles.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/template.styles.css">
 </head>
 <body>
 
@@ -34,14 +34,12 @@
 <main>
     <div class="d-flex flex-row-reverse">
         <section class="pt-5 flex-fill container-fluid">
-            <h2>Trains</h2>
+            <h2>Stations</h2>
             <table class="table">
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Seats</th>
-                    <th>Booked</th>
-                    <th>Occurrence</th>
+                    <th>Station Name</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -49,18 +47,13 @@
                 <tbody>
                 <tr>
                     <td>213</td>
-                    <td>200</td>
-                    <td>122</td>
-                    <td>once in a day</td>
+                    <td>Moscow</td>
                     <td>
                         <div class="btn-group">
-                            <a href="staff-trains.html" type="button" class="btn btn-sm btn-outline-secondary" title="View passengers">
-                                <i class="bi bi-people-fill"></i>
-                            </a>
-                            <a href="add-train.html?id=123" type="button" class="btn btn-sm btn-outline-secondary" title="Edit">
+                            <a href="" type="button" class="btn btn-sm btn-outline-secondary" title="Edit">
                                 <i class="bi bi-pencil"></i>
                             </a>
-                            <a href="http://localhost:63342/deleteTrain/?token=abcdefg&amp;id=123" type="button" class="btn btn-sm btn-outline-danger" title="Delete">
+                            <a href="" type="button" class="btn btn-sm btn-outline-danger" title="Delete">
                                 <i class="bi bi-trash"></i>
                             </a>
                         </div>
@@ -71,7 +64,7 @@
                 <tfoot>
                 <tr>
                     <td colspan="5">
-                        <a href="staff-trains.html" class="btn btn-outline-primary">Add train</a>
+                        <a href="staff-trains.html" class="btn btn-outline-primary">Station train</a>
                     </td>
                 </tr>
                 </tfoot>
@@ -86,13 +79,13 @@
             <ul class="nav nav-pills flex-column mb-auto">
 
                 <li>
-                    <a href="staff.html" class="nav-link ">
+                    <a href="staff.html" class="nav-link active">
                         View stations
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="staff-trains.html" class="nav-link active">
+                    <a href="staff-trains.html" class="nav-link ">
                         View trains
                     </a>
                 </li>
@@ -101,8 +94,8 @@
         </div>
     </div>
 </main>
-<script src="./js/inputmask.js"></script>
-<script src="./js/bootstrap.bundle.min.js"></script>
-<script src="./js/scripts.js"></script>
+<script src="js/inputmask.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/scripts.js"></script>
 
 </body></html>

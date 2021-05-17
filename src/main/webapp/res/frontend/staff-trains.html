@@ -3,9 +3,9 @@
     
     <title>Swiss Federal Railways</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/bootstrap-icons.css">
-    <link rel="stylesheet" href="./css/template.styles.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/template.styles.css">
 </head>
 <body>
 
@@ -32,22 +32,8 @@
     </div>
 </nav>
 <main>
-    <div class="container">
-
-        <div class="p-5 mb-4 bg-light rounded-3">
-            <div class="container-fluid py-5">
-                <h1 class="display-5 fw-bold mb-5">Welcome to Swiss Federal Railways!</h1>
-                <section>
-                    <h2 class="mb-3">Search for train</h2>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="From, to, date, ...">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                </section>
-            </div>
-        </div>
-
-        <section>
+    <div class="d-flex flex-row-reverse">
+        <section class="pt-5 flex-fill container-fluid">
             <h2>Trains</h2>
             <table class="table">
                 <thead>
@@ -68,23 +54,55 @@
                     <td>once in a day</td>
                     <td>
                         <div class="btn-group">
-                            <a href="buy-ticket.html" type="button" class="btn btn-sm btn-outline-primary" title="Buy ticket">
-                                <i class="bi bi-bag"></i>
-                                Buy ticket
+                            <a href="staff-trains.html" type="button" class="btn btn-sm btn-outline-secondary" title="View passengers">
+                                <i class="bi bi-people-fill"></i>
+                            </a>
+                            <a href="add-train.html?id=123" type="button" class="btn btn-sm btn-outline-secondary" title="Edit">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <a href="http://localhost:63342/deleteTrain/?token=abcdefg&amp;id=123" type="button" class="btn btn-sm btn-outline-danger" title="Delete">
+                                <i class="bi bi-trash"></i>
                             </a>
                         </div>
                     </td>
                 </tr>
                 </tbody>
 
+                <tfoot>
+                <tr>
+                    <td colspan="5">
+                        <a href="staff-trains.html" class="btn btn-outline-primary">Add train</a>
+                    </td>
+                </tr>
+                </tfoot>
             </table>
         </section>
+
+        <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+            <a href="staff.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <span class="fs-4">Staff page</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+
+                <li>
+                    <a href="staff.html" class="nav-link ">
+                        View stations
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="staff-trains.html" class="nav-link active">
+                        View trains
+                    </a>
+                </li>
+
+            </ul>
+        </div>
     </div>
 </main>
-<script src="./js/inputmask.js"></script>
-<script src="./js/bootstrap.bundle.min.js"></script>
-<script src="./js/scripts.js"></script>
-
-
+<script src="js/inputmask.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/scripts.js"></script>
 
 </body></html>

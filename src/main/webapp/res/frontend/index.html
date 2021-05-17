@@ -1,15 +1,11 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <!DOCTYPE html>
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+    
     <title>Swiss Federal Railways</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./res/frontend/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./res/frontend/css/bootstrap-icons.css">
-    <link rel="stylesheet" href="./res/frontend/css/template.styles.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/template.styles.css">
 </head>
 <body>
 
@@ -22,24 +18,19 @@
 
         <div class="collapse navbar-collapse" id="navbarsExample03">
             <ul class="navbar-nav me-auto mb-2 mb-sm-0">
-
-                <li class="nav-item"><a class="nav-link">Search for Train</a></li>
-
                 <li class="nav-item">
-                    <a class="nav-link" href="timetables/">Check Timetable</a>
+                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" >Buy a Ticket</a>
+                    <a class="nav-link" href="timetable.html">Check Timetable</a>
                 </li>
-
                 <li class="nav-item">
-                    <a class="nav-link" href="staff/">for Staff</a>
+                    <a class="nav-link" href="staff.html">for Staff</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-
 <main>
     <div class="container">
 
@@ -70,32 +61,30 @@
                 </thead>
 
                 <tbody>
-                <c:forEach var="train" items="${trainList}">
-                    <tr>
-                        <td>${train.trainID}</td>
-                        <td>${train.number}</td>
-                        <td>${train.availableSeats}</td>
-                        <td>${train.occurence}</td>
-                        <td>
-                            <div class="btn-group">
-                                <a href="buy-ticket.html" type="button" class="btn btn-sm btn-outline-primary" title="Buy ticket">
-                                    <i class="bi bi-bag"></i>
-                                    Buy ticket
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                </c:forEach>
-
+                <tr>
+                    <td>213</td>
+                    <td>200</td>
+                    <td>122</td>
+                    <td>once in a day</td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="buy-ticket.html" type="button" class="btn btn-sm btn-outline-primary" title="Buy ticket">
+                                <i class="bi bi-bag"></i>
+                                Buy ticket
+                            </a>
+                        </div>
+                    </td>
+                </tr>
                 </tbody>
 
             </table>
         </section>
     </div>
-
 </main>
-<script src="./res/frontend/js/inputmask.js"></script>
-<script src="./res/frontend/js/bootstrap.bundle.min.js"></script>
-<script src="./res/frontend/js/scripts.js"></script>
+<script src="js/inputmask.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/scripts.js"></script>
+
+
 
 </body></html>

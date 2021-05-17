@@ -7,6 +7,6 @@ import java.util.List;
 public interface TimetableDAO {
     void createNewTimetableItem(Timetable timetableItem);
     List<Timetable> getAllTimetableItems();
-    void deleteTimetableItem(long id);
+    void deleteTimetableItem(int id);
     void editTimetableItem(Timetable timetableItem);
 }

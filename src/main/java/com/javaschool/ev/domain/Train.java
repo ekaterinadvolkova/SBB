@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.lang.NonNull;
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -13,7 +14,9 @@ import java.util.Set;
 @Table(name="train")
 public class Train {
 
-    @Id @Column(name="trainID") @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name="trainID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int trainID;
 
     @NonNull @Column(name="number")
@@ -24,7 +27,6 @@ public class Train {
 
     @NonNull @Column(name="occurence")
     private String occurence;
-
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "train_to_station",
@@ -39,10 +41,17 @@ public class Train {
             inverseJoinColumns = @JoinColumn(name = "timetableID")
     )
 
-    private Set<Timetable> departureTime;
-    public Set<Timetable> departure (){
-        return departureTime;
+    private Set<Timetable> timetableItems;
+    public Set<Timetable> timetableItems (){
+        return timetableItems;
     }
+
+     private Timestamp departure(){
+        Timestamp departureTime = new Timetable().getDepartureTime();
+        return departureTime;
+     }
+
+
 
     public LocalDate firstDate(){
         return LocalDate.now();

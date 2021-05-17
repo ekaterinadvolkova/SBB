@@ -15,7 +15,7 @@ create table train
 create table route (
 routeID INT PRIMARY KEY AUTO_INCREMENT NOT NULL
 , trainID INT NOT NULL
-, firstDate DATETIME NOT NULL
+, departure_date DATE
 , foreign key (trainID) references train (trainID)
 ) engine = InnoDB;
 

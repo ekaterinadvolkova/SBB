@@ -11,5 +11,4 @@ import java.sql.Time;
 public class TimetableItemDTO {
     private String stationName;
     private Time departureTime;
-
 }

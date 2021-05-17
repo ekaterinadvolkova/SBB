@@ -26,7 +26,8 @@ public class Train {
     private int availableSeats;
 
     @NonNull @Column(name="occurence")
-    private String occurence;
+    @Enumerated(value = EnumType.STRING)
+    private Occurence occurrence;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "train_to_station",
@@ -35,15 +36,8 @@ public class Train {
     )
     private Set<Station> stations;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "train_to_timetable",
-            joinColumns = @JoinColumn(name = "trainID"),
-            inverseJoinColumns = @JoinColumn(name = "timetableID")
-    )
-    private Set<Timetable> timetableItems;
-    public Set<Timetable> timetableItems (){
-        return timetableItems;
-    }
+    @OneToMany (mappedBy = "train")
+    private Set<Route> routes;
 
     public LocalDate firstDate(){
         return LocalDate.now();
@@ -54,14 +48,5 @@ public class Train {
         this.number = number;
     }
 
-    @Override
-    public String toString() {
-        return "Train{" +
-                "trainID=" + trainID +
-                ", number=" + number +
-                ", availableSeats=" + availableSeats +
-                ", occurence='" + occurence + '\'' +
 
-                '}';
-    }
 }

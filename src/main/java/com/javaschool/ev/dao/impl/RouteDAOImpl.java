@@ -58,7 +58,7 @@ public class RouteDAOImpl implements RouteDAO {
         List<Route> routes = null;
         try {
             Query query = entityManager
-                    .createQuery("SELECT r FROM Route r JOIN FETCH r.trainID WHERE r.trainID  = :trainID", Route.class)
+                    .createQuery("SELECT r FROM Route r JOIN FETCH r.train WHERE r.train  = :trainID", Route.class)
                     .setParameter("trainID", trainID);
             routes = query.getResultList();
         } catch (Exception ex) {

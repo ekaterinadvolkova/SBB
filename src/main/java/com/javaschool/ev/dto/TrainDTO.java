@@ -1,5 +1,6 @@
 package com.javaschool.ev.dto;
 
+import com.javaschool.ev.domain.Occurence;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,10 +21,9 @@ public class TrainDTO {
 
     private int availableSeats;
 
-    private String occurence;
+    private Occurence occurence;
 
     List<TimetableItemDTO> timetable;
-
 
 
 }

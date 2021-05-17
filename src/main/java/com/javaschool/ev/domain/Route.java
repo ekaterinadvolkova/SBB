@@ -5,7 +5,6 @@ import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
 @Getter @Setter @NoArgsConstructor
 @Entity
@@ -18,24 +17,26 @@ public class Route {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int routeID;
 
-    @Column(name = "firstDate") @NonNull
-    private LocalDate firstDate;
+    @Column(name = "date")
+    @NonNull
+    private LocalDate date;
+
 
     @ManyToOne
     @NonNull
     @JoinColumn(name = "trainID")
-    private Train trainID;
+    private Train train;
 
-    public Route(int routeID,  Train trainID) {
+    public Route(int routeID,  Train train) {
         this.routeID = routeID;
-        this.trainID = trainID;
+        this.train = train;
     }
 
     @Override
     public String toString() {
         return "Route{" +
                 "routeID=" + routeID +
-                ", trainID=" + trainID +
+                ", trainID=" + train +
                 '}';
     }
 }

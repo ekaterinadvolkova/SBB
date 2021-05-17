@@ -70,7 +70,16 @@ public class StationDAOImpl implements StationDAO {
         return query.list().isEmpty();
     }
 
+    @Override
+    public Station getByName(String name){
+        Session session = sessionFactory.getCurrentSession();
+        Query query;
 
+        query = session.createQuery("from Station where name = :name");
+        query.setParameter("name", name);
+
+        return (Station) query.list().get(0);
+    }
 
 
 

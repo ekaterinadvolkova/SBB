@@ -12,5 +12,6 @@ public interface StationDAO {
     void edit(Station station);
     Station getById(int stationID);
     boolean checkStation(String name);
+    Station getByName(String name);
 
 }

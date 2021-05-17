@@ -25,11 +25,12 @@
     <p><input type="date" name="firstDate" id="firstDate" placeholder="firstDate" value="${timetable.departureDate}" maxlength="50" required autofocus pattern="^[^\s]+(\s.*)?$">
 
 
-    <c:forEach var="station" items="${train.stations}">${station},
+    <c:forEach items="${TimetableItemDTO.station}">${TimetableItemDTO},
     </c:forEach>')">
-        <c:forEach var="station" items="${train.stations}" varStatus="loop">
+        <c:forEach var="station" items="${TimetableItemDTO.station}" varStatus="loop">
             <input type="text" name="station" id="station" placeholder="station" value="${train.station}">
-            <c:set value="add" var="add"/>
+
+        <c:set value="add" var="add"/>
             <input type="submit" value="add station">
         <c:if test="${!loop.last}">,&nbsp;</c:if>
     </c:forEach>

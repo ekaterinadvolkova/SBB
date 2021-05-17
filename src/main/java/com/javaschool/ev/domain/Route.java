@@ -4,6 +4,8 @@ import lombok.*;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.List;
 
 @Getter @Setter @NoArgsConstructor
 @Entity
@@ -15,6 +17,9 @@ public class Route {
     @NonNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int routeID;
+
+    @Column(name = "firstDate") @NonNull
+    private LocalDate firstDate;
 
     @ManyToOne
     @NonNull

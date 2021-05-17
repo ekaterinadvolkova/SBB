@@ -10,19 +10,6 @@ import java.util.List;
 
 public class TimetableDAOImpl {
 
-    //выбрать станицю и показть список поездов на ней //getBoardForStation
 
-    /*@PersistenceContext
-    public List<Timetable> getTimetableforStation (Station station, Timestamp after, Timestamp before){
-        String queryString = "SELECT b FROM Board b WHERE b.station = :station and b.departureTime >= :after and " +
-                "b.arriveTime <= :before";
-        Query query = entityManager.createQuery(queryString);
-        query.setParameter("station", station);
-        query.setParameter("before", before);
-        query.setParameter("after", after);
-        return query.getResultList();
-    }*/
-
-    //search for train
 
 }

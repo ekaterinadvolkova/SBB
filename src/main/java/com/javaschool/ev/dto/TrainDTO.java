@@ -24,4 +24,6 @@ public class TrainDTO {
 
     List<TimetableItemDTO> timetable;
 
+
+
 }

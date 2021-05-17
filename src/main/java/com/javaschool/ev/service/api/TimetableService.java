@@ -1,6 +1,7 @@
 package com.javaschool.ev.service.api;
 
 import com.javaschool.ev.domain.Timetable;
+import com.javaschool.ev.domain.Train;
 
 import java.util.List;
 
@@ -9,4 +10,5 @@ public interface TimetableService {
     public List<Timetable> getAllTimetableItems();
     void deleteTimetableItem(int timetableID);
     void editTimetableItem(Timetable timetableItem);
+    Timetable getById(int timetableID);
 }

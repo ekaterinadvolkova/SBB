@@ -41,4 +41,9 @@ public class TimetableServiceImpl implements TimetableService {
     public void editTimetableItem(Timetable timetableItem) {
         timetableDAO.editTimetableItem(timetableItem);
     }
+
+    @Override
+    public Timetable getById(int timetableID) {
+        return timetableDAO.getById(timetableID);
+    }
 }

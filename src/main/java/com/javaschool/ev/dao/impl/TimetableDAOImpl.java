@@ -2,6 +2,8 @@ package com.javaschool.ev.dao.impl;
 
 import com.javaschool.ev.dao.api.TimetableDAO;
 import com.javaschool.ev.domain.Timetable;
+import com.javaschool.ev.domain.Train;
+import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -85,5 +87,11 @@ public class TimetableDAOImpl implements TimetableDAO{
         } finally {
             entityManager.close();
         }
+    }
+
+    @Override
+    public Timetable getById(int timetableID) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        return entityManager.find(Timetable.class, timetableID);
     }
 }

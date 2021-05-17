@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Swiss Federal Railways</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/bootstrap-icons.css">
+    <link rel="stylesheet" href="./css/template.styles.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">Swiss Federal Railways</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample03">
+            <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="timetable.html">Check Timetable</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="staff.html">for Staff</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<main>
+    <div class="container pt-5">
+        <h1>Buy ticket</h1>
+        <form class="mt-5" action="index.html">
+            <input type="number" name="trainId" hidden="" value="">
+            <input type="number" name="trainSeat" hidden="" value="">
+
+            <div class="mb-3">
+                <label for="first_name" class="form-label">First name</label>
+                <input type="text" class="form-control" id="first_name">
+            </div>
+
+            <div class="mb-3">
+                <label for="last_name" class="form-label">Last name</label>
+                <input type="text" class="form-control" id="last_name">
+            </div>
+
+            <div class="mb-3">
+                <label for="date" class="form-label">Date of birth</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="date" data-mask="99-99-9999" placeholder="dd-MM-yyyy" inputmode="text">
+                    <span class="input-group-text">
+                        <i class="bi bi-calendar-date"></i>
+                    </span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Buy ticket</button>
+
+        </form>
+    </div>
+</main>
+<script src="./js/inputmask.js"></script>
+<script src="./js/bootstrap.bundle.min.js"></script>
+<script src="./js/scripts.js"></script>
+
+</body></html>

@@ -40,25 +40,13 @@ public class Train {
             joinColumns = @JoinColumn(name = "trainID"),
             inverseJoinColumns = @JoinColumn(name = "timetableID")
     )
-
     private Set<Timetable> timetableItems;
     public Set<Timetable> timetableItems (){
         return timetableItems;
     }
 
-     private Timestamp departure(){
-        Timestamp departureTime = new Timetable().getDepartureTime();
-        return departureTime;
-     }
-
-
-
     public LocalDate firstDate(){
         return LocalDate.now();
-    }
-
-    public LocalDate lastDate(){
-        return firstDate().minusMonths(3);
     }
 
     public Train(int trainID, int number) {

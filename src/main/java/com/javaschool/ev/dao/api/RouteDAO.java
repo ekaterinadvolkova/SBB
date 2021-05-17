@@ -9,9 +9,9 @@ public interface RouteDAO {
 
     List<Route> getAllRoutes();
 
-    List<Route> getTrainRoutes(Long trainId);
+    List<Route> getTrainRoutes(int trainId);
 
-    Route getRouteById(Long routeId);
+    Route getRouteById(int routeID);
 
     //List<Route> getTrainRoutesByQuery(TrainQueryDto trainQuery);
 

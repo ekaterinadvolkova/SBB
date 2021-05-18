@@ -50,4 +50,12 @@ public class WelcomeController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "tickets/", method = RequestMethod.GET)
+    public ModelAndView tickets() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("tickets");
+        modelAndView.addObject("tickets", tickets());
+        return modelAndView;
+    }
+
 }

@@ -41,7 +41,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/staff/">Staff</a>
+                    <a class="nav-link" href="staff/">Staff</a>
                 </li>
             </ul>
         </div>
@@ -85,7 +85,6 @@
 
         <p>Timetable</p>
         <div id="stations-container"></div>
-
         <p>
             <button type="button" class="btn btn-info" id="add-station">Add station</button>
         </p>

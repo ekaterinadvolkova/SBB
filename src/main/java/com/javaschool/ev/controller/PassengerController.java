@@ -102,7 +102,7 @@ public class PassengerController {
     @RequestMapping(value="/staff/passengers/delete/{passengerID}", method = RequestMethod.GET)
     public ModelAndView deletePassenger(@PathVariable("passengerID") int passengerID) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/staff/passengers/");
+        modelAndView.setViewName("redirect:/staff/");
         Passenger passenger = passengerService.getById(passengerID);
         passengerService.delete(passenger);
         return modelAndView;

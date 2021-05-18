@@ -39,9 +39,7 @@ public class TrainMapper {
             Station station = stationDAO.getByName(t.getStationName());
             train.getStations().add(station);
         }
-
         return train;
-
     }
 
 }

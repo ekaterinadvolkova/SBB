@@ -23,14 +23,14 @@
         <div class="collapse navbar-collapse" id="navbarsExample03">
             <ul class="navbar-nav me-auto mb-2 mb-sm-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    <a class="nav-link active" aria-current="page" href="./">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="timetable.html">Check Timetable</a>
+                    <a class="nav-link" href="timetable/">Timetable</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="staff.html">for Staff</a>
-                </li>
+<%--                <li class="nav-item">--%>
+<%--                    <a class="nav-link" href="staff.html">Staff</a>--%>
+<%--                </li>--%>
             </ul>
         </div>
     </div>
@@ -40,16 +40,6 @@
     <div class="d-flex flex-row-reverse">
         <section class="pt-5 flex-fill container-fluid">
             <h2>Stations</h2>
-<%--
-<table class="style">--%>
-<%--                <caption class="heading">Staff Page</caption>--%>
-<%--                <tr><td><a href="passengers/">View Passengers</a></td></tr>--%>
-<%--                <tr><td><a href="trains/">View trains</a></td></tr>--%>
-<%--                <tr><td>View passengers on the Train</td></tr>--%>
-<%--                <tr><td><a href="staff/stations/">View stations</a></td></tr>--%>
-<%--                <tr><td><a href="trains/add/">Add train</a></td></tr>--%>
-<%--                <tr><td><a href="/timetables/">Timetables</a></td></tr>--%>
-<%--            </table>--%>
 
             <table class="table">
                 <thead>

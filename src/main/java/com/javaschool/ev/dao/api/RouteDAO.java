@@ -13,8 +13,6 @@ public interface RouteDAO {
 
     Route getRouteById(int routeID);
 
-    //List<Route> getTrainRoutesByQuery(TrainQueryDto trainQuery);
-
     void deleteRoute(int routeID);
 
     void editRoute(Route route);

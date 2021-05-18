@@ -19,5 +19,4 @@ public class TrainDTO {
     private int availableSeats;
     private Occurence occurence;
     List<TimetableItemDTO> timetable;
-
 }

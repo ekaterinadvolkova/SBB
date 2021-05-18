@@ -3,6 +3,7 @@ package com.javaschool.ev.service.impl;
 import com.javaschool.ev.dao.api.StationDAO;
 import com.javaschool.ev.dao.api.TrainDAO;
 import com.javaschool.ev.dao.impl.TrainDAOImpl;
+import com.javaschool.ev.domain.Route;
 import com.javaschool.ev.domain.Train;
 import com.javaschool.ev.dto.TrainDTO;
 import com.javaschool.ev.mapper.TrainMapper;
@@ -60,4 +61,6 @@ public class TrainServiceImpl implements TrainService {
     public boolean checkTrain(int number) {
         return trainDAO.checkTrain(number);
     }
+
+
 }

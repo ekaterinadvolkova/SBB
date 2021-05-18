@@ -6,3 +6,16 @@
         }
     });
 }
+
+{
+    const addStation = document.querySelector('#add-station');
+    if(addStation){
+        const container = document.querySelector('#stations-container');
+        const template = document.querySelector('#station-item');
+
+        addStation.addEventListener('click',()=>{
+            const clone = template.content.cloneNode(true);
+            container.append(clone);
+        });
+    }
+}

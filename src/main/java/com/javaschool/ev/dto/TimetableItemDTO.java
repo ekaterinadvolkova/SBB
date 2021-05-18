@@ -6,9 +6,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Time;
+import java.time.LocalTime;
 
 @Getter @Setter @NoArgsConstructor
 public class TimetableItemDTO {
     private String stationName;
-    private Time departureTime;
+    private LocalTime departureTime;
 }

@@ -111,6 +111,7 @@ public class RouteDAOImpl implements RouteDAO {
     public void editRoute(Route route) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = null;
+
         try {
             transaction = entityManager.getTransaction();
             transaction.begin();

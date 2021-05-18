@@ -4,7 +4,9 @@ import lombok.*;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter @Setter @NoArgsConstructor
 @Entity
@@ -13,7 +15,7 @@ public class Route {
 
     @Id
     @Column(name="routeID")
-    @NonNull
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int routeID;
 
@@ -27,16 +29,13 @@ public class Route {
     @JoinColumn(name = "trainID")
     private Train train;
 
+    @OneToMany(mappedBy = "route")
+    List<Timetable> timetableList;
+
+
     public Route(int routeID,  Train train) {
         this.routeID = routeID;
         this.train = train;
     }
 
-    @Override
-    public String toString() {
-        return "Route{" +
-                "routeID=" + routeID +
-                ", trainID=" + train +
-                '}';
-    }
 }

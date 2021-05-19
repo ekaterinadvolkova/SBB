@@ -45,7 +45,7 @@ public class TimetableController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");
         Timetable timetableItem = timetableService.getById(timetableID);
-        timetableService.deleteTimetableItem(timetableID);
+        timetableService.deleteTimetableItem(timetableItem);
         return modelAndView;
     }
 

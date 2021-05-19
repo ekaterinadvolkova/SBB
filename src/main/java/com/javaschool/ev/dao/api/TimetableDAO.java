@@ -7,8 +7,12 @@ import java.util.List;
 
 public interface TimetableDAO {
     void createNewTimetableItem(Timetable timetableItem);
+
     List<Timetable> getAllTimetableItems();
-    void deleteTimetableItem(int id);
+
+    void deleteTimetableItem(Timetable timetableItem);
+
     void editTimetableItem(Timetable timetableItem);
+
     Timetable getById(int timetableID);
 }

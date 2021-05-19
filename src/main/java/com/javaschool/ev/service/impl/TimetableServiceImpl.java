@@ -16,7 +16,7 @@ public class TimetableServiceImpl implements TimetableService {
     private TimetableDAO timetableDAO;
 
     @Autowired
-    public TimetableServiceImpl(TimetableDAO timetableDAO){
+    public TimetableServiceImpl(TimetableDAO timetableDAO) {
         this.timetableDAO = timetableDAO;
     }
 
@@ -32,9 +32,8 @@ public class TimetableServiceImpl implements TimetableService {
     }
 
     @Override
-    public void deleteTimetableItem(int timetableID) {
-        timetableDAO.deleteTimetableItem(timetableID);
-
+    public void deleteTimetableItem(Timetable timetableItem) {
+        timetableDAO.deleteTimetableItem(timetableItem);
     }
 
     @Override

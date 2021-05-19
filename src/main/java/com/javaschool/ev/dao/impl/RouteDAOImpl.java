@@ -68,7 +68,6 @@ public class RouteDAOImpl implements RouteDAO {
     public void editRoute(Route route) {
         Session session = sessionFactory.getCurrentSession();
         Route dbRoute = getRouteById(route.getRouteID());
-        dbRoute.setRouteID(route.getRouteID());
         dbRoute.setTimetableList(route.getTimetableList());
         dbRoute.setTrain(route.getTrain());
         dbRoute.setDate(route.getDate());

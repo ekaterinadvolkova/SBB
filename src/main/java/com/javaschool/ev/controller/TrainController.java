@@ -58,7 +58,7 @@ public class TrainController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "staff/trains/add/add", method = RequestMethod.POST)
+    @RequestMapping(value = "staff/trains/add", method = RequestMethod.POST)
     public ModelAndView addTrain(@ModelAttribute("train") TrainDTO train) {
         ModelAndView modelAndView = new ModelAndView();
 

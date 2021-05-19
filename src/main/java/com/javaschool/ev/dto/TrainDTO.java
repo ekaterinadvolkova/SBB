@@ -8,7 +8,9 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.util.List;
 
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 public class TrainDTO {
     private int trainID;
     private int number;

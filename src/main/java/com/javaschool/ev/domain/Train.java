@@ -4,28 +4,34 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.lang.NonNull;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.Set;
 
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
-@Table(name="train")
+@Table(name = "train")
 public class Train {
 
     @Id
-    @Column(name="trainID")
+    @Column(name = "trainID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int trainID;
 
-    @NonNull @Column(name="number")
+    @NonNull
+    @Column(name = "number")
     private int number;
 
-    @NonNull @Column(name="availableSeats")
+    @NonNull
+    @Column(name = "availableSeats")
     private int availableSeats;
 
-    @NonNull @Column(name="occurence")
+    @NonNull
+    @Column(name = "occurence")
     @Enumerated(value = EnumType.STRING)
     private Occurence occurrence;
 
@@ -36,10 +42,10 @@ public class Train {
     )
     private Set<Station> stations;
 
-    @OneToMany (mappedBy = "train")
+    @OneToMany(mappedBy = "train")
     private Set<Route> routes;
 
-    public LocalDate firstDate(){
+    public LocalDate firstDate() {
         return LocalDate.now();
     }
 

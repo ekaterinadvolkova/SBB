@@ -1,6 +1,7 @@
 package com.javaschool.ev.domain;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
@@ -20,9 +21,9 @@ public class Route {
     private int routeID;
 
     @Column(name = "date")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @NonNull
     private LocalDate date;
-
 
     @ManyToOne
     @NonNull

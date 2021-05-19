@@ -60,9 +60,6 @@
             </div>
 
             <p>
-<%--                <c:set value="add" var="add"/>--%>
-<%--                <c:set value="edit" var="edit"/>--%>
-<%--                <input type="submit" value="${(empty station.stationID) ? add : edit}">--%>
                 <button type="submit" class="btn btn-primary">Add Station</button>
             </p>
         </form>

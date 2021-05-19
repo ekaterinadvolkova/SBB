@@ -16,7 +16,6 @@ import java.util.List;
 public class TrainDAOImpl implements TrainDAO {
 
     private SessionFactory sessionFactory;
-
     @Autowired
     public void setSessionFactory(SessionFactory sessionFactory){
         this.sessionFactory=sessionFactory;

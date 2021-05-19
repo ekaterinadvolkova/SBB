@@ -12,8 +12,6 @@ public interface RouteDAO {
     List<Route> getTrainRoutes(int trainId);
 
     Route getRouteById(int routeID);
-
-    void deleteRoute(int routeID);
-
+    void deleteRoute(Route route);
     void editRoute(Route route);
 }

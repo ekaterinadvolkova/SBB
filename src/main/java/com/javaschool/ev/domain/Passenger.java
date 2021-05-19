@@ -44,5 +44,4 @@ public class Passenger {
         return "Passenger " + firstName + " " + lastName + " " + birthDate;
     }
 
-
 }

@@ -14,25 +14,12 @@ import java.util.List;
 @Repository
 public class PassengerDAOImpl implements PassengerDAO {
 
-    /*
-    to store the list the map is used
-    to generate id AtomicInteger is used
-    fill the map
-    private static final AtomicInteger AUTO_ID = new AtomicInteger(0);
-    private static final Map<Integer, Passenger> passengers = new HashMap<>();
-     */
-
     private SessionFactory sessionFactory;
 
     @Autowired
-    public void setSessionFactory(SessionFactory sessionFactory){
-        this.sessionFactory=sessionFactory;
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
-
-    /*
-    Passenger list
-    нужен параметризированный list,  запрос просто на list --> @SuppressWarnings()
-     */
 
     @SuppressWarnings("unchecked")
     public List<Passenger> allPassengers() {
@@ -40,50 +27,23 @@ public class PassengerDAOImpl implements PassengerDAO {
         return session.createQuery("from Passenger").list();
     }
 
-    /*
-    Pagination:
-    I.e., if this is page 1, output a maximum of 10 records, starting from page 0, and if this is page 5,
-    then 10 records starting from page 40
-    (the numbering in the database starts with 0).
-
-    public int passengersCount() {
-        Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("select count(*) from Passenger", Number.class).getSingleResult().intValue();
-    }*/
-
-    /*
-                passenger add
-                Old version:
-                passenger.setPassengerID(AUTO_ID.getAndIncrement());
-                passengers.put(passenger.getPassengerID(), passenger);
-                 */
     @Override
     public void add(Passenger passenger) {
         Session session = sessionFactory.getCurrentSession();
         session.persist(passenger);
     }
 
-    /*
-    Passenger delete
-    Old version:
-    passengers.remove(passenger.getPassengerID());
-     */
     @Override
     public void delete(Passenger passenger) {
         Session session = sessionFactory.getCurrentSession();
         session.delete(passenger);
     }
 
-    /*
-    passenger edit
-    Old version:
-    passengers.put(passenger.getPassengerID(), passenger);
-     */
     @Override
     public void edit(Passenger passenger) {
         Session session = sessionFactory.getCurrentSession();
 
-        Passenger dbPassenger=getById(passenger.getPassengerID());
+        Passenger dbPassenger = getById(passenger.getPassengerID());
 
         dbPassenger.setPassengerID(passenger.getPassengerID());
         dbPassenger.setFirstName(passenger.getFirstName());
@@ -93,11 +53,6 @@ public class PassengerDAOImpl implements PassengerDAO {
         session.update(dbPassenger);
     }
 
-    /*
-    passenger get by ID
-    Old version:
-    return passengers.get(passengerID);
-     */
     @Override
     public Passenger getById(int passengerID) {
         Session session = sessionFactory.getCurrentSession();
@@ -108,16 +63,10 @@ public class PassengerDAOImpl implements PassengerDAO {
     public boolean checkPassenger(String firstName, String lastName, LocalDate birthDate) {
         Session session = sessionFactory.getCurrentSession();
         Query query;
-
         query = session.createQuery("from Passenger where firstName = :firstName");
         query.setParameter("firstName", firstName);
-
-
         query.setParameter("lastName", lastName);
-
-
         query.setParameter("birthDate", birthDate);
-
         return query.list().isEmpty();
     }
 }

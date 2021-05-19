@@ -167,14 +167,12 @@
             <p class="heading">Add new train</p>
         </c:otherwise>
     </c:choose>
-    <p><input type="number" name="trainID" id="trainID"  value="${trainDTO.trainID}" disabled>
-    <p><input type="number" name="number" id="number" placeholder="number" value="${trainDTO.number}" maxlength="50" required autofocus pattern="^[^\s]+(\s.*)?$">
-    <p><input type="availableSeats" name="availableSeats" id="availableSeats" placeholder="availableSeats" value="${trainDTO.availableSeats}" maxlength="50" required autofocus pattern="^[^\s]+(\s.*)?$">
-
-<%--    <p><input type="text" name="occurence" id="occurence" placeholder="occurence" value="${train.occurence}" maxlength="50" required autofocus pattern="^[^\s]+(\s.*)?$">--%>
+    <p><input type="number" name="trainID" id="trainID"  value="${trainDTO.trainID}" disabled hidden>
+    <p><input type="number" name="number" id="number" placeholder="number" value="${trainDTO.number}" >
+    <p><input type="availableSeats" name="availableSeats" id="availableSeats" placeholder="availableSeats" value="${trainDTO.availableSeats}">
 
     <div class="input-group mb-3">
-        <select name="occurence" class="form-select" id="occurence">
+        <select name="occurence" class="form-select" id="occurence" value="${trainDTO.occurence}">
             <option value="DAILY">every day</option>
             <option value="WEEKLY">every week</option>
             <option value="MONTHLY">every month</option>
@@ -193,15 +191,15 @@
     <p>Timetable</p>
     <div id="stations-container"></div>
 
-    <template id="station-item">
+    <template id="station-item" value = "${timetableItemDTO}">
         <div class="row mb-3">
             <div class="col">
-                <input type="text" placeholder="Station" class="form-control">
+                <input type="text" placeholder="Station" class="form-control" value = "${timetableItemDTO.station}">
             </div>
 
             <div class="col">
                 <label class="input-group">
-                    <input type="text" class="form-control" placeholder="HH-MM">
+                    <input type="time" class="form-control" placeholder="HH-MM" value = "${timetableItemDTO.departureTime}">
                 </label>
             </div>
         </div>

@@ -1,6 +1,5 @@
 package com.javaschool.ev.dao.impl;
 
-
 import com.javaschool.ev.dao.api.StationDAO;
 import com.javaschool.ev.domain.Passenger;
 import com.javaschool.ev.domain.Station;
@@ -19,9 +18,10 @@ import java.util.List;
 public class StationDAOImpl implements StationDAO {
 
     private SessionFactory sessionFactory;
+
     @Autowired
-    public void setSessionFactory(SessionFactory sessionFactory){
-        this.sessionFactory=sessionFactory;
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
     @SuppressWarnings("unchecked")
@@ -45,12 +45,10 @@ public class StationDAOImpl implements StationDAO {
     @Override
     public void edit(Station station) {
         Session session = sessionFactory.getCurrentSession();
-
-        Station dbStation=getById(station.getStationID());
+        Station dbStation = getById(station.getStationID());
         dbStation.setStationID((station.getStationID()));
         dbStation.setName(station.getName());
         session.update(dbStation);
-
     }
 
     @Override
@@ -63,27 +61,17 @@ public class StationDAOImpl implements StationDAO {
     public boolean checkStation(String name) {
         Session session = sessionFactory.getCurrentSession();
         Query query;
-
         query = session.createQuery("from Station where name = :name");
         query.setParameter("name", name);
-
         return query.list().isEmpty();
     }
 
     @Override
-    public Station getByName(String name){
+    public Station getByName(String name) {
         Session session = sessionFactory.getCurrentSession();
         Query query;
-
         query = session.createQuery("from Station where name = :name");
         query.setParameter("name", name);
-
         return (Station) query.list().get(0);
     }
-
-
-
-
-
-
 }

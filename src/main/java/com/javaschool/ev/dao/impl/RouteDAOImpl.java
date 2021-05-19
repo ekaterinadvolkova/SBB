@@ -2,6 +2,8 @@ package com.javaschool.ev.dao.impl;
 
 import com.javaschool.ev.dao.api.RouteDAO;
 import com.javaschool.ev.domain.Route;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,116 +18,62 @@ import java.util.List;
 @Transactional
 public class RouteDAOImpl implements RouteDAO {
 
+
+    private SessionFactory sessionFactory;
+
     @Autowired
-    private EntityManagerFactory entityManagerFactory;
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
 
     @Override
     public void createNewRoute(Route route) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        EntityTransaction transaction = null;
-        try {
-            transaction = entityManager.getTransaction();
-            transaction.begin();
-            entityManager.persist(route);
-            transaction.commit();
-        } catch (Exception ex) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            ex.printStackTrace();
-        } finally {
-            entityManager.close();
-        }
+        Session session = sessionFactory.getCurrentSession();
+        session.persist(route);
     }
 
     @Override
     public List<Route> getAllRoutes() {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        List<Route> routes = null;
-        try {
-            Query query = entityManager.createQuery("SELECT t FROM Route t");
-            routes = query.getResultList();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            entityManager.close();
-        }
-        return routes;
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("from Route").list();
+
     }
 
     public List<Route> getTrainRoutes(int trainID) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        Session session = sessionFactory.getCurrentSession();
+
         List<Route> routes = null;
-        try {
-            Query query = entityManager
-                    .createQuery("SELECT r FROM Route r JOIN FETCH r.train WHERE r.train  = :trainID", Route.class)
-                    .setParameter("trainID", trainID);
-            routes = query.getResultList();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
-            entityManager.close();
-        }
+        Query query = session
+                .createQuery("SELECT r FROM Route r JOIN FETCH r.train WHERE r.train  = :trainID", Route.class)
+                .setParameter("trainID", trainID);
+        routes = query.getResultList();
+
         return routes;
     }
 
     @Override
     public Route getRouteById(int routeID) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        Route route = null;
-        try {
-            Query query = entityManager
-                    .createQuery("SELECT r FROM Route r WHERE r.routeID  = :routeID", Route.class)
-                    .setParameter("routeID", routeID);
-            route = (Route) query.getSingleResult();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
-            entityManager.close();
-        }
-        return route;
+        Session session = sessionFactory.getCurrentSession();
+        return session.getReference(Route.class, routeID);
     }
 
     @Override
-    public void deleteRoute(int routeID) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        EntityTransaction transaction = null;
-        try {
-            transaction = entityManager.getTransaction();
-            transaction.begin();
-            Route route = entityManager.find(Route.class, routeID);
-            entityManager.remove(route);
-            transaction.commit();
-        } catch (Exception ex) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            ex.printStackTrace();
-        } finally {
-            entityManager.close();
-        }
-
+    public void deleteRoute(Route route) {
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(route);
     }
 
     @Override
     public void editRoute(Route route) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        EntityTransaction transaction = null;
-
-        try {
-            transaction = entityManager.getTransaction();
-            transaction.begin();
-            entityManager.merge(route);
-            transaction.commit();
-        } catch (Exception ex) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            ex.printStackTrace();
-        } finally {
-            entityManager.close();
-        }
+        Session session = sessionFactory.getCurrentSession();
+        Route dbRoute = getRouteById(route.getRouteID());
+        dbRoute.setRouteID(route.getRouteID());
+        dbRoute.setTimetableList(route.getTimetableList());
+        dbRoute.setTrain(route.getTrain());
+        dbRoute.setDate(route.getDate());
+        dbRoute.setTrain(route.getTrain());
+        session.update(dbRoute);
     }
-
 }
 

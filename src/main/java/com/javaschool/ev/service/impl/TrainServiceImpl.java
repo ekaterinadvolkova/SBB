@@ -83,12 +83,12 @@ public class TrainServiceImpl implements TrainService {
         routeDAO.createNewRoute(route);
         //timetable items
         List<Timetable> timetableList = new ArrayList<>();
-//        for (int i = 0; i < trainDTO.getTimetable().size(); i++) {
-//            TimetableItemDTO timetableItemDTO = trainDTO.getTimetable().get(i);
-//            Timetable timetable = timetableItem(timetableItemDTO, route);
-//            timetableList.add(timetable);
-//        }
-//        route.setTimetableList(timetableList);
+        for (int i = 0; i < trainDTO.getTimetable().size(); i++) {
+            TimetableItemDTO timetableItemDTO = trainDTO.getTimetable().get(i);
+            Timetable timetable = timetableItem(timetableItemDTO, route);
+            timetableList.add(timetable);
+        }
+        route.setTimetableList(timetableList);
         routeDAO.editRoute(route);
         return route;
     }

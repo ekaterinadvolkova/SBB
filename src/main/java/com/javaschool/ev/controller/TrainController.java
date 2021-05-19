@@ -59,16 +59,16 @@ public class TrainController {
     }
 
     @RequestMapping(value = "staff/trains/add", method = RequestMethod.POST)
-    public ModelAndView addTrain(@ModelAttribute("train") TrainDTO train) {
+    public ModelAndView addTrain(@ModelAttribute("trainDTO") TrainDTO trainDTO) {
         ModelAndView modelAndView = new ModelAndView();
 
-        if (trainService.checkTrain(train.getNumber())) {
+//        if (trainService.checkTrain(train.getNumber())) {
             modelAndView.setViewName("redirect:/staff/trains/");
-            trainService.add(train);
-        } else {
-            modelAndView.addObject("message", "part with title \"" + train.getNumber() + "\" already exists");
-            modelAndView.setViewName("redirect:/staff/trains/");
-        }
+            trainService.add(trainDTO);
+//        } else {
+//            modelAndView.addObject("message", "part with title \"" + train.getNumber() + "\" already exists");
+//            modelAndView.setViewName("redirect:/staff/trains/");
+//        }
         return modelAndView;
     }
 

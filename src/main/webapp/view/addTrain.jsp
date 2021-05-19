@@ -107,7 +107,17 @@
 
 <html>
 <head>
-    <link href="<c:url value="/res/style.css"/>" rel="stylesheet" type="text/css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Swiss Federal Railways</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="../../">
+    <link rel="stylesheet" href="./res/frontend/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./res/frontend/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="./res/frontend/css/template.styles.css">
+
+
+<%--    <link href="<c:url value="/res/style.css"/>" rel="stylesheet" type="text/css"/>--%>
     <c:choose>
         <c:when test="${empty train.trainID}">
             <title>Add</title>
@@ -118,6 +128,29 @@
     </c:choose>
 </head>
 <body>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="./">Swiss Federal Railways</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03"
+                aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample03">
+            <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="./">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="timetable/">Timetable</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="staff/">Staff</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <c:url value="/staff/trains/add/add" var="add"/>
 <c:url value="/staff/trains/edit" var="edit"/>
 
@@ -126,7 +159,7 @@
 <form class="style" action="${(empty train.trainID) ? add : edit}" name="train" method="POST">
 
     <c:choose>
-        <c:when test="${!empty train.number && !empty train.availableSeats && !empty train.bookedSeats && !empty train.occurence}">
+        <c:when test="${!empty train.trainID}">
             <p class="heading">Edit train</p>
 
         </c:when>
@@ -159,9 +192,6 @@
 
     <p>Timetable</p>
     <div id="stations-container"></div>
-    <p>
-        <button type="button" class="btn btn-info" id="add-station">Add station</button>
-    </p>
 
     <template id="station-item">
         <div class="row mb-3">
@@ -178,12 +208,19 @@
     </template>
 
     <p>
+        <button type="button" class="btn btn-info" id="add-station">Add station</button>
+    </p>
+
+    <p>
         <c:set value="add" var="add"/>
         <input type="submit" value="add">
     </p>
-    <p class="heading"><a href="${pageContext.request.contextPath}/">Go back</a> </p>
+
 </form>
 
+<script src="./res/frontend/js/inputmask.js"></script>
+<script src="./res/frontend/js/bootstrap.bundle.min.js"></script>
+<script src="./res/frontend/js/scripts.js"></script>
 
 </body>
 </html>

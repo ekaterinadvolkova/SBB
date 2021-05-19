@@ -36,7 +36,6 @@ public class TrainServiceImpl implements TrainService {
     }
 
     private TrainDAO trainDAO = new TrainDAOImpl();
-
     @Autowired
     public void setTrainDAO(TrainDAO trainDAO) {
         this.trainDAO = trainDAO;
@@ -44,20 +43,17 @@ public class TrainServiceImpl implements TrainService {
 
     @Autowired
     private TimetableDAO timetableDAO;
-
     public void timetableDAO(TimetableDAO timetableDAO) {
         this.timetableDAO = timetableDAO;
     }
 
     private RouteDAO routeDAO;
-
     @Autowired
     public void setRouteDAO(RouteDAO routeDAO) {
         this.routeDAO = routeDAO;
     }
 
     private StationDAO stationDAO;
-
     @Autowired
     public void setStationDAO(StationDAO stationDAO) {
         this.stationDAO = stationDAO;

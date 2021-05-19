@@ -49,7 +49,7 @@
                     <th>#</th>
                     <th>Train Number</th>
                     <th>Booked Seats</th>
-                    <th>Occurrence</th>
+<%--                    <th>Occurrence</th>--%>
                     <th>Action</th>
                 </tr>
                 </thead>

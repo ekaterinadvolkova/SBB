@@ -65,11 +65,11 @@ public class StationController {
         ModelAndView modelAndView = new ModelAndView();
 
         if (stationService.checkStation(station.getName())) {
-            modelAndView.setViewName("redirect:/staff/stations/");
+            modelAndView.setViewName("redirect:/staff/");
             stationService.add(station);
         } else {
             modelAndView.addObject("message", "part with title \"" + station.getName() + "\" already exists");
-            modelAndView.setViewName("redirect:/staff/stations/");
+            modelAndView.setViewName("redirect:/staff/");
         }
         return modelAndView;
     }

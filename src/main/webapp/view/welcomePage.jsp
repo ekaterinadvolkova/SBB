@@ -60,17 +60,15 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Occurrence</th>
+<%--                    <th>Occurrence</th>--%>
                     <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach var="train" items="${trainList}">
                     <tr>
-                            <%--                        <td <td style="display:none">>${train.trainID}</td>--%>
                         <td>${train.number}</td>
-                            <%--                        <td <td style="display:none">>${train.availableSeats}</td>--%>
-                        <td>${train.occurence}</td>
+<%--                        <td>${train.occurence}</td>--%>
                         <td>
                             <div class="btn-group">
                                 <a href="buy-ticket.html" type="button" class="btn btn-sm btn-outline-primary"

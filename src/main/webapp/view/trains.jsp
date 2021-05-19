@@ -61,7 +61,7 @@
                         <td>${train.trainID}</td>
                         <td>${train.number}</td>
                         <td>${train.availableSeats}</td>
-                        <td>${train.occurence}</td>
+<%--                        <td>${train.occurence}</td>--%>
                         <td>
                             <div class="btn-group">
                                 <a href="/staff/trains/" type="button" class="btn btn-sm btn-outline-secondary" title="View trains">
@@ -115,7 +115,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="staff/passengers/" class="nav-link ">
+                    <a href="staff/passengers/" action="staff/stations/add" name="station" method="POST" class="nav-link">
                         View passengers
                     </a>
                 </li>

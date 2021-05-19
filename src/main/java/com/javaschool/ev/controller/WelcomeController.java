@@ -23,9 +23,10 @@ public class WelcomeController {
     }
 
     private TrainService trainService;
+
     @Autowired
-    public void setTrainService (TrainService trainService){
-        this.trainService=trainService;
+    public void setTrainService(TrainService trainService) {
+        this.trainService = trainService;
     }
 
 

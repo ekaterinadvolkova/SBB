@@ -20,7 +20,7 @@ public class Route {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int routeID;
 
-    @Column(name = "date")
+    @Column(name = "departure_date")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     @NonNull
     private LocalDate date;

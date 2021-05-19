@@ -49,7 +49,7 @@
                     <th>#</th>
                     <th>Train Number</th>
                     <th>Booked Seats</th>
-<%--                    <th>Occurrence</th>--%>
+                    <%--                    <th>Occurrence</th>--%>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -61,10 +61,11 @@
                         <td>${train.trainID}</td>
                         <td>${train.number}</td>
                         <td>${train.availableSeats}</td>
-<%--                        <td>${train.occurence}</td>--%>
+                            <%--                        <td>${train.occurence}</td>--%>
                         <td>
                             <div class="btn-group">
-                                <a href="/staff/trains/" type="button" class="btn btn-sm btn-outline-secondary" title="View trains">
+                                <a href="/staff/trains/" type="button" class="btn btn-sm btn-outline-secondary"
+                                   title="View trains">
                                     <i class="bi bi-people-fill"></i>
                                 </a>
                                 <a href="staff/train/edit/${train.trainID}" type="button"
@@ -115,7 +116,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="staff/passengers/" action="staff/stations/add" name="station" method="POST" class="nav-link">
+                    <a href="staff/passengers/" action="staff/stations/add" name="station" method="POST"
+                       class="nav-link">
                         View passengers
                     </a>
                 </li>

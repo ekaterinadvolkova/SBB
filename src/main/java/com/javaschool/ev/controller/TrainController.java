@@ -15,11 +15,11 @@ public class TrainController {
     private TrainService trainService;
 
     @Autowired
-    public void setTrainService (TrainService trainService){
-        this.trainService=trainService;
+    public void setTrainService(TrainService trainService) {
+        this.trainService = trainService;
     }
 
-    @RequestMapping(value="staff/trains/", method = RequestMethod.GET)
+    @RequestMapping(value = "staff/trains/", method = RequestMethod.GET)
     public ModelAndView allTrains() {
         List<Train> trains = trainService.allTrains();
         ModelAndView modelAndView = new ModelAndView();
@@ -72,7 +72,7 @@ public class TrainController {
         return modelAndView;
     }
 
-    @RequestMapping(value="/staff/trains/delete/{trainID}", method = RequestMethod.GET)
+    @RequestMapping(value = "/staff/trains/delete/{trainID}", method = RequestMethod.GET)
     public ModelAndView deleteTrain(@PathVariable("trainID") int trainID) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/staff/trains/");

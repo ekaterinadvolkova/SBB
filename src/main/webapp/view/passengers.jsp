@@ -89,7 +89,7 @@
                 <tfoot>
                 <tr>
                     <td colspan="5">
-                        <a href="/staff/passengers/add" class="btn btn-outline-primary">Add Passenger</a>
+                        <a href="staff/passengers/add" class="btn btn-outline-primary">Add Passenger</a>
                     </td>
                 </tr>
                 </tfoot>

@@ -26,6 +26,7 @@ public class TrainMapper {
         this.stationDAO=stationDAO;
     }
 
+
     public Train convertRecord (TrainDTO trainDTO){
 
         Train train = new Train();

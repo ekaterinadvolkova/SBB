@@ -43,7 +43,7 @@
         <p class="mt-5" action="staff/stations/add" name="station" method="POST">
 
         <div class="mb-3">
-            <label class="form-label" value="${Station.name}">Station Name</label>
+            <label class="form-label" path="tr" value="${Station.name}">Station Name</label>
             <input value="${station.name}" class="form-control" id="name" name="name">
         </div>
     </div>

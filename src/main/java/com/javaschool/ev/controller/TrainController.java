@@ -1,6 +1,7 @@
 package com.javaschool.ev.controller;
 
 import com.javaschool.ev.domain.Train;
+import com.javaschool.ev.dto.TimetableItemDTO;
 import com.javaschool.ev.dto.TrainDTO;
 import com.javaschool.ev.service.api.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;

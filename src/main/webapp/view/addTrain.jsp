@@ -48,16 +48,17 @@
 <main>
     <div class="container pt-5">
 
-        <form class="style" action="staff/trains/add" name="train" method="POST">
-
-            <p><label for="trainID"></label><input type="number" name="trainID" id="trainID" value="${trainDTO.trainID}"
-                                                   hidden>
-            <p><label for="number"></label><input type="number" name="number" id="number" placeholder="number"
-                                                  value="${trainDTO.number}">
-            <p><label for="availableSeats"></label><input type="number" name="availableSeats"
-                                                          id="availableSeats"
-                                                          placeholder="availableSeats"
-                                                          value="${trainDTO.availableSeats}">
+        <form class="style" action="staff/trains/add" name="trainDTO" method="POST" path="trainDTO">
+            <%--            <p>--%>
+            <%--                <input type="number" name="trainID" id="trainID" value="${trainDTO.trainID}" path="trainDTO.trainID"--%>
+            <%--                       hidden/>--%>
+            <%--            </p>--%>
+            <p>
+                <input type="number" name="number" id="number" placeholder="number" value="${trainDTO.number}"
+                       path="trainDTO.number"/>
+            <p>
+                <input path="trainDTO.availableSeats" type="number" name="availableSeats"
+                       id="availableSeats" placeholder="seats" value="${trainDTO.availableSeats}"/>
 
             <div class="input-group mb-3">
                 <label for="occurence">
@@ -72,42 +73,49 @@
             <div class="mb-3">
                 <label for="departureDate" class="form-label">Departure Date</label>
                 <div class="input-group mb-3">
-                    <input type="text" value="${trainDTO.departureDate}" class="form-control" id="departureDate"
-                           data-mask="99-99-9999" placeholder="dd-MM-yyyy" inputmode="date">
+                    <input path="trainDTO.departureDate" type="text" value="${trainDTO.departureDate}"
+                           class="form-control" id="departureDate"
+                           data-mask="99-99-9999" placeholder="dd-MM-yyyy" inputmode="date"/>
                     <span class="input-group-text"><i class="bi bi-calendar-date"></i></span>
                 </div>
             </div>
 
             <p>Timetable</p>
             <div id="stations-container"></div>
-
             <template id="station-item">
                 <div class="row mb-3">
-                    <div class="col">
-                        <label>
-                            <input type="text" placeholder="Station" class="form-control"
-                                   value="${timetableItemDTO.stationName}">
-                        </label>
-                    </div>
+                    <c:forEach var="m" items="${trainDTO.timetable}">
+                        <div class="col">
+                            <label>
+                                <input type="text" placeholder="Station" class="form-control"
+                                       path="timetableItemDTO.stationName"
+                                       value="${m.stationName}">
+                            </label>
+                        </div>
 
-                    <div class="col">
-                        <label class="input-group">
-                            <input type="time" class="form-control" placeholder="HH-MM"
-                                   value="${timetableItemDTO.departureTime}">
-                        </label>
-                    </div>
+                        <div class="col">
+                            <label>
+                                <input type="text" placeholder="Station" class="form-control"
+                                       path="timetableItemDTO.stationName"
+                                       value="${m.departureTime}">
+                            </label>
+                        </div>
+
+                        <p>
+                            <button type="button" class="btn btn-info" id="add-station"> Add station</button>
+                        </p>
+                    </c:forEach>
                 </div>
             </template>
 
             <p>
-                <button type="button" class="btn btn-info" id="add-station">Add station</button>
-            </p>
-
-            <p>
                 <button type="submit" class="btn btn-primary">Add Train</button>
             </p>
-        </form>
+
+
     </div>
+    </form>
+
 </main>
 
 

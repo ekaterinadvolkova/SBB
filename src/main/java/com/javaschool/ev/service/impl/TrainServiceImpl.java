@@ -26,7 +26,8 @@ import java.util.Set;
 
 @Service
 @Transactional
-public class TrainServiceImpl implements TrainService {
+public class
+TrainServiceImpl implements TrainService {
 
     @Autowired
     private TrainMapper trainMapper;
@@ -74,7 +75,6 @@ public class TrainServiceImpl implements TrainService {
         train.setRoutes(routeSet);
         trainDAO.edit(train);
     }
-
 
     public Route createNewRoute(TrainDTO trainDTO, Train train) {
         Route route = new Route();

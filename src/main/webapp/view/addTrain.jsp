@@ -1,26 +1,21 @@
-<jsp:useBean id="timetableItemDTO" scope="request" class="com.javaschool.ev.dto.TimetableItemDTO"/>
-<jsp:useBean id="trainDTO" scope="request" class="com.javaschool.ev.dto.TrainDTO"/>
-
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
     <title>Swiss Federal Railways</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="../../">
     <link rel="stylesheet" href="./res/frontend/css/bootstrap.min.css">
     <link rel="stylesheet" href="./res/frontend/css/bootstrap-icons.css">
     <link rel="stylesheet" href="./res/frontend/css/template.styles.css">
-
-
-    <title>Add</title>
-
 </head>
 <body>
+<c:url value="/staff/stations/edit" var="edit"/>
+<c:set value="POST" var="POST"/>
+
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
         <a class="navbar-brand" href="./">Swiss Federal Railways</a>
@@ -34,6 +29,7 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="./">Home</a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="staff/">Staff</a>
                 </li>
@@ -41,24 +37,28 @@
         </div>
     </div>
 </nav>
-<c:url value="staff/trains/add" var="add"/>
-<c:url value="staff/trains/edit" var="edit"/>
-
-<c:set value="POST" var="POST"/>
 <main>
     <div class="container pt-5">
 
-        <form class="style" action="staff/trains/add" name="trainDTO" method="POST" path="trainDTO">
-            <%--            <p>--%>
-            <%--                <input type="number" name="trainID" id="trainID" value="${trainDTO.trainID}" path="trainDTO.trainID"--%>
-            <%--                       hidden/>--%>
-            <%--            </p>--%>
+        <form class="style" action="${add}" name="trainDTO" object="${trainDTO}" method="POST">
+
+            <h1>Add Train</h1>
+            <p class="mt-5" action="staff/trains/add/" name="trainDTO" method="POST">
+
+
+            <div class="mb-3">
+                <label class="form-label" value="${trainDTO.number}">Train Number</label>
+                <input class="form-control" id="number" name="number" var="trainDTO.number">
+                <fmt:parseNumber var="number" type="number" value="${trainDTO.number}"/>
+            </div>
+
             <p>
-                <input type="number" name="number" id="number" placeholder="number" value="${trainDTO.number}"
-                       path="trainDTO.number"/>
-            <p>
-                <input path="trainDTO.availableSeats" type="number" name="availableSeats"
-                       id="availableSeats" placeholder="seats" value="${trainDTO.availableSeats}"/>
+                <label for="availableSeats">
+                    <input type="number" name="availableSeats" id="availableSeats" placeholder="seats"
+                           var="${trainDTO.availableSeats}"/>
+                    <fmt:parseNumber var="availableSeats" type="number" value="${trainDTO.availableSeats}"/>
+                </label>
+            </p>
 
             <div class="input-group mb-3">
                 <label for="occurence">
@@ -70,52 +70,46 @@
                 </label>
             </div>
 
-            <div class="mb-3">
-                <label for="departureDate" class="form-label">Departure Date</label>
-                <div class="input-group mb-3">
-                    <input path="trainDTO.departureDate" type="text" value="${trainDTO.departureDate}"
-                           class="form-control" id="departureDate"
-                           data-mask="99-99-9999" placeholder="dd-MM-yyyy" inputmode="date"/>
-                    <span class="input-group-text"><i class="bi bi-calendar-date"></i></span>
-                </div>
-            </div>
+            <%--            <div class="mb-3">--%>
+            <%--                <label for="departureDate" class="form-label">Departure Date</label>--%>
+            <%--                <div class="input-group mb-3">--%>
+            <%--                    <input name="departureDate" type="date" value="${trainDTO.departureDate}"--%>
+            <%--                           class="form-control" id="departureDate"--%>
+            <%--                           data-mask="99-99-9999" placeholder="dd-MM-yyyy" inputmode="date"/>--%>
+            <%--                    <span class="input-group-text"><i class="bi bi-calendar-date"></i></span>--%>
+            <%--                </div>--%>
+            <%--            </div>--%>
 
             <p>Timetable</p>
             <div id="stations-container"></div>
             <template id="station-item">
                 <div class="row mb-3">
-                    <c:forEach var="m" items="${trainDTO.timetable}">
-                        <div class="col">
-                            <label>
-                                <input type="text" placeholder="Station" class="form-control"
-                                       path="timetableItemDTO.stationName"
-                                       value="${m.stationName}">
-                            </label>
-                        </div>
 
-                        <div class="col">
-                            <label>
-                                <input type="text" placeholder="Station" class="form-control"
-                                       path="timetableItemDTO.stationName"
-                                       value="${m.departureTime}">
-                            </label>
-                        </div>
+                    <div class="col">
+                        <input type="text" name="stationName" placeholder="Station" class="form-control"
+                               value="${trainDTO.timetable.add(timeTableItemDTO.stationName)}" id="stationName">
 
-                        <p>
-                            <button type="button" class="btn btn-info" id="add-station"> Add station</button>
-                        </p>
-                    </c:forEach>
+                    </div>
+
+                    <div class="col">
+                        <input type="time" placeholder="Station" class="form-control"
+                               name="departureTime" id="departureTime"
+                               value="${trainDTO.timetable.add(timeTableItemDTO.departureTime)}">
+                    </div>
+
                 </div>
             </template>
 
             <p>
-                <button type="submit" class="btn btn-primary">Add Train</button>
+                <button type="button" class="btn btn-info" id="add-station"> Add station</button>
             </p>
 
 
+            <p>
+                <button type="submit" class="btn btn-primary">Add Train</button>
+            </p>
+        </form>
     </div>
-    </form>
-
 </main>
 
 

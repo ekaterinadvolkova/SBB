@@ -4,6 +4,7 @@ import com.javaschool.ev.domain.Occurence;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,6 +18,8 @@ public class TrainDTO {
     private int availableSeats;
     private Occurence occurence;
     List<TimetableItemDTO> timetable;
+
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate departureDate;
 
     public List<TimetableItemDTO> getTimetable() {

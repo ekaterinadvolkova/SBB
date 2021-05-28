@@ -2,6 +2,7 @@ package com.javaschool.ev.dao.impl;
 
 import com.javaschool.ev.dao.api.TrainDAO;
 import com.javaschool.ev.domain.Train;
+import com.javaschool.ev.dto.TrainDTO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;

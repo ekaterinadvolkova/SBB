@@ -5,13 +5,16 @@ import com.javaschool.ev.dto.TimetableItemDTO;
 import com.javaschool.ev.dto.TrainDTO;
 import com.javaschool.ev.service.api.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServlet;
 import java.util.List;
 
 @RestController
-public class TrainController {
+public class TrainController extends HttpServlet {
 
     private TrainService trainService;
 
@@ -52,20 +55,23 @@ public class TrainController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "staff/trains/add", method = RequestMethod.GET)
-    public ModelAndView addTrain() {
+    @RequestMapping(value = "/staff/trains/add", method = RequestMethod.GET)
+    public ModelAndView addTrain(Model m) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("addTrain");
+        m.addAttribute("trainDTO", new TrainDTO());
+        m.addAttribute("timeTableItemDTO", new TimetableItemDTO());
         return modelAndView;
     }
 
-    @RequestMapping(value = "staff/trains/add", method = RequestMethod.POST)
-    public ModelAndView addTrain(@ModelAttribute("trainDTO") TrainDTO trainDTO) {
+    @RequestMapping(value = "/staff/trains/add", method = RequestMethod.POST)
+    public ModelAndView addTrain(@ModelAttribute TrainDTO trainDTO) {
         ModelAndView modelAndView = new ModelAndView();
-
 //        if (trainService.checkTrain(train.getNumber())) {
-            modelAndView.setViewName("redirect:/staff/trains/");
-            trainService.add(trainDTO);
+//        Date departureDate = new SimpleDateFormat("dd-MM-yyyy").parse();
+
+        modelAndView.setViewName("redirect:/staff/trains/");
+        trainService.add(trainDTO);
 //        } else {
 //            modelAndView.addObject("message", "part with title \"" + train.getNumber() + "\" already exists");
 //            modelAndView.setViewName("redirect:/staff/trains/");

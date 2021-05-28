@@ -76,6 +76,7 @@
             <%--                    <input name="departureDate" type="date" value="${trainDTO.departureDate}"--%>
             <%--                           class="form-control" id="departureDate"--%>
             <%--                           data-mask="99-99-9999" placeholder="dd-MM-yyyy" inputmode="date"/>--%>
+            <%--                    <fmt:parseDate var="departureDate" type="date" value="${trainDTO.departureDate}"/>--%>
             <%--                    <span class="input-group-text"><i class="bi bi-calendar-date"></i></span>--%>
             <%--                </div>--%>
             <%--            </div>--%>
@@ -83,27 +84,27 @@
             <p>Timetable</p>
             <div id="stations-container"></div>
             <template id="station-item">
+                <c:forEach items="${trainDTO.timetable}" var="timetableItemDTO">
                 <div class="row mb-3">
 
                     <div class="col">
                         <input type="text" name="stationName" placeholder="Station" class="form-control"
-                               value="${trainDTO.timetable.add(timeTableItemDTO.stationName)}" id="stationName">
-
+                               value="${timeTableItemDTO.stationName}" id="stationName">
                     </div>
 
                     <div class="col">
                         <input type="time" placeholder="Station" class="form-control"
                                name="departureTime" id="departureTime"
-                               value="${trainDTO.timetable.add(timeTableItemDTO.departureTime)}">
+                               value="${timeTableItemDTO.departureTime}">
                     </div>
 
                 </div>
+                </c:forEach>
             </template>
 
             <p>
                 <button type="button" class="btn btn-info" id="add-station"> Add station</button>
             </p>
-
 
             <p>
                 <button type="submit" class="btn btn-primary">Add Train</button>

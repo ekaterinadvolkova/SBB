@@ -7,6 +7,8 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -21,6 +23,10 @@ public class TrainDTO {
 
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate departureDate;
+
+    private String tempStationName;
+    private LocalTime tempDepartureTime;
+
 
     public List<TimetableItemDTO> getTimetable() {
         return timetable;
@@ -60,5 +66,21 @@ public class TrainDTO {
 
     public void setDepartureDate(LocalDate departureDate) {
         this.departureDate = departureDate;
+    }
+
+    public String getTempStationName() {
+        return tempStationName;
+    }
+
+    public void setTempStationName(String tempStationName) {
+        this.tempStationName = tempStationName;
+    }
+
+    public LocalTime getTempDepartureTime() {
+        return tempDepartureTime;
+    }
+
+    public void setTempDepartureTime(LocalTime tempDepartureTime) {
+        this.tempDepartureTime = tempDepartureTime;
     }
 }

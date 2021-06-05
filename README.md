@@ -7,7 +7,7 @@
 <h2> Subject Area </h2> <br>
 There are the following types of entities: <br>
 
-<h4> Station :station: </h4>
+<h4> Station  </h4>
 
 - Name 
 - Timetable

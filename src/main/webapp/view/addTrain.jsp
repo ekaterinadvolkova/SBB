@@ -88,10 +88,6 @@
                             </td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="/staff/trains/" type="button" class="btn btn-sm btn-outline-secondary"
-                                       title="View trains">
-                                        <i class="bi bi-people-fill"></i>
-                                    </a>
                                         <%--                                    <a href="staff/trains/edit/${train.trainId}" type="button"--%>
                                     <a href="staff/trains/" type="button"
                                        class="btn btn-sm btn-outline-secondary" title="Edit">

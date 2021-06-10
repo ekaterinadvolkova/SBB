@@ -58,7 +58,7 @@ There are the following types of entities: <br>
 
 <h3>Technologies :construction: </h3>
 
-- IDE - IDEA
+- IDE - Any (Eclipse, IDEA)
 - Tomcat 
 - DB – MySQL
 - Maven 

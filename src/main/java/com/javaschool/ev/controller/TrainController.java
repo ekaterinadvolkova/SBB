@@ -3,25 +3,27 @@ package com.javaschool.ev.controller;
 import com.javaschool.ev.domain.Train;
 import com.javaschool.ev.dto.TimetableItemDTO;
 import com.javaschool.ev.dto.TrainDTO;
+import com.javaschool.ev.service.api.StationService;
 import com.javaschool.ev.service.api.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServlet;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class TrainController extends HttpServlet {
 
-    private TrainService trainService;
-
     @Autowired
-    public void setTrainService(TrainService trainService) {
-        this.trainService = trainService;
-    }
+    private TrainService trainService;
+    @Autowired
+    private StationService stationService;
 
     @RequestMapping(value = "staff/trains/", method = RequestMethod.GET)
     public ModelAndView allTrains() {
@@ -56,26 +58,72 @@ public class TrainController extends HttpServlet {
     }
 
     @RequestMapping(value = "/staff/trains/add", method = RequestMethod.GET)
-    public ModelAndView addTrain(Model m) {
+    public ModelAndView addTrain(@ModelAttribute(name = "train") TrainDTO train,
+                                 BindingResult bindingResult, ModelMap modelMap,
+                                 RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors()) {
+            return new ModelAndView("error");
+        }
+
         ModelAndView modelAndView = new ModelAndView();
+
         modelAndView.setViewName("addTrain");
-        m.addAttribute("trainDTO", new TrainDTO());
-        m.addAttribute("timeTableItemDTO", new TimetableItemDTO());
+
+        if (train.getTimetable().size() == 0) {
+            TrainDTO trainDTO = new TrainDTO();
+            trainDTO.setTimetable(getFakeItems());
+            modelAndView.addObject("train", trainDTO);
+        } else {
+            modelAndView.addObject("train", train);
+        }
+
         return modelAndView;
     }
 
-    @RequestMapping(value = "/staff/trains/add", method = RequestMethod.POST)
-    public ModelAndView addTrain(@ModelAttribute TrainDTO trainDTO) {
-        ModelAndView modelAndView = new ModelAndView();
-//        if (trainService.checkTrain(train.getNumber())) {
-//        Date departureDate = new SimpleDateFormat("dd-MM-yyyy").parse();
+    private List<TimetableItemDTO> getFakeItems() {
+        List<TimetableItemDTO> timetableItems = new ArrayList<>();
+        TimetableItemDTO timetableItem = null;
 
-        modelAndView.setViewName("redirect:/staff/trains/");
-        trainService.add(trainDTO);
-//        } else {
-//            modelAndView.addObject("message", "part with title \"" + train.getNumber() + "\" already exists");
-//            modelAndView.setViewName("redirect:/staff/trains/");
-//        }
+        timetableItem = new TimetableItemDTO();
+        timetableItem.setStationName(stationService.getByName("St.Petersburg").getName());
+        timetableItem.fromLocalDateTime(LocalDateTime.now().minusHours(2L));
+        timetableItems.add(timetableItem);
+
+        timetableItem = new TimetableItemDTO();
+        timetableItem.setStationName(stationService.getByName("Kologriv").getName());
+        timetableItem.fromLocalDateTime(LocalDateTime.now().minusHours(1L));
+        timetableItems.add(timetableItem);
+
+        return timetableItems;
+    }
+
+    @RequestMapping(value = "/staff/trains/add", method = RequestMethod.POST, params = "addTimetableItem")
+    public ModelAndView addTimetableItem(@ModelAttribute(name = "train") TrainDTO train,
+                                         BindingResult bindingResult, ModelMap modelMap,
+                                         RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors()) {
+            return new ModelAndView("error");
+        }
+
+        ModelAndView modelAndView = new ModelAndView("addTrain");
+
+        train.getTimetable().add(new TimetableItemDTO());
+        redirectAttributes.addFlashAttribute("train", train);
+        modelAndView.setViewName("redirect:/staff/trains/add");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/staff/trains/add", method = RequestMethod.POST, params = "addTrain")
+    public ModelAndView addTrain(@ModelAttribute(name = "train") TrainDTO train,
+                                 BindingResult bindingResult, ModelMap modelMap) {
+        if (bindingResult.hasErrors()) {
+            return new ModelAndView("error");
+        }
+
+        trainService.add(train);
+        ModelAndView modelAndView = new ModelAndView("redirect:/staff/trains/");
         return modelAndView;
     }
 

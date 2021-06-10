@@ -4,28 +4,22 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
 @NoArgsConstructor
 public class TimetableItemDTO {
+    public static final DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd kk:mm");
     private String stationName;
-    private LocalTime departureTime;
+    private String departureDateTime;
 
-    public String getStationName() {
-        return stationName;
+    public LocalDateTime toLocalDateTime() {
+        return LocalDateTime.parse(this.departureDateTime, format);
     }
 
-    public void setStationName(String stationName) {
-        this.stationName = stationName;
-    }
-
-    public LocalTime getDepartureTime() {
-        return departureTime;
-    }
-
-    public void setDepartureTime(LocalTime departureTime) {
-        this.departureTime = departureTime;
+    public void fromLocalDateTime(LocalDateTime localDateTime) {
+        this.departureDateTime = localDateTime.format(format);
     }
 }

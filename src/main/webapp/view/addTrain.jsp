@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
 <head>
@@ -38,81 +39,103 @@
     </div>
 </nav>
 <main>
+
     <div class="container pt-5">
-
-        <form class="style" action="${add}" name="trainDTO" object="${trainDTO}" method="POST">
-
-            <h1>Add Train</h1>
-            <p class="mt-5" action="staff/trains/add/" name="trainDTO" method="POST">
-
+        <%--@elvariable id="train" type="java"--%>
+        <form:form method="POST" modelAttribute="train" class="style">
+            <h3>Add Train</h3>
+            <p class="mt-5" action="staff/trains/add/" name="train" method="POST">
 
             <div class="mb-3">
-                <label class="form-label" value="${trainDTO.number}">Train Number</label>
-                <input class="form-control" id="number" name="number" var="trainDTO.number">
-                <fmt:parseNumber var="number" type="number" value="${trainDTO.number}"/>
+                <label class="form-label" value="${train.number}">Train Number</label>
+                <fmt:formatNumber value="${train.number}" var="formattedTrainNumber"/>
+                <form:input path="number" class="form-control" id="trainNumber" name="trainNumber"
+                            var="${formattedTrainNumber}"/>
             </div>
 
             <p>
                 <label for="availableSeats">
-                    <input type="number" name="availableSeats" id="availableSeats" placeholder="seats"
-                           var="${trainDTO.availableSeats}"/>
-                    <fmt:parseNumber var="availableSeats" type="number" value="${trainDTO.availableSeats}"/>
+                    <fmt:formatNumber value="${train.availableSeats}" var="formattedAvailableSeats"/>
+                    <form:input path="availableSeats" type="number" name="availableSeats" id="availableSeats"
+                                placeholder="seats"
+                                var="${formattedAvailableSeats}"/>
                 </label>
             </p>
 
-            <div class="input-group mb-3">
-                <label for="occurence">
-                    <select name="occurence" class="form-select" id="occurence">
-                        <option value="DAILY">every day</option>
-                        <option value="WEEKLY">every week</option>
-                        <option value="MONTHLY">every month</option>
-                    </select>
-                </label>
-            </div>
+            <section class="pt-5 flex-fill container-fluid">
+                <h4>Timetable</h4>
 
-            <%--            <div class="mb-3">--%>
-            <%--                <label for="departureDate" class="form-label">Departure Date</label>--%>
-            <%--                <div class="input-group mb-3">--%>
-            <%--                    <input name="departureDate" type="date" value="${trainDTO.departureDate}"--%>
-            <%--                           class="form-control" id="departureDate"--%>
-            <%--                           data-mask="99-99-9999" placeholder="dd-MM-yyyy" inputmode="date"/>--%>
-            <%--                    <fmt:parseDate var="departureDate" type="date" value="${trainDTO.departureDate}"/>--%>
-            <%--                    <span class="input-group-text"><i class="bi bi-calendar-date"></i></span>--%>
-            <%--                </div>--%>
-            <%--            </div>--%>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Station Name</th>
+                        <th>Departure Time</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
-            <p>Timetable</p>
-            <div id="stations-container"></div>
-            <template id="station-item">
-                <c:forEach items="${trainDTO.timetable}" var="timetableItemDTO">
-                <div class="row mb-3">
+                    <c:forEach var="timeTableItem" items="${train.timetable}" varStatus="loop">
+                        <tr>
+                            <td>
+                                <form:input path="timetable[${loop.index}].stationName"
+                                            value="${timeTableItem.stationName}"/>
+                            </td>
+                            <td>
+                                <form:input path="timetable[${loop.index}].departureDateTime"
+                                            value="${timeTableItem.departureDateTime}"/>
+                                    <%--                                <fmt:parseDate value="${timeTableItem.departureTime}" pattern="yyyy-MM-dd KK:mm" var="localDepartureDateTime"/>--%>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="/staff/trains/" type="button" class="btn btn-sm btn-outline-secondary"
+                                       title="View trains">
+                                        <i class="bi bi-people-fill"></i>
+                                    </a>
+                                        <%--                                    <a href="staff/trains/edit/${train.trainId}" type="button"--%>
+                                    <a href="staff/trains/" type="button"
+                                       class="btn btn-sm btn-outline-secondary" title="Edit">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                        <%--                                    <a href="staff/train/delete/${train.trainId}" type="button"--%>
+                                    <a href="staff/trains/" type="button"
+                                       class="btn btn-sm btn-outline-danger" title="Delete">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
 
-                    <div class="col">
-                        <input type="text" name="stationName" placeholder="Station" class="form-control"
-                               value="${timeTableItemDTO.stationName}" id="stationName">
-                    </div>
 
-                    <div class="col">
-                        <input type="time" placeholder="Station" class="form-control"
-                               name="departureTime" id="departureTime"
-                               value="${timeTableItemDTO.departureTime}">
-                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </c:forEach>
 
-                </div>
-                </c:forEach>
-            </template>
 
+                    </tbody>
+
+                    <tfoot>
+                        <%--
+                                            <tr>
+                                                <td colspan="5">
+                                                    <a href="staff/trains/addTimetableItem" class="btn btn-outline-primary">Add Timetable Item</a>
+                                                </td>
+                                            </tr>
+                        --%>
+                    <%! %>
+
+                        <%--@elvariable id="train" type="java"--%>
+                    <form:form method="POST" modelAttribute="train" class="style">
+                        <form:button type="submit" class="btn btn-primary"
+                                     name="addTimetableItem">Add Timetable Item</form:button>
+                    </form:form>
+                    </tfoot>
+                </table>
+            </section>
             <p>
-                <button type="button" class="btn btn-info" id="add-station"> Add station</button>
+                <form:button type="submit" class="btn btn-primary" name="addTrain">Add Train</form:button>
             </p>
-
-            <p>
-                <button type="submit" class="btn btn-primary">Add Train</button>
-            </p>
-        </form>
+        </form:form>
     </div>
 </main>
-
 
 <script src="./res/frontend/js/inputmask.js"></script>
 <script src="./res/frontend/js/bootstrap.bundle.min.js"></script>

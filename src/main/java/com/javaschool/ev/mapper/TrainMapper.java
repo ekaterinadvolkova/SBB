@@ -8,7 +8,6 @@ import com.javaschool.ev.dto.TrainDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 
@@ -29,18 +28,17 @@ public class TrainMapper {
 
         train.setNumber((trainDTO.getNumber()));
         train.setAvailableSeats((trainDTO.getAvailableSeats()));
-        train.setOccurrence(trainDTO.getOccurence());
         List<TimetableItemDTO> timetableItemDTOS = trainDTO.getTimetable();
 
         train.setStations(new HashSet<>());
         if (timetableItemDTOS != null) {
             for (TimetableItemDTO t : timetableItemDTOS) {
-                Station station = stationDAO.getByName(t.getStationName());
-                train.getStations().add(station);
+                Station station = null;
+                if (stationDAO.doesStationExist(t.getStationName())) {
+                    station = stationDAO.getByName(t.getStationName());
+                    train.getStations().add(station);
+                }
             }
-        }
-        if (trainDTO.getDepartureDate() == null) {
-            trainDTO.setDepartureDate(LocalDate.now());
         }
         return train;
     }

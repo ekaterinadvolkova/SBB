@@ -3,6 +3,7 @@ package com.javaschool.ev.controller;
 import com.javaschool.ev.domain.Passenger;
 import com.javaschool.ev.service.api.PassengerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,9 +17,10 @@ public class PassengerController {
     @Autowired annotation not to create new objects of the class
      */
     private PassengerService passengerService;
+
     @Autowired
-    public void setPassengerService (PassengerService passengerService){
-        this.passengerService=passengerService;
+    public void setPassengerService(PassengerService passengerService) {
+        this.passengerService = passengerService;
     }
 
 
@@ -26,7 +28,7 @@ public class PassengerController {
     all passengers list in a table
     value="/" is added again to work later with redirect
      */
-    @RequestMapping(value="staff/passengers/", method = RequestMethod.GET)
+    @RequestMapping(value = "staff/passengers/", method = RequestMethod.GET)
     public ModelAndView allPassengers() {
         List<Passenger> passengers = passengerService.allPassengers();
         ModelAndView modelAndView = new ModelAndView();
@@ -34,6 +36,7 @@ public class PassengerController {
         modelAndView.addObject("passengerList", passengers);
         return modelAndView;
     }
+
     /*
      get to the EditPassenger without ID
      */
@@ -43,6 +46,7 @@ public class PassengerController {
         modelAndView.setViewName("editPassenger");
         return modelAndView;
     }
+
     /*
     get to the EditPassenger Page with ID
      */
@@ -55,6 +59,7 @@ public class PassengerController {
         modelAndView.addObject("passenger", passengerService.getById(passengerID));
         return modelAndView;
     }
+
     /*
     edit passenger method
     with POST the data is transferred
@@ -67,6 +72,7 @@ public class PassengerController {
         passengerService.edit(passenger);
         return modelAndView;
     }
+
     /*
     method to get to the page "add new passenger"
     jsp looks same as edit --> one jsp for editing and adding the passenger
@@ -77,13 +83,18 @@ public class PassengerController {
         modelAndView.setViewName("editPassenger");
         return modelAndView;
     }
+
     /*
 
     add feature of checking if the passenger exists
      */
     @RequestMapping(value = "staff/passengers/add", method = RequestMethod.POST)
-    public ModelAndView addPassenger(@ModelAttribute("passenger") Passenger passenger) {
+    public ModelAndView addPassenger(@ModelAttribute("passenger") Passenger passenger, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
+
+        if (bindingResult.hasErrors()) {
+            return new ModelAndView("error");
+        }
 
         if (passengerService.checkPassenger(passenger.getFirstName(), passenger.getLastName(), passenger.getBirthDate())) {
             modelAndView.setViewName("redirect:/staff/passengers/");
@@ -95,11 +106,12 @@ public class PassengerController {
         }
         return modelAndView;
     }
+
     /*
     delete passenger from the list
     "/" at the beginning is deleted
      */
-    @RequestMapping(value="/staff/passengers/delete/{passengerID}", method = RequestMethod.GET)
+    @RequestMapping(value = "/staff/passengers/delete/{passengerID}", method = RequestMethod.GET)
     public ModelAndView deletePassenger(@PathVariable("passengerID") int passengerID) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/staff/");

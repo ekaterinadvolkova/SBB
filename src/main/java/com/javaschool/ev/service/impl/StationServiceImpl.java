@@ -2,7 +2,6 @@ package com.javaschool.ev.service.impl;
 
 
 import com.javaschool.ev.dao.api.StationDAO;
-import com.javaschool.ev.dao.impl.StationDAOImpl;
 import com.javaschool.ev.domain.Station;
 import com.javaschool.ev.service.api.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +15,10 @@ import java.util.List;
 public class StationServiceImpl implements StationService {
 
     private StationDAO stationDAO;
+
     @Autowired
-    public void setPassengerDAO (StationDAO stationDAO){
-        this.stationDAO=stationDAO;
+    public void setPassengerDAO(StationDAO stationDAO) {
+        this.stationDAO = stationDAO;
     }
 
     @Override
@@ -48,7 +48,12 @@ public class StationServiceImpl implements StationService {
     }
 
     @Override
-    public boolean checkStation(String name) {
-        return stationDAO.checkStation(name);
+    public boolean doesStationExist(String name) {
+        return stationDAO.doesStationExist(name);
+    }
+
+    @Override
+    public Station getByName(String name) {
+        return stationDAO.getByName(name);
     }
 }

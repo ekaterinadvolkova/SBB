@@ -5,9 +5,9 @@ import com.javaschool.ev.domain.Train;
 import com.javaschool.ev.service.api.StationService;
 import com.javaschool.ev.service.api.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -55,8 +55,9 @@ public class WelcomeController {
     public ModelAndView tickets() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("tickets");
-        modelAndView.addObject("tickets", tickets());
+//        modelAndView.addObject("tickets", tickets());
         return modelAndView;
     }
 
 }
+

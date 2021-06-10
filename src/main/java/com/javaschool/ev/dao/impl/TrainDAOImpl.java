@@ -2,7 +2,6 @@ package com.javaschool.ev.dao.impl;
 
 import com.javaschool.ev.dao.api.TrainDAO;
 import com.javaschool.ev.domain.Train;
-import com.javaschool.ev.dto.TrainDTO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -17,9 +16,10 @@ import java.util.List;
 public class TrainDAOImpl implements TrainDAO {
 
     private SessionFactory sessionFactory;
+
     @Autowired
-    public void setSessionFactory(SessionFactory sessionFactory){
-        this.sessionFactory=sessionFactory;
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
     @SuppressWarnings("unchecked")
@@ -44,11 +44,9 @@ public class TrainDAOImpl implements TrainDAO {
     @Override
     public void edit(Train train) {
         Session session = sessionFactory.getCurrentSession();
-        Train dbTrain =getById(train.getTrainID());
+        Train dbTrain = getById(train.getTrainID());
         dbTrain.setTrainID(train.getTrainID());
         dbTrain.setNumber(train.getNumber());
-        dbTrain.setOccurrence((train.getOccurrence()));
-        dbTrain.setRoutes(train.getRoutes());
         dbTrain.setStations(train.getStations());
         dbTrain.setAvailableSeats((train.getAvailableSeats()));
         session.update(dbTrain);

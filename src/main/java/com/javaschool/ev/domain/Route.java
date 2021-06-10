@@ -1,21 +1,24 @@
 package com.javaschool.ev.domain;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.List;
 
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
-@Table(name="route")
+@Table(name = "route")
 public class Route {
 
     @Id
-    @Column(name="routeID")
+    @Column(name = "routeID")
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int routeID;
@@ -34,7 +37,7 @@ public class Route {
     List<Timetable> timetableList;
 
 
-    public Route(int routeID,  Train train) {
+    public Route(int routeID, Train train) {
         this.routeID = routeID;
         this.train = train;
     }

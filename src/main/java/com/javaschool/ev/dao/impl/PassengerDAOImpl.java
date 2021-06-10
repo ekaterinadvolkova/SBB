@@ -65,9 +65,9 @@ public class PassengerDAOImpl implements PassengerDAO {
         Query query;
         query = session.createQuery("from Passenger where firstName = :firstName");
         query.setParameter("firstName", firstName);
-        query.setParameter("lastName", lastName);
-        query.setParameter("birthDate", birthDate);
-        return query.list().isEmpty();
+//        query.setParameter("lastName", lastName);
+//        query.setParameter("birthDate", birthDate);
+        return query.getResultList().isEmpty();
     }
 }
 

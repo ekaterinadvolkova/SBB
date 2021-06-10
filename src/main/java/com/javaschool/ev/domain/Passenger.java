@@ -1,36 +1,40 @@
 package com.javaschool.ev.domain;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
-@Table(name="passenger")
+@Table(name = "passenger")
 public class Passenger {
 
 
     @Id
-    @Column(name="passengerID")
+    @Column(name = "passengerID")
     @NonNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int passengerID;
 
     @NonNull
-    @Column(name="firstName")
+    @Column(name = "firstName")
     private String firstName;
 
     @NonNull
-    @Column(name="lastName")
+    @Column(name = "lastName")
     private String lastName;
 
     //private SimpleDateFormat birthDate;
     @NonNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(name="birthDate")
+    @Column(name = "birthDate")
     private LocalDate birthDate;
 
     public Passenger(String firstName, String lastName, LocalDate birthDate) {

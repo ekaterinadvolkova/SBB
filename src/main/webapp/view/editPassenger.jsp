@@ -19,18 +19,19 @@
 
 <form class="style" action="${(empty passenger.passengerID) ? add : edit}" name="passenger" method="POST">
     <c:choose>
-    <c:when test="${!empty passenger.passengerID}">
-    <p class="heading">Edit passenger</p>
-        <p><input type="hidden" name="passengerID" id="passengerID"  value="${passenger.passengerID}" >
-    </c:when>
-    <c:otherwise>
-    <p class="heading">Add new passenger</p>
-    </c:otherwise>
+        <c:when test="${!empty passenger.passengerID}">
+            <p class="heading">Edit passenger</p>
+            <p><input type="hidden" name="passengerID" id="passengerID"  value="${passenger.passengerID}" >
+        </c:when>
+        <c:otherwise>
+            <p class="heading">Add new passenger</p>
+        </c:otherwise>
     </c:choose>
 
-    <p><input type="text" name="firstName" id="firstName" placeholder="firstName" value="${passenger.firstName}" maxlength="50" required autofocus pattern="^[^\s]+(\s.*)?$">
+    <p><input type="text" name="firstName" id="firstName" placeholder="firstName" value="${passenger.firstName}"
+              maxlength="50" required autofocus pattern="^[^\s]+(\s.*)?$">
     <p><input type="text" name="lastName" id="lastName" placeholder="lastName" value="${passenger.lastName}" maxlength="50" required autofocus pattern="^[^\s]+(\s.*)?$">
-    <fmt:formatDate value="${bean.date}" pattern="dd-MM-yyyy"/>
+        <fmt:formatDate value="${bean.date}" pattern="dd-MM-yyyy"/>
     <p><input class ="input" type="date" name="birthDate" id="birthDate" placeholder="birthDate" value="${passenger.birthDate}" maxlength="50" required autofocus pattern="^[^\s]+(\s.*)?$">
     <p>
         <c:set value="add" var="add"/>

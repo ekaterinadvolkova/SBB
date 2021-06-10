@@ -19,9 +19,10 @@ public class PassengerServiceImpl implements PassengerService {
     after istalling session factory in DAOImpl add @Transactional annotation
      */
     private PassengerDAO passengerDAO = new PassengerDAOImpl();
+
     @Autowired
-    public void setPassengerDAO (PassengerDAO passengerDAO){
-        this.passengerDAO=passengerDAO;
+    public void setPassengerDAO(PassengerDAO passengerDAO) {
+        this.passengerDAO = passengerDAO;
     }
 
     @Override
@@ -57,6 +58,6 @@ public class PassengerServiceImpl implements PassengerService {
     @Override
     @Transactional
     public boolean checkPassenger(String firstName, String lastName, LocalDate birthDate) {
-        return passengerDAO.checkPassenger(firstName,lastName,birthDate);
+        return passengerDAO.checkPassenger(firstName, lastName, birthDate);
     }
 }

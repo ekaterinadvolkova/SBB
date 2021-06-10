@@ -1,9 +1,11 @@
 package com.javaschool.ev.dto;
 
-import lombok.Data;
+
+import lombok.*;
 import java.util.Date;
 
 @Data
+@Setter @Getter
 public class PassengerDTO {
 
     private int passengerID;

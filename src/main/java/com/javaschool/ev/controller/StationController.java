@@ -64,7 +64,7 @@ public class StationController {
     public ModelAndView addStation(@ModelAttribute("station") Station station) {
         ModelAndView modelAndView = new ModelAndView();
 
-        if (stationService.checkStation(station.getName())) {
+        if (!stationService.doesStationExist(station.getName())) {
             modelAndView.setViewName("redirect:/staff/");
             stationService.add(station);
         } else {
@@ -74,7 +74,7 @@ public class StationController {
         return modelAndView;
     }
 
-    @RequestMapping(value="/staff/stations/delete/{stationID}", method = RequestMethod.GET)
+    @RequestMapping(value = "/staff/stations/delete/{stationID}", method = RequestMethod.GET)
     public ModelAndView deleteStation(@PathVariable("stationID") int stationID) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/staff/");

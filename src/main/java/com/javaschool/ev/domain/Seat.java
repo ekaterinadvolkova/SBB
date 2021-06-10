@@ -1,17 +1,21 @@
 package com.javaschool.ev.domain;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
-@Table(name="seat")
+@Table(name = "seat")
 public class Seat {
 
     @Id
-    @Column(name="seatID")
+    @Column(name = "seatID")
     @NonNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int seatID;

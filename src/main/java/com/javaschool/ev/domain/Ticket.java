@@ -4,32 +4,35 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.lang.NonNull;
+
 import javax.persistence.*;
 
 
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
-@Table(name="ticket")
+@Table(name = "ticket")
 public class Ticket {
 
     @Id
-    @Column(name="ticketID")
+    @Column(name = "ticketID")
     @NonNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ticketID;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "passengerID")
     @NonNull
     private Passenger passenger;
 
     @ManyToOne
-    @JoinColumn(name="routeID")
+    @JoinColumn(name = "routeID")
     @NonNull
     private Route routeID;
 
     @ManyToOne
-    @JoinColumn(name="seatID")
+    @JoinColumn(name = "seatID")
     @NonNull
     private Seat number;
 

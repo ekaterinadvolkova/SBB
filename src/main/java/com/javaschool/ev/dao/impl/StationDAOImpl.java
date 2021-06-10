@@ -1,7 +1,6 @@
 package com.javaschool.ev.dao.impl;
 
 import com.javaschool.ev.dao.api.StationDAO;
-import com.javaschool.ev.domain.Passenger;
 import com.javaschool.ev.domain.Station;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,7 +8,6 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 
 import java.util.List;
 
@@ -31,9 +29,10 @@ public class StationDAOImpl implements StationDAO {
     }
 
     @Override
-    public void add(Station station) {
+    public Station add(Station station) {
         Session session = sessionFactory.getCurrentSession();
         session.persist(station);
+        return station;
     }
 
     @Override
@@ -58,12 +57,13 @@ public class StationDAOImpl implements StationDAO {
     }
 
     @Override
-    public boolean checkStation(String name) {
+    public boolean doesStationExist(String name) {
         Session session = sessionFactory.getCurrentSession();
         Query query;
         query = session.createQuery("from Station where name = :name");
         query.setParameter("name", name);
-        return query.list().isEmpty();
+        List<Station> result = query.getResultList();
+        return !result.isEmpty();
     }
 
     @Override
@@ -72,6 +72,10 @@ public class StationDAOImpl implements StationDAO {
         Query query;
         query = session.createQuery("from Station where name = :name");
         query.setParameter("name", name);
+//        if (!query.list().isEmpty()) {
+//            return (Station) query.list().get(0);
+//        }
+
         return (Station) query.list().get(0);
     }
 }

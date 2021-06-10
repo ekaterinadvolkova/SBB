@@ -64,10 +64,6 @@
                         <td>${passenger.birthDate}</td>
                         <td>
                             <div class="btn-group">
-                                <a href="/staff/passengers/" type="button" class="btn btn-sm btn-outline-secondary"
-                                   title="View passengers">
-                                    <i class="bi bi-people-fill"></i>
-                                </a>
                                 <a href="staff/passenger/edit/${passenger.passengerID}" type="button"
                                    class="btn btn-sm btn-outline-secondary" title="Edit">
                                     <i class="bi bi-pencil"></i>

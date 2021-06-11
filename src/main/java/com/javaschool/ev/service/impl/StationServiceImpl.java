@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -55,5 +57,15 @@ public class StationServiceImpl implements StationService {
     @Override
     public Station getByName(String name) {
         return stationDAO.getByName(name);
+    }
+
+    @Override
+    public Set<String> getAvailableStationNames() {
+        Set<String> names = new HashSet<>();
+
+        for(Station station : stationDAO.allStations()) {
+            names.add(station.getName());
+        }
+        return names;
     }
 }

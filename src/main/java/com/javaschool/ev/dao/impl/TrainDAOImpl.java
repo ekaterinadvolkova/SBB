@@ -45,9 +45,7 @@ public class TrainDAOImpl implements TrainDAO {
     public void edit(Train train) {
         Session session = sessionFactory.getCurrentSession();
         Train dbTrain = getById(train.getTrainID());
-        dbTrain.setTrainID(train.getTrainID());
         dbTrain.setNumber(train.getNumber());
-        dbTrain.setStations(train.getStations());
         dbTrain.setAvailableSeats((train.getAvailableSeats()));
         session.update(dbTrain);
     }

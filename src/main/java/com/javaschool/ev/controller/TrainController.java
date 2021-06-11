@@ -72,30 +72,14 @@ public class TrainController extends HttpServlet {
 
         if (train.getTimetable().size() == 0) {
             TrainDTO trainDTO = new TrainDTO();
-            trainDTO.setTimetable(getFakeItems());
+            trainDTO.setStationNames(stationService.getAvailableStationNames());
             modelAndView.addObject("train", trainDTO);
         } else {
+            train.setStationNames(stationService.getAvailableStationNames());
             modelAndView.addObject("train", train);
         }
 
         return modelAndView;
-    }
-
-    private List<TimetableItemDTO> getFakeItems() {
-        List<TimetableItemDTO> timetableItems = new ArrayList<>();
-        TimetableItemDTO timetableItem = null;
-
-        timetableItem = new TimetableItemDTO();
-        timetableItem.setStationName(stationService.getByName("St.Petersburg").getName());
-        timetableItem.fromLocalDateTime(LocalDateTime.now().minusHours(2L));
-        timetableItems.add(timetableItem);
-
-        timetableItem = new TimetableItemDTO();
-        timetableItem.setStationName(stationService.getByName("Kologriv").getName());
-        timetableItem.fromLocalDateTime(LocalDateTime.now().minusHours(1L));
-        timetableItems.add(timetableItem);
-
-        return timetableItems;
     }
 
     @RequestMapping(value = "/staff/trains/add", method = RequestMethod.POST, params = "addTimetableItem")
@@ -136,3 +120,4 @@ public class TrainController extends HttpServlet {
         return modelAndView;
     }
 }
+

@@ -83,7 +83,7 @@
                                 </form:select>
                             </td>
                             <td>
-                                <form:input path="timetable[${loop.index}].departureDateTime"
+                                <form:input path="timetable[${loop.index}].departureDateTime" placeholder="yyyy-MM-dd kk:mm"
                                             value="${timeTableItem.departureDateTime}"/>
                                     <%--                                <fmt:parseDate value="${timeTableItem.departureTime}" pattern="yyyy-MM-dd KK:mm" var="localDepartureDateTime"/>--%>
                             </td>

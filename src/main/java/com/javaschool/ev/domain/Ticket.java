@@ -27,21 +27,15 @@ public class Ticket {
     private Passenger passenger;
 
     @ManyToOne
-    @JoinColumn(name = "routeID")
-    @NonNull
-    private Route routeID;
-
-    @ManyToOne
     @JoinColumn(name = "seatID")
     @NonNull
     private Seat number;
 
 
-    public Ticket(int ticketID, @NonNull Passenger passenger, @NonNull Seat number, Route routeID) {
+    public Ticket(int ticketID, @NonNull Passenger passenger, @NonNull Seat number) {
         this.ticketID = ticketID;
         this.passenger = passenger;
         this.number = number;
-        this.routeID = routeID;
     }
 
     @Override
@@ -49,7 +43,6 @@ public class Ticket {
         return "Ticket{" +
                 "ticketID=" + ticketID +
                 ", passenger=" + passenger +
-                ", routeID=" + routeID +
                 ", number=" + number +
                 '}';
     }

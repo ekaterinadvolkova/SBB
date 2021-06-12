@@ -44,7 +44,6 @@ public class TimetableDAOImpl implements TimetableDAO {
         Session session = sessionFactory.getCurrentSession();
         Timetable dbTimetable = getById(timetableItem.getTimetableID());
         dbTimetable.setStation(timetableItem.getStation());
-        dbTimetable.setRoute(timetableItem.getRoute());
         dbTimetable.setDepartureTime(timetableItem.getDepartureTime());
         session.update(dbTimetable);
     }

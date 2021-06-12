@@ -4,10 +4,7 @@ import com.javaschool.ev.dao.api.StationDAO;
 import com.javaschool.ev.dao.api.TimetableDAO;
 import com.javaschool.ev.dao.api.TrainDAO;
 import com.javaschool.ev.dao.impl.TrainDAOImpl;
-import com.javaschool.ev.domain.Route;
-import com.javaschool.ev.domain.Timetable;
 import com.javaschool.ev.domain.Train;
-import com.javaschool.ev.dto.TimetableItemDTO;
 import com.javaschool.ev.dto.TrainDTO;
 import com.javaschool.ev.mapper.TrainMapper;
 import com.javaschool.ev.service.api.TrainService;
@@ -15,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,7 +22,7 @@ TrainServiceImpl implements TrainService {
     @Autowired
     private TrainMapper trainMapper;
 
-    public void trainMapper (TrainMapper trainMapper) {
+    public void trainMapper(TrainMapper trainMapper) {
         this.trainMapper = trainMapper;
     }
 
@@ -45,12 +40,6 @@ TrainServiceImpl implements TrainService {
         this.timetableDAO = timetableDAO;
     }
 
-    private RouteDAO routeDAO;
-
-    @Autowired
-    public void setRouteDAO(RouteDAO routeDAO) {
-        this.routeDAO = routeDAO;
-    }
 
     private StationDAO stationDAO;
 
@@ -66,41 +55,8 @@ TrainServiceImpl implements TrainService {
 
     @Override
     public void add(TrainDTO trainDTO) {
-        Train train = trainMapper.convertRecord(trainDTO);
+        Train train = trainMapper.convertToTrain(trainDTO);
         trainDAO.add(train);
-/*
-        Route newRoute = createNewRoute(trainDTO, train);
-        Set<Route> routeSet = new HashSet<>();
-        routeSet.add(newRoute);
-        train.setRoutes(routeSet);
-        trainDAO.edit(train);
-*/
-    }
-
-    public Route createNewRoute(TrainDTO trainDTO, Train train) {
-        Route route = new Route();
-        route.setTrain(train);
-//        route.setDate(trainDTO.getDepartureDate());
-        routeDAO.createNewRoute(route);
-        List<Timetable> timetableList = new ArrayList<>();
-        for (int i = 0; i < trainDTO.getTimetable().size(); i++) {
-            TimetableItemDTO timetableItemDTO = trainDTO.getTimetable().get(i);
-            Timetable timetable = timetableItem(timetableItemDTO, route);
-            timetableList.add(timetable);
-        }
-        route.setTimetableList(timetableList);
-        routeDAO.editRoute(route);
-        return route;
-    }
-
-    public Timetable timetableItem(TimetableItemDTO timetableItemDTO, Route route) {
-        Timetable timetable = new Timetable();
-        LocalDateTime localDateTime = timetableItemDTO.toLocalDateTime();
-        timetable.setDepartureTime(localDateTime);
-        timetable.setRoute(route);
-        timetable.setStation(stationDAO.getByName(timetableItemDTO.getStationName()));
-        timetableDAO.createNewTimetableItem(timetable);
-        return timetable;
     }
 
     @Override

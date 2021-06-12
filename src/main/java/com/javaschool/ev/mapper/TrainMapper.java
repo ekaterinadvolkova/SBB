@@ -1,46 +1,42 @@
 package com.javaschool.ev.mapper;
 
-import com.javaschool.ev.dao.api.StationDAO;
-import com.javaschool.ev.domain.Station;
+import com.javaschool.ev.domain.TimetableItem;
 import com.javaschool.ev.domain.Train;
 import com.javaschool.ev.dto.TimetableItemDTO;
 import com.javaschool.ev.dto.TrainDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class TrainMapper {
-
     @Autowired
-    private StationDAO stationDAO;
+    TimetableItemMapper timetableItemMapper;
 
-    public void stationDAO(StationDAO stationDAO) {
-        this.stationDAO = stationDAO;
-    }
-
-
-    public Train convertRecord(TrainDTO trainDTO) {
-
+    public Train convertToTrain(TrainDTO trainDTO) {
         Train train = new Train();
-
-        train.setNumber((trainDTO.getNumber()));
-        train.setAvailableSeats((trainDTO.getAvailableSeats()));
-        List<TimetableItemDTO> timetableItemDTOS = trainDTO.getTimetable();
-
-        train.setStations(new HashSet<>());
-        if (timetableItemDTOS != null) {
-            for (TimetableItemDTO t : timetableItemDTOS) {
-                Station station = null;
-                if (stationDAO.doesStationExist(t.getStationName())) {
-                    station = stationDAO.getByName(t.getStationName());
-                    train.getStations().add(station);
-                }
-            }
+        train.setNumber(trainDTO.getNumber());
+        train.setAvailableSeats(trainDTO.getAvailableSeats());
+        for (TimetableItemDTO timetableItemDTO : trainDTO.getTimetable()) {
+            train.addTimetabelItem(timetableItemMapper.convertToTimetableItem(timetableItemDTO));
         }
         return train;
     }
+
+    public TrainDTO convertToDto(Train train) {
+        TrainDTO dto = new TrainDTO();
+        dto.setNumber(train.getNumber());
+        dto.setAvailableSeats(train.getAvailableSeats());
+
+        List<TimetableItemDTO> timetableItemDTOS = new ArrayList<>();
+        for (TimetableItem item : train.getTimetableItems()) {
+            timetableItemDTOS.add(timetableItemMapper.convertToDTO(item));
+        }
+        dto.setTimetable(timetableItemDTOS);
+        return dto;
+    }
+
 
 }

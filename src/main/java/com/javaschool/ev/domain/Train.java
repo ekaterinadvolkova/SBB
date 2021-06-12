@@ -6,7 +6,8 @@ import lombok.Setter;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -28,16 +29,17 @@ public class Train {
     @Column(name = "availableSeats")
     private int availableSeats;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "train_to_station",
-            joinColumns = @JoinColumn(name = "trainID"),
-            inverseJoinColumns = @JoinColumn(name = "stationID")
-    )
-    private Set<Station> stations;
+    @OneToMany(mappedBy = "train", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TimetableItem> timetableItems = new ArrayList<>();
 
-    public Train(int trainID, int number) {
-        this.trainID = trainID;
-        this.number = number;
+    public void addTimetabelItem(TimetableItem timetableItem) {
+        timetableItems.add(timetableItem);
+        timetableItem.setTrain(this);
+    }
+
+    public void removeTimetableItem(TimetableItem timetableItem) {
+        timetableItems.remove(timetableItem);
+        timetableItem.setTrain(null);
     }
 
 

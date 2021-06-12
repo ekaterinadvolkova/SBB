@@ -78,8 +78,9 @@
                     <c:forEach var="timeTableItem" items="${train.timetable}" varStatus="loop">
                         <tr>
                             <td>
-                                <form:input path="timetable[${loop.index}].stationName"
-                                            value="${timeTableItem.stationName}"/>
+                                <form:select path="timetable[${loop.index}].stationName">
+                                    <form:options items="${train.stationNames}"/>
+                                </form:select>
                             </td>
                             <td>
                                 <form:input path="timetable[${loop.index}].departureDateTime"
@@ -109,16 +110,7 @@
                     </tbody>
 
                     <tfoot>
-                        <%--
-                                            <tr>
-                                                <td colspan="5">
-                                                    <a href="staff/trains/addTimetableItem" class="btn btn-outline-primary">Add Timetable Item</a>
-                                                </td>
-                                            </tr>
-                        --%>
-                    <%! %>
 
-                        <%--@elvariable id="train" type="java"--%>
                     <form:form method="POST" modelAttribute="train" class="style">
                         <form:button type="submit" class="btn btn-primary"
                                      name="addTimetableItem">Add Timetable Item</form:button>

@@ -28,18 +28,8 @@ public class Timetable {
     @JoinColumn(name = "stationID")
     private Station station;
 
-    @ManyToOne
-
-    @JoinColumn(name = "routeID")
-    private Route route;
-
     @NonNull
     @Column(name = "departureTime")
     private LocalDateTime departureTime;
-
-    public void setRoute(@NonNull Route route) {
-        this.route = route;
-    }
-
 
 }

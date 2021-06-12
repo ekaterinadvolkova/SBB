@@ -41,7 +41,6 @@ public class StationServiceImpl implements StationService {
     @Override
     public void edit(Station station) {
         stationDAO.edit(station);
-
     }
 
     @Override
@@ -63,7 +62,7 @@ public class StationServiceImpl implements StationService {
     public Set<String> getAvailableStationNames() {
         Set<String> names = new HashSet<>();
 
-        for(Station station : stationDAO.allStations()) {
+        for (Station station : stationDAO.allStations()) {
             names.add(station.getName());
         }
         return names;

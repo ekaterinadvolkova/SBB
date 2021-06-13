@@ -65,10 +65,10 @@ public class PassengerController {
     with POST the data is transferred
     "redirect:/" is for redirectinf to the "/" address
     */
-    @RequestMapping(value = "staff/passengers/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "staff/passengers/edit/{passengerID}", method = RequestMethod.POST)
     public ModelAndView editPassengerPage(@ModelAttribute("passenger") Passenger passenger) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/");
+        modelAndView.setViewName("redirect:/staff/passengers/");
         passengerService.edit(passenger);
         return modelAndView;
     }
@@ -114,7 +114,7 @@ public class PassengerController {
     @RequestMapping(value = "/staff/passengers/delete/{passengerID}", method = RequestMethod.GET)
     public ModelAndView deletePassenger(@PathVariable("passengerID") int passengerID) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/staff/");
+        modelAndView.setViewName("redirect:/staff/passengers/");
         Passenger passenger = passengerService.getById(passengerID);
         passengerService.delete(passenger);
         return modelAndView;

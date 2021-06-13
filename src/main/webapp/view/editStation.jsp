@@ -8,9 +8,9 @@
     <title>Swiss Federal Railways</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="../../">
-    <link rel="stylesheet" href="./res/frontend/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./res/frontend/css/bootstrap-icons.css">
-    <link rel="stylesheet" href="./res/frontend/css/template.styles.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/res/frontend/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/res/frontend/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/res/frontend/css/template.styles.css">
 </head>
 <body>
 <c:url value="/staff/stations/edit" var="edit"/>
@@ -31,7 +31,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="staff/">Staff</a>
+                    <a class="nav-link" href="./">Staff</a>
                 </li>
             </ul>
         </div>
@@ -67,9 +67,9 @@
 </main>
 
 
-<script src="./res/frontend/js/inputmask.js"></script>
-<script src="./res/frontend/js/bootstrap.bundle.min.js"></script>
-<script src="./res/frontend/js/scripts.js"></script>
+<script src="<%=request.getContextPath()%>/res/frontend/js/inputmask.js"></script>
+<script src="<%=request.getContextPath()%>/res/frontend/js/bootstrap.bundle.min.js"></script>
+<script src="<%=request.getContextPath()%>/res/frontend/js/scripts.js"></script>
 
 </body>
 </html>

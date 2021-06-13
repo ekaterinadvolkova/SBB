@@ -64,11 +64,12 @@
                         <td>${passenger.birthDate}</td>
                         <td>
                             <div class="btn-group">
-                                <a href="staff/passenger/edit/${passenger.passengerID}" type="button"
+
+                                <a href="staff/passengers/edit/${passenger.passengerID}" type="button"
                                    class="btn btn-sm btn-outline-secondary" title="Edit">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <a href="staff/passenger/delete/${passenger.passengerID}" type="button"
+                                <a href="staff/passengers/delete/${passenger.passengerID}" type="button"
                                    class="btn btn-sm btn-outline-danger" title="Delete">
                                     <i class="bi bi-trash"></i>
                                 </a>

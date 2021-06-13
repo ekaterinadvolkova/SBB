@@ -28,12 +28,6 @@ public class TrainController extends HttpServlet {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/staff/trains/edit", method = RequestMethod.GET)
-    public ModelAndView editTrain() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("editTrain");
-        return modelAndView;
-    }
 
     @RequestMapping(value = "/staff/trains/add", method = RequestMethod.GET)
     public ModelAndView addTrain(@ModelAttribute(name = "train") TrainDTO train,

@@ -60,7 +60,8 @@
                 <thead>
                 <tr>
                     <th>Train Number</th>
-                    <th>Name</th>
+                    <th>Direction</th>
+
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -69,6 +70,7 @@
                     <tr>
                         <td>${train.number}</td>
                         <td>${train.trainName}</td>
+
                         <td>
                             <div class="btn-group">
                                 <a href="buy-ticket.html" type="button" class="btn btn-sm btn-outline-primary"

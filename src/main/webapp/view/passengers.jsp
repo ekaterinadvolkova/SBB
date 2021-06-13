@@ -129,27 +129,3 @@
 <script src="./res/frontend/js/scripts.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

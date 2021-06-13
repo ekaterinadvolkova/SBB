@@ -1,21 +1,21 @@
 package com.javaschool.ev.service.api;
 
-import com.javaschool.ev.domain.Train;
 import com.javaschool.ev.dto.TrainDTO;
 
 import java.util.List;
 
 public interface TrainService {
-    List<Train> allTrains();
+    List<TrainDTO> allTrains();
 
     void add(TrainDTO trainDTO);
 
-    void delete(Train train);
+    void delete(int trainId);
 
-    void edit(Train train);
+    void update(TrainDTO trainDTO);
 
-    Train getById(int trainID);
+    TrainDTO getById(int trainID);
+
+    List<String> validateTrain(TrainDTO trainDTO);
 
     boolean checkTrain(int number);
-
 }

@@ -13,8 +13,15 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 public class TrainDTO {
+    // fields matching DAO
+    private Integer trainId;
     private int number;
     private int availableSeats;
     List<TimetableItemDTO> timetable = new ArrayList<>();
+
+    // extra fields for frontend only
+    private String trainName;
+    private List<String> errors;
+    private boolean isUpdated = false;
     Set<String> stationNames = new HashSet<>();
 }

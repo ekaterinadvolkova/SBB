@@ -46,10 +46,9 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>#</th>
                     <th>Train Number</th>
+                    <th>Name</th>
                     <th>Booked Seats</th>
-                    <%--                    <th>Occurrence</th>--%>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -58,26 +57,23 @@
                 <c:forEach var="train" items="${trainList}">
 
                     <tr>
-                        <td>${train.trainID}</td>
                         <td>${train.number}</td>
+                        <td>${train.trainName}</td>
                         <td>${train.availableSeats}</td>
-                            <%--                        <td>${train.occurence}</td>--%>
                         <td>
                             <div class="btn-group">
                                 <a href="/staff/trains/" type="button" class="btn btn-sm btn-outline-secondary"
                                    title="View trains">
                                     <i class="bi bi-people-fill"></i>
                                 </a>
-                                <a href="staff/train/edit/${train.trainID}" type="button"
+                                <a href="staff/trains/edit/${train.trainId}" type="button"
                                    class="btn btn-sm btn-outline-secondary" title="Edit">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <a href="staff/train/delete/${train.trainID}" type="button"
+                                <a href="staff/trains/delete/${train.trainId}" type="button"
                                    class="btn btn-sm btn-outline-danger" title="Delete">
                                     <i class="bi bi-trash"></i>
                                 </a>
-
-
                             </div>
                         </td>
                     </tr>

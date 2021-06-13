@@ -5,22 +5,27 @@ import com.javaschool.ev.dao.api.TimetableDAO;
 import com.javaschool.ev.dao.api.TrainDAO;
 import com.javaschool.ev.dao.impl.TrainDAOImpl;
 import com.javaschool.ev.domain.Train;
+import com.javaschool.ev.dto.TimetableItemDTO;
 import com.javaschool.ev.dto.TrainDTO;
 import com.javaschool.ev.mapper.TrainMapper;
+import com.javaschool.ev.service.api.StationService;
 import com.javaschool.ev.service.api.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @Transactional
 public class
 TrainServiceImpl implements TrainService {
-
     @Autowired
     private TrainMapper trainMapper;
+    @Autowired
+    private StationService stationService;
 
     public void trainMapper(TrainMapper trainMapper) {
         this.trainMapper = trainMapper;
@@ -40,7 +45,6 @@ TrainServiceImpl implements TrainService {
         this.timetableDAO = timetableDAO;
     }
 
-
     private StationDAO stationDAO;
 
     @Autowired
@@ -49,8 +53,14 @@ TrainServiceImpl implements TrainService {
     }
 
     @Override
-    public List<Train> allTrains() {
-        return trainDAO.allTrains();
+    public List<TrainDTO> allTrains() {
+        List<Train> trains = trainDAO.allTrains();
+        List<TrainDTO> dtos = new ArrayList<>();
+
+        for (Train train : trains) {
+            dtos.add(trainMapper.convertToDto(train));
+        }
+        return dtos;
     }
 
     @Override
@@ -60,18 +70,56 @@ TrainServiceImpl implements TrainService {
     }
 
     @Override
-    public void delete(Train train) {
-        trainDAO.delete(train);
+    public void delete(int trainId) {
+        trainDAO.delete(trainId);
     }
 
     @Override
-    public void edit(Train train) {
-        trainDAO.edit(train);
+    public void update(TrainDTO trainDTO) {
+        Train train = trainMapper.convertToTrain(trainDTO);
+        trainDAO.update(train);
     }
 
     @Override
-    public Train getById(int trainID) {
-        return trainDAO.getById(trainID);
+    public TrainDTO getById(int trainId) {
+        TrainDTO trainDTO;
+
+        if (trainId < 0) {
+            trainDTO = new TrainDTO();
+        } else {
+            trainDTO = trainMapper.convertToDto(trainDAO.getById(trainId));
+        }
+        trainDTO.setStationNames(stationService.getAvailableStationNames());
+        return trainDTO;
+    }
+
+    @Override
+    public List<String> validateTrain(TrainDTO trainDTO) {
+        List<String> errors = new ArrayList<>();
+
+        if (trainDTO.getTimetable().size() < 2) {
+            errors.add("Error: Timetable must contain at least 2 items");
+        } else {
+            LocalDateTime current = LocalDateTime.MIN;
+            String currentStationName = "None";
+
+            for (TimetableItemDTO item : trainDTO.getTimetable()) {
+                if (item.toLocalDateTime().isBefore(current)) {
+                    errors.add("Error: Items in Timetable must be consecutive");
+                }
+                if (item.getStationName().equalsIgnoreCase(currentStationName)) {
+                    errors.add("Error: To and From in Timetable cannot have the same Station name");
+                }
+
+                if (errors.size() > 0) {
+                    break;
+                }
+
+                current = item.toLocalDateTime();
+                currentStationName = item.getStationName();
+            }
+        }
+        return errors;
     }
 
     @Override

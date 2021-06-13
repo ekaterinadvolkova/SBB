@@ -1,7 +1,7 @@
 package com.javaschool.ev.controller;
 
 import com.javaschool.ev.domain.Station;
-import com.javaschool.ev.domain.Train;
+import com.javaschool.ev.dto.TrainDTO;
 import com.javaschool.ev.service.api.StationService;
 import com.javaschool.ev.service.api.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class WelcomeController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("welcomePage");
 
-        List<Train> trains = trainService.allTrains();
+        List<TrainDTO> trains = trainService.allTrains();
         modelAndView.addObject("trainList", trains);
 
         return modelAndView;
@@ -60,4 +60,3 @@ public class WelcomeController {
     }
 
 }
-

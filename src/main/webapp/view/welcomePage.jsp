@@ -59,8 +59,8 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>#</th>
-                    <%--                    <th>Occurrence</th>--%>
+                    <th>Train Number</th>
+                    <th>Name</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -68,7 +68,7 @@
                 <c:forEach var="train" items="${trainList}">
                     <tr>
                         <td>${train.number}</td>
-                            <%--                        <td>${train.occurence}</td>--%>
+                        <td>${train.trainName}</td>
                         <td>
                             <div class="btn-group">
                                 <a href="buy-ticket.html" type="button" class="btn btn-sm btn-outline-primary"

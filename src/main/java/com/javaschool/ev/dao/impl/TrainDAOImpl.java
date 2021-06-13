@@ -1,6 +1,7 @@
 package com.javaschool.ev.dao.impl;
 
 import com.javaschool.ev.dao.api.TrainDAO;
+import com.javaschool.ev.domain.TimetableItem;
 import com.javaschool.ev.domain.Train;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -36,18 +37,33 @@ public class TrainDAOImpl implements TrainDAO {
     }
 
     @Override
-    public void delete(Train train) {
+    public void delete(int trainId) {
         Session session = sessionFactory.getCurrentSession();
-        session.delete(train);
+        Train train = getById(trainId);
+
+        if (null != train) {
+            session.delete(train);
+        }
     }
 
     @Override
-    public void edit(Train train) {
+    public void update(Train train) {
         Session session = sessionFactory.getCurrentSession();
-        Train dbTrain = getById(train.getTrainID());
-        dbTrain.setNumber(train.getNumber());
-        dbTrain.setAvailableSeats((train.getAvailableSeats()));
-        session.update(dbTrain);
+        Train existing = getById(train.getTrainID());
+
+        if (null != existing) {
+            existing.setNumber(train.getNumber());
+            existing.setAvailableSeats(existing.getAvailableSeats());
+
+            // clear existing items
+            existing.getTimetableItems().clear();
+
+            // replace them with new items
+            for (TimetableItem item : train.getTimetableItems()) {
+                existing.addTimetabelItem(item);
+            }
+            session.update(existing);
+        }
     }
 
     @Override

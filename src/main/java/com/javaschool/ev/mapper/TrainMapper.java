@@ -16,7 +16,12 @@ public class TrainMapper {
     TimetableItemMapper timetableItemMapper;
 
     public Train convertToTrain(TrainDTO trainDTO) {
+
         Train train = new Train();
+
+        if (null != trainDTO.getTrainId()) {
+            train.setTrainID(trainDTO.getTrainId());
+        }
         train.setNumber(trainDTO.getNumber());
         train.setAvailableSeats(trainDTO.getAvailableSeats());
         for (TimetableItemDTO timetableItemDTO : trainDTO.getTimetable()) {
@@ -26,17 +31,20 @@ public class TrainMapper {
     }
 
     public TrainDTO convertToDto(Train train) {
+
         TrainDTO dto = new TrainDTO();
+
+        dto.setTrainId(train.getTrainID());
         dto.setNumber(train.getNumber());
         dto.setAvailableSeats(train.getAvailableSeats());
-
         List<TimetableItemDTO> timetableItemDTOS = new ArrayList<>();
         for (TimetableItem item : train.getTimetableItems()) {
             timetableItemDTOS.add(timetableItemMapper.convertToDTO(item));
         }
         dto.setTimetable(timetableItemDTOS);
+        dto.setTrainName(dto.getTimetable().get(0).getStationName() + " - " +
+                dto.getTimetable().get(dto.getTimetable().size() - 1).getStationName());
         return dto;
     }
-
 
 }

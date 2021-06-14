@@ -1,4 +1,4 @@
-<h1> Java School at T-Systems Project </h1> <br>
+<h1> Application Simulation for Swiss Federal Railways (SBB) </h1> <br>
 
 <h2> Part I </h2>
 

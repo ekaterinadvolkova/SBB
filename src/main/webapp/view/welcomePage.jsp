@@ -60,8 +60,8 @@
                 <thead>
                 <tr>
                     <th>Train Number</th>
-                    <th>Direction</th>
-
+                    <th>Route</th>
+                    <th>Departure</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -70,6 +70,7 @@
                     <tr>
                         <td>${train.number}</td>
                         <td>${train.trainName}</td>
+                        <td>${train.timetable.get(0).departureDateTime}</td>
 
                         <td>
                             <div class="btn-group">

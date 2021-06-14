@@ -17,6 +17,11 @@ public class TrainDTO {
     private Integer trainId;
     private int number;
     private int availableSeats;
+
+    //for welcomePage
+    private String departure;
+    private String arrival;
+
     List<TimetableItemDTO> timetable = new ArrayList<>();
 
     // extra fields for frontend only

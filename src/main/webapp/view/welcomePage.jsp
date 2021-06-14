@@ -59,9 +59,10 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Train Number</th>
+                    <th>Number</th>
                     <th>Route</th>
                     <th>Departure</th>
+                    <th>Arrival</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -70,8 +71,8 @@
                     <tr>
                         <td>${train.number}</td>
                         <td>${train.trainName}</td>
-                        <td>${train.timetable.get(0).departureDateTime}</td>
-                        <td>${train.timetable.get(1).departureDateTime}</td>
+                        <td>${train.departure}</td>
+                        <td>${train.arrival}</td>
 
                         <td>
                             <div class="btn-group">

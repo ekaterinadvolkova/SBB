@@ -3,6 +3,8 @@ package com.javaschool.ev.controller;
 import com.javaschool.ev.dto.TimetableItemDTO;
 import com.javaschool.ev.dto.TrainDTO;
 import com.javaschool.ev.service.api.TrainService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -15,6 +17,7 @@ import java.util.List;
 
 @RestController
 public class TrainController extends HttpServlet {
+    private static final Logger log = LoggerFactory.getLogger(TrainController.class);
 
     @Autowired
     private TrainService trainService;
@@ -28,19 +31,18 @@ public class TrainController extends HttpServlet {
         return modelAndView;
     }
 
-
     @RequestMapping(value = "/staff/trains/add", method = RequestMethod.GET)
     public ModelAndView addTrain(@ModelAttribute(name = "train") TrainDTO train,
                                  BindingResult bindingResult, ModelMap modelMap,
                                  RedirectAttributes redirectAttributes) {
-
+        log.info("metod GET, train=" + train.toString());
         if (bindingResult.hasErrors()) {
             return new ModelAndView("error");
         }
 
         ModelAndView modelAndView = new ModelAndView();
 
-        modelAndView.setViewName("manageTrain");
+        modelAndView.setViewName("editTrain");
 
         if (train.isUpdated()) {
             modelAndView.addObject("train", train);
@@ -55,12 +57,12 @@ public class TrainController extends HttpServlet {
     @RequestMapping(value = "/staff/trains/add", method = RequestMethod.POST, params = "addTimetableItem")
     public ModelAndView addTimetableItem(@ModelAttribute(name = "train") TrainDTO train,
                                          BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-
+        log.info("metod POST, train=" + train.toString());
         if (bindingResult.hasErrors()) {
             return new ModelAndView("error");
         }
 
-        ModelAndView modelAndView = new ModelAndView("manageTrain");
+        ModelAndView modelAndView = new ModelAndView("editTrain");
 
         train.getTimetable().add(new TimetableItemDTO());
         train.setUpdated(true);
@@ -72,13 +74,14 @@ public class TrainController extends HttpServlet {
     @RequestMapping(value = "/staff/trains/add", method = RequestMethod.POST, params = "addTrain")
     public ModelAndView addTrain(@ModelAttribute(name = "train") TrainDTO train,
                                  BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        log.info("metod POST, train=" + train.toString());
         if (bindingResult.hasErrors()) {
             return new ModelAndView("error");
         }
         // Check for errors and return back
         List<String> errors = trainService.validateTrain(train);
-        if (errors.size() > 0) {
-            ModelAndView modelAndView = new ModelAndView("manageTrain");
+        if(errors.size() > 0) {
+            ModelAndView modelAndView = new ModelAndView("editTrain");
             train.setErrors(errors);
             train.setUpdated(true);
             redirectAttributes.addFlashAttribute("train", train);
@@ -95,11 +98,12 @@ public class TrainController extends HttpServlet {
     @RequestMapping(value = "/staff/trains/edit/{trainId}", method = RequestMethod.GET)
     public ModelAndView editTrain(@PathVariable("trainId") int trainId, @ModelAttribute(name = "train") TrainDTO train,
                                   BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        log.info("metod GET, train=" + train.toString());
         if (bindingResult.hasErrors()) {
             return new ModelAndView("error");
         }
 
-        ModelAndView modelAndView = new ModelAndView("manageTrain");
+        ModelAndView modelAndView = new ModelAndView("editTrain");
 
         if (train.isUpdated()) {
             modelAndView.addObject("train", train);
@@ -112,11 +116,12 @@ public class TrainController extends HttpServlet {
     @RequestMapping(value = "/staff/trains/edit/{trainId}", method = RequestMethod.POST, params = "addTimetableItem")
     public ModelAndView addTimetableItem(@PathVariable("trainId") int trainId, @ModelAttribute(name = "train") TrainDTO train,
                                          BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        log.info("metod POST, train=" + train.toString());
         if (bindingResult.hasErrors()) {
             return new ModelAndView("error");
         }
 
-        ModelAndView modelAndView = new ModelAndView("manageTrain");
+        ModelAndView modelAndView = new ModelAndView("editTrain");
 
         train.getTimetable().add(new TimetableItemDTO());
         train.setUpdated(true);
@@ -129,13 +134,14 @@ public class TrainController extends HttpServlet {
     @RequestMapping(value = "/staff/trains/edit/{trainId}", method = RequestMethod.POST)
     public ModelAndView updateTrain(@PathVariable("trainId") int trainId, @ModelAttribute(name = "train") TrainDTO train,
                                     BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        log.info("metod POST, train=" + train.toString());
         if (bindingResult.hasErrors()) {
             return new ModelAndView("error");
         }
         // Check for errors and return back
         List<String> errors = trainService.validateTrain(train);
-        if (errors.size() > 0) {
-            ModelAndView modelAndView = new ModelAndView("manageTrain");
+        if(errors.size() > 0) {
+            ModelAndView modelAndView = new ModelAndView("editTrain");
             train.setErrors(errors);
             redirectAttributes.addFlashAttribute("train", train);
             modelAndView.setViewName("redirect:/staff/trains/edit/" + trainId);
@@ -150,6 +156,7 @@ public class TrainController extends HttpServlet {
 
     @RequestMapping(value = "/staff/trains/delete/{trainId}", method = RequestMethod.GET)
     public ModelAndView deleteTrain(@PathVariable("trainId") int trainId) {
+        log.info("metod POST, trainId=" + trainId);
         trainService.delete(trainId);
 
         ModelAndView modelAndView = new ModelAndView();

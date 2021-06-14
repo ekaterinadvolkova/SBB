@@ -10,6 +10,8 @@ import com.javaschool.ev.dto.TrainDTO;
 import com.javaschool.ev.mapper.TrainMapper;
 import com.javaschool.ev.service.api.StationService;
 import com.javaschool.ev.service.api.TrainService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +24,8 @@ import java.util.List;
 @Transactional
 public class
 TrainServiceImpl implements TrainService {
+    private static final Logger log = LoggerFactory.getLogger(TrainServiceImpl.class);
+
     @Autowired
     private TrainMapper trainMapper;
     @Autowired
@@ -32,7 +36,6 @@ TrainServiceImpl implements TrainService {
     }
 
     private TrainDAO trainDAO = new TrainDAOImpl();
-
     @Autowired
     public void setTrainDAO(TrainDAO trainDAO) {
         this.trainDAO = trainDAO;
@@ -40,13 +43,11 @@ TrainServiceImpl implements TrainService {
 
     @Autowired
     private TimetableDAO timetableDAO;
-
     public void timetableDAO(TimetableDAO timetableDAO) {
         this.timetableDAO = timetableDAO;
     }
 
     private StationDAO stationDAO;
-
     @Autowired
     public void setStationDAO(StationDAO stationDAO) {
         this.stationDAO = stationDAO;
@@ -57,7 +58,7 @@ TrainServiceImpl implements TrainService {
         List<Train> trains = trainDAO.allTrains();
         List<TrainDTO> dtos = new ArrayList<>();
 
-        for (Train train : trains) {
+        for(Train train : trains) {
             dtos.add(trainMapper.convertToDto(train));
         }
         return dtos;
@@ -97,21 +98,24 @@ TrainServiceImpl implements TrainService {
     public List<String> validateTrain(TrainDTO trainDTO) {
         List<String> errors = new ArrayList<>();
 
-        if (trainDTO.getTimetable().size() < 2) {
+        if(trainDTO.getTimetable().size() < 2) {
+            log.error("Timetable must contain at least 2 items");
             errors.add("Error: Timetable must contain at least 2 items");
         } else {
             LocalDateTime current = LocalDateTime.MIN;
             String currentStationName = "None";
 
             for (TimetableItemDTO item : trainDTO.getTimetable()) {
-                if (item.toLocalDateTime().isBefore(current)) {
+                if(item.toLocalDateTime().isBefore(current)) {
+                    log.error("Items in Timetable must be consecutive");
                     errors.add("Error: Items in Timetable must be consecutive");
                 }
                 if (item.getStationName().equalsIgnoreCase(currentStationName)) {
+                    log.error("To and From in Timetable cannot have the same Station name");
                     errors.add("Error: To and From in Timetable cannot have the same Station name");
                 }
 
-                if (errors.size() > 0) {
+                if(errors.size() > 0) {
                     break;
                 }
 
@@ -126,5 +130,4 @@ TrainServiceImpl implements TrainService {
     public boolean checkTrain(int number) {
         return trainDAO.checkTrain(number);
     }
-
 }

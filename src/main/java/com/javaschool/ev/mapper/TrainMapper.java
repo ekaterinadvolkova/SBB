@@ -43,6 +43,7 @@ public class TrainMapper {
         }
         dto.setTimetable(timetableItemDTOS);
         dto.getTimetable().get(0).getDepartureDateTime();
+        dto.getTimetable().get(1).getDepartureDateTime();
         dto.setTrainName(dto.getTimetable().get(0).getStationName() + " - " +
                 dto.getTimetable().get(dto.getTimetable().size() - 1).getStationName());
         return dto;

@@ -71,6 +71,7 @@
                         <td>${train.number}</td>
                         <td>${train.trainName}</td>
                         <td>${train.timetable.get(0).departureDateTime}</td>
+                        <td>${train.timetable.get(1).departureDateTime}</td>
 
                         <td>
                             <div class="btn-group">

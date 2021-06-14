@@ -1,4 +1,4 @@
-<h1> Application Simulation for Swiss Federal Railways (SBB) </h1> <br>
+<h1> Simulation of Swiss Railways Ticket System</h1> <br>
 
 <h2> Part I </h2>
 

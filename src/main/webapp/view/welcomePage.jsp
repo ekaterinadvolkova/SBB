@@ -4,14 +4,15 @@
 
 <!DOCTYPE html>
 <html lang="en">
+<c:set var="contextPath" value="<%=request.getContextPath()%>"/>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <title>Swiss Federal Railways</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./res/frontend/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./res/frontend/css/bootstrap-icons.css">
-    <link rel="stylesheet" href="./res/frontend/css/template.styles.css">
+    <link rel="stylesheet" href="${contextPath}/res/frontend/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${contextPath}/res/frontend/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="${contextPath}/res/frontend/css/template.styles.css">
 </head>
 <body>
 
@@ -59,10 +60,9 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Number</th>
+                    <th>Train Number</th>
                     <th>Route</th>
-                    <th>Departure</th>
-                    <th>Arrival</th>
+                    <th>Departure Time</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -71,12 +71,10 @@
                     <tr>
                         <td>${train.number}</td>
                         <td>${train.trainName}</td>
-                        <td>${train.departure}</td>
-                        <td>${train.arrival}</td>
-
+                        <td>${train.timetable.get(0).departureDateTime}</td>
                         <td>
                             <div class="btn-group">
-                                <a href="buy-ticket.html" type="button" class="btn btn-sm btn-outline-primary"
+                                <a href="/home" type="button" class="btn btn-sm btn-outline-primary"
                                    title="Buy ticket">
                                     <i class="bi bi-bag"></i>
                                     Buy ticket
@@ -92,9 +90,9 @@
     </div>
 
 </main>
-<script src="./res/frontend/js/inputmask.js"></script>
-<script src="./res/frontend/js/bootstrap.bundle.min.js"></script>
-<script src="./res/frontend/js/scripts.js"></script>
+<script src="${contextPath}/res/frontend/js/inputmask.js"></script>
+<script src="${contextPath}/res/frontend/js/bootstrap.bundle.min.js"></script>
+<script src="${contextPath}/res/frontend/js/scripts.js"></script>
 
 </body>
 </html>

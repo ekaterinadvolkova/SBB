@@ -1,7 +1,6 @@
 package com.javaschool.ev.dao.api;
 
 import com.javaschool.ev.domain.Timetable;
-import com.javaschool.ev.domain.Train;
 
 import java.util.List;
 

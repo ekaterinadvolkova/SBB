@@ -5,7 +5,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.lang.NonNull;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,12 +24,12 @@ import java.util.List;
 public class Train {
 
     @Id
-    @Column(name = "trainID")
+    @Column(name = "train_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int trainID;
+    private int trainId;
 
     @NonNull
-    @Column(name = "number")
+    @Column(name = "train_number")
     private int number;
 
     @NonNull
@@ -32,7 +39,10 @@ public class Train {
     @OneToMany(mappedBy = "train", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TimetableItem> timetableItems = new ArrayList<>();
 
-    public void addTimetabelItem(TimetableItem timetableItem) {
+    @OneToMany(mappedBy = "train", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Ticket> ticketList = new ArrayList<>();
+
+    public void addTimetableItem(TimetableItem timetableItem) {
         timetableItems.add(timetableItem);
         timetableItem.setTrain(this);
     }
@@ -41,6 +51,17 @@ public class Train {
         timetableItems.remove(timetableItem);
         timetableItem.setTrain(null);
     }
+
+    public void addTicket(Ticket ticket) {
+        ticketList.add(ticket);
+        ticket.setTrain(this);
+    }
+
+    public void removeTicket(Ticket ticket) {
+        ticketList.remove(ticket);
+    }
+
+
 
 
 }

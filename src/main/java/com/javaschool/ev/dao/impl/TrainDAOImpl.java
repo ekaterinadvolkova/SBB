@@ -49,7 +49,7 @@ public class TrainDAOImpl implements TrainDAO {
     @Override
     public void update(Train train) {
         Session session = sessionFactory.getCurrentSession();
-        Train existing = getById(train.getTrainID());
+        Train existing = getById(train.getTrainId());
 
         if (null != existing) {
             existing.setNumber(train.getNumber());
@@ -60,7 +60,7 @@ public class TrainDAOImpl implements TrainDAO {
 
             // replace them with new items
             for (TimetableItem item : train.getTimetableItems()) {
-                existing.addTimetabelItem(item);
+                existing.addTimetableItem(item);
             }
             session.update(existing);
         }
@@ -81,4 +81,7 @@ public class TrainDAOImpl implements TrainDAO {
         query.setParameter("number", number);
         return query.list().isEmpty();
     }
+    //allTrains ofor station
+    //station id
+    //query select from train where trainID in (select trainID from timetableItems where stationID = XXX)
 }

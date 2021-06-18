@@ -1,5 +1,6 @@
 package com.javaschool.ev.domain;
 
+import com.javaschool.ev.dto.TimetableItemDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,12 +8,13 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Repository
-@Getter
-@Setter
-@NoArgsConstructor
+@Getter @Setter @NoArgsConstructor
 @Entity
 @Table(name = "timetable")
 public class Timetable {
@@ -31,5 +33,4 @@ public class Timetable {
     @NonNull
     @Column(name = "departureTime")
     private LocalDateTime departureTime;
-
 }

@@ -1,9 +1,8 @@
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <title>Swiss Federal Railways</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,8 +16,7 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
         <a class="navbar-brand" href="./">Swiss Federal Railways</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03"
-                aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -58,12 +56,10 @@
                         <td>${station.name}</td>
                         <td>
                             <div class="btn-group">
-                                <a href="staff/stations/edit/${station.stationID}" type="button"
-                                   class="btn btn-sm btn-outline-secondary" title="Edit">
+                                <a href="staff/stations/edit/${station.stationID}" type="button" class="btn btn-sm btn-outline-secondary" title="Edit">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <a href="staff/stations/delete/${station.stationID}" type="button"
-                                   class="btn btn-sm btn-outline-danger" title="Delete">
+                                <a href="staff/stations/delete/${station.stationID}" type="button" class="btn btn-sm btn-outline-danger" title="Delete">
                                     <i class="bi bi-trash"></i>
                                 </a>
                             </div>
@@ -117,6 +113,5 @@
 <script src="./res/frontend/js/bootstrap.bundle.min.js"></script>
 <script src="./res/frontend/js/scripts.js"></script>
 
-</body>
-</html>
+</body></html>
 

@@ -17,10 +17,9 @@ import java.util.Set;
 public class StationServiceImpl implements StationService {
 
     private StationDAO stationDAO;
-
     @Autowired
-    public void setPassengerDAO(StationDAO stationDAO) {
-        this.stationDAO = stationDAO;
+    public void setPassengerDAO (StationDAO stationDAO){
+        this.stationDAO=stationDAO;
     }
 
     @Override
@@ -41,6 +40,7 @@ public class StationServiceImpl implements StationService {
     @Override
     public void edit(Station station) {
         stationDAO.edit(station);
+
     }
 
     @Override
@@ -62,7 +62,7 @@ public class StationServiceImpl implements StationService {
     public Set<String> getAvailableStationNames() {
         Set<String> names = new HashSet<>();
 
-        for (Station station : stationDAO.allStations()) {
+        for(Station station : stationDAO.allStations()) {
             names.add(station.getName());
         }
         return names;

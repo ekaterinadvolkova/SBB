@@ -16,4 +16,6 @@ public interface TrainDAO<date> {
     Train getById(int trainID);
 
     boolean checkTrain(int number);
+
+
 }

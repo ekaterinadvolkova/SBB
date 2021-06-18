@@ -4,8 +4,8 @@ use sbb_data;
 
 create table train
 (
-    trainID        INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    number         INT             NOT NULL,
+    train_id       INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    train_number   INT             NOT NULL,
     availableSeats INT             NOT NULL
 
 ) engine = InnoDB;
@@ -24,51 +24,38 @@ create table timetable_item
     stationID     INT       NOT NULL,
     departureTime TIMESTAMP NOT NULL,
     foreign key (stationID) references station (stationID),
-    foreign key (`train_id`) references train (`trainID`),
-    CONSTRAINT `items_ibfk_1` FOREIGN KEY (`train_id`) REFERENCES train (`trainID`)
+    foreign key (`train_id`) references train (`train_id`),
+    CONSTRAINT `items_ibfk_1` FOREIGN KEY (`train_id`) REFERENCES train (`train_id`)
 ) engine = InnoDB;
 
 create table timetable
 (
+
     timetableID   INT       NOT NULL AUTO_INCREMENT PRIMARY KEY,
     stationID     INT       NOT NULL,
     departureTime TIMESTAMP NOT NULL,
     foreign key (stationID) references station (stationID)
-) engine = InnoDB;
-
-create table passenger
-(
-    passengerID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    firstName   VARCHAR(50)     NOT NULL,
-    lastName    VARCHAR(50)     NOT NULL,
-    birthDate   DATE            NOT NULL,
-    UNIQUE KEY (firstName, lastName, birthDate)
-
-) engine = InnoDB;
-
-create table seat
-(
-
-    seatID INT PRIMARY KEY AUTO_INCREMENT,
-    number INT NOT NULL
 
 ) engine = InnoDB;
 
 create table ticket
 (
-    ticketID    INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    passengerID INT                            NOT NULL,
-    seatID      INT                            NOT NULL,
-    foreign key (passengerID) references passenger (passengerID),
-    foreign key (seatID) references seat (seatID)
+    ticketID INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    train_id INT                            NOT NULL,
+
+
+    foreign key (`train_id`) references train (`train_id`),
+    CONSTRAINT `items_ibfk_2` FOREIGN KEY (`train_id`) REFERENCES train (`train_id`)
 
 ) engine = InnoDB;
 
-create table train_to_timetable
+create table myusers
 (
-    trainID     INT NOT NULL,
-    timetableID INT NOT NULL,
-    foreign key (trainID) references train (trainID),
-    foreign key (timetableID) references timetable (timetableID)
+    user_id    INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    username   VARCHAR(45)     NOT NULL,
+    password   VARCHAR(45)     NOT NULL,
+    firstname  VARCHAR(45)     NOT NULL,
+    lastname   VARCHAR(45)     NOT NULL,
+    birth_date DATE
 
 ) engine = InnoDB;

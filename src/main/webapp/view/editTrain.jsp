@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/res/frontend/css/template.styles.css">
 </head>
 <body>
-<c:url value="/staff/stations/edit" var="edit"/>
-<c:set value="POST" var="POST"/>
+
+<c:set var="contextPath" value="<%=request.getContextPath()%>"/>
 
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
@@ -41,6 +41,7 @@
 
     <div class="container pt-5">
         <form:form method="POST" modelAttribute="train" class="style">
+            <form:input path="stationNames" type="hidden"/>
 
             <c:choose>
                 <c:when test="${trainId == null}">
@@ -50,7 +51,6 @@
                     <p class="mt-5" action="staff/trains/edit/${train.trainId}" name="train" method="POST">
                 </c:otherwise>
             </c:choose>
-            <%--            <p class="mt-5" action="staff/trains/add/" name="train" method="POST">--%>
 
             <c:if test="${train.errors != null}">
                 <c:forEach var="error" items="${train.errors}">
@@ -86,7 +86,6 @@
             <section class="pt-5 flex-fill container-fluid">
                 <h4>Timetable</h4>
 
-                <form:input path="stationNames" type="hidden"/>
                 <table class="table">
                     <thead>
                     <tr>
@@ -110,17 +109,19 @@
                                     <%--                                <fmt:parseDate value="${timeTableItem.departureTime}" pattern="yyyy-MM-dd KK:mm" var="localDepartureDateTime"/>--%>
                             </td>
                             <td>
-                                <div class="btn-group">
-                                        <%--                                    <a href="staff/train/delete/${train.trainId}" type="button"--%>
-                                    <a href="staff/trains/" type="button"
-                                       class="btn btn-sm btn-outline-danger" title="Delete">
-                                        <i class="bi bi-trash"></i>
-                                    </a>
-                                </div>
+                                <c:choose>
+                                    <c:when test="${trainId == null}">
+                                        <c:set var="deletePath" value="${contextPath}/staff/trains/add/${loop.index}"/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:set var="deletePath" value="${contextPath}/staff/trains/edit/${trainId}/${loop.index}"/>
+                                    </c:otherwise>
+                                </c:choose>
+                                <button type="submit" name="deleteTimetableItem" formaction="${deletePath}" class="btn btn-sm btn-outline-danger"/>
+                                <i class="bi bi-trash"></i>
                             </td>
                         </tr>
                     </c:forEach>
-
 
                     </tbody>
 
@@ -144,7 +145,7 @@
             </c:choose>
 
             <p>
-                <form:button type="submit" class="btn btn-primary" name="addTrain">${submitBtnName}</form:button>
+                <form:button type="submit" class="btn btn-primary" name = "addTrain">${submitBtnName}</form:button>
             </p>
         </form:form>
     </div>

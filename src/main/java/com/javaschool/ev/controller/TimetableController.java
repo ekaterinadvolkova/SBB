@@ -28,12 +28,12 @@ public class TimetableController {
         return modelAndView;
     }
 
-//    @RequestMapping(value = "staff/timetables/add", method = RequestMethod.GET)
-//    public ModelAndView addTimetable() {
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("addTimetable");
-//        return modelAndView;
-//    }
+    @RequestMapping(value = "staff/timetables/add", method = RequestMethod.GET)
+    public ModelAndView addTimetable() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("addTimetable");
+        return modelAndView;
+    }
 
     @RequestMapping(value = "timetables/add", method = RequestMethod.POST)
     public String addTimetable(@ModelAttribute("timetableItem") Timetable timetableItem) {

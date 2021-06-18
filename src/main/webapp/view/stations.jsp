@@ -1,11 +1,12 @@
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <html>
 <head>
-    <title>Passengers </title>
+    <title >Passengers </title>
     <link href="<c:url value="/res/style.css"/>" rel="stylesheet" type="text/css"/>
 </head>
 <body>
@@ -32,9 +33,7 @@
 </table>
 
 <table class="style">
-    <tr class="left-side">
-        <th><a href="/add">Add Station</a></th>
-    </tr>
+    <tr class="left-side"><th><a href="/add">Add Station</a> </th></tr>
 </table>
 
 

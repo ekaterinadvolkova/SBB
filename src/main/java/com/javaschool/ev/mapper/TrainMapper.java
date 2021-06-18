@@ -19,13 +19,13 @@ public class TrainMapper {
 
         Train train = new Train();
 
-        if (null != trainDTO.getTrainId()) {
-            train.setTrainID(trainDTO.getTrainId());
+        if(null != trainDTO.getTrainId()) {
+            train.setTrainId(trainDTO.getTrainId());
         }
         train.setNumber(trainDTO.getNumber());
         train.setAvailableSeats(trainDTO.getAvailableSeats());
-        for (TimetableItemDTO timetableItemDTO : trainDTO.getTimetable()) {
-            train.addTimetabelItem(timetableItemMapper.convertToTimetableItem(timetableItemDTO));
+        for(TimetableItemDTO timetableItemDTO : trainDTO.getTimetable()) {
+            train.addTimetableItem(timetableItemMapper.convertToTimetableItem(timetableItemDTO));
         }
         return train;
     }
@@ -34,20 +34,21 @@ public class TrainMapper {
 
         TrainDTO dto = new TrainDTO();
 
-        dto.setTrainId(train.getTrainID());
+        dto.setTrainId(train.getTrainId());
         dto.setNumber(train.getNumber());
         dto.setAvailableSeats(train.getAvailableSeats());
         List<TimetableItemDTO> timetableItemDTOS = new ArrayList<>();
-        for (TimetableItem item : train.getTimetableItems()) {
-            timetableItemDTOS.add(timetableItemMapper.convertToDTO(item));
+        for(TimetableItem item :train.getTimetableItems()) {
+            timetableItemDTOS.add(timetableItemMapper.convertToDto(item));
         }
         dto.setTimetable(timetableItemDTOS);
 
-        dto.setDeparture(dto.getTimetable().get(0).getDepartureDateTime());
-        dto.setArrival(dto.getTimetable().get(dto.getTimetable().size()-1).getDepartureDateTime());
+        //for departure time on welcome page
+        //timetableItemDTOS.get(0).getDepartureDateTime();
+        dto.getTimetable().get(0).getDepartureDateTime();
 
         dto.setTrainName(dto.getTimetable().get(0).getStationName() + " - " +
-                dto.getTimetable().get(dto.getTimetable().size() - 1).getStationName());
+                dto.getTimetable().get(dto.getTimetable().size() -1).getStationName());
         return dto;
     }
 

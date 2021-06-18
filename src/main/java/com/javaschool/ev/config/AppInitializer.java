@@ -5,6 +5,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 import javax.servlet.Filter;
 
+
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     //add hibernate configuration
@@ -12,6 +13,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
     protected Class<?>[] getRootConfigClasses() {
         return new Class[]{HibernateConfig.class};
     }
+
 
     //web-config where view-solvers are defined
     @Override

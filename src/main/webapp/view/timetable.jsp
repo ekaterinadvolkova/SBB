@@ -1,5 +1,6 @@
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
@@ -16,14 +17,14 @@
         <th style="width: 100%">Departure</th>
         <th style="width: 100%">Route</th>
         <th>Route</th>
-        <th></th>
+        <th> </th>
     </tr>
 
     <c:forEach var="timetable" items="${timetableList}">
     <tr>
         <td class="left-side">${timetable.timetableID}</td>
         <td class="title" class="left-side">${timetable.stationID}</td>
-        <td class="title" class="left-side">${timetable.departureTime}</td>
+        <td class="title"class="left-side">${timetable.departureTime}</td>
         <td class="right-side">${timetable.routeID} </td>
         <td class="right-side">
             <a href="edit/${timetable.timetableID}">Edit</a>

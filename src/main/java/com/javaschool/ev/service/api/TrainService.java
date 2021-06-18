@@ -15,7 +15,11 @@ public interface TrainService {
 
     TrainDTO getById(int trainID);
 
+    TrainDTO updateStationNames(TrainDTO trainDTO);
+
     List<String> validateTrain(TrainDTO trainDTO);
 
     boolean checkTrain(int number);
+
+    void addTicket();
 }

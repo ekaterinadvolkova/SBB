@@ -24,7 +24,7 @@ public class TimetableItem {
     private int timetableId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "train_id", referencedColumnName = "trainID")
+    @JoinColumn(name = "train_id", referencedColumnName = "train_id")
     private Train train;
 
     @OneToOne

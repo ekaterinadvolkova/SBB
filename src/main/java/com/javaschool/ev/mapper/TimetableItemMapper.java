@@ -21,11 +21,12 @@ public class TimetableItemMapper {
         return timetableItem;
     }
 
-    public TimetableItemDTO convertToDTO(TimetableItem timetableItem) {
+    public TimetableItemDTO convertToDto(TimetableItem timetableItem) {
         TimetableItemDTO dto = new TimetableItemDTO();
 
         dto.setStationName(timetableItem.getStation().getName());
         dto.fromLocalDateTime(timetableItem.getDepartureTime());
         return dto;
     }
+
 }

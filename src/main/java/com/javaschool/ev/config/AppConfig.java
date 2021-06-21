@@ -1,6 +1,5 @@
 package com.javaschool.ev.config;
 
-
 import com.javaschool.ev.dao.api.UserDao;
 import com.javaschool.ev.dao.impl.UserDAOImpl;
 import com.javaschool.ev.service.api.UserService;
@@ -23,4 +22,3 @@ public class AppConfig {
     }
 
 }
-

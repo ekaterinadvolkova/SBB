@@ -1,27 +1,25 @@
 package com.javaschool.ev.domain;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.lang.NonNull;
+
+
 
 import javax.persistence.*;
 
-@Getter
-@Setter
-@NoArgsConstructor
+@Getter @Setter @NoArgsConstructor
 @Entity
-@Table(name = "station")
+@Table(name="station")
 public class Station {
 
     @Id
-    @Column(name = "stationID")
+    @Column(name="stationID")
     @NonNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int stationID;
 
     @NonNull
-    @Column(name = "name")
+    @Column(name="name")
     private String name;
 
     public Station(int stationID, String name) {

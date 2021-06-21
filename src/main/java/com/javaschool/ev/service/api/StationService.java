@@ -21,5 +21,5 @@ public interface StationService {
 
     Station getByName(String name);
 
-    Set<String> getAvailableStationNames();
+    Set<String> getAvailableStationNames(boolean addAllSelector);
 }

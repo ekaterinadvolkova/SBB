@@ -38,16 +38,6 @@ create table timetable
 
 ) engine = InnoDB;
 
-create table ticket
-(
-    ticketID INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    train_id INT                            NOT NULL,
-
-
-    foreign key (`train_id`) references train (`train_id`),
-    CONSTRAINT `items_ibfk_2` FOREIGN KEY (`train_id`) REFERENCES train (`train_id`)
-
-) engine = InnoDB;
 
 create table myusers
 (
@@ -57,5 +47,16 @@ create table myusers
     firstname  VARCHAR(45)     NOT NULL,
     lastname   VARCHAR(45)     NOT NULL,
     birth_date DATE
+
+) engine = InnoDB;
+create table ticket
+(
+    ticketID INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    train_id INT                            NOT NULL,
+    user_id  INT                            NOT NULL,
+
+    foreign key (`train_id`) references train (`train_id`),
+    foreign key (`user_id`) references myusers (`user_id`),
+    CONSTRAINT `items_ibfk_2` FOREIGN KEY (`train_id`) REFERENCES train (`train_id`)
 
 ) engine = InnoDB;

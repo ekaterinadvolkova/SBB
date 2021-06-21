@@ -74,7 +74,7 @@ public class StationController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/staff/stations/delete/{stationID}", method = RequestMethod.GET)
+    @RequestMapping(value="/staff/stations/delete/{stationID}", method = RequestMethod.GET)
     public ModelAndView deleteStation(@PathVariable("stationID") int stationID) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/staff/");

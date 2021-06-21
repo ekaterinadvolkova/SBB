@@ -2,20 +2,22 @@ package com.javaschool.ev.controller;
 
 import com.javaschool.ev.domain.Station;
 import com.javaschool.ev.domain.Train;
+import com.javaschool.ev.dto.WelcomeDTO;
 import com.javaschool.ev.dto.TrainDTO;
 import com.javaschool.ev.service.api.StationService;
 import com.javaschool.ev.service.api.TrainService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @RestController
 public class WelcomeController {
+    private static final Logger log = LoggerFactory.getLogger(WelcomeController.class);
 
     private StationService stationService;
 
@@ -33,12 +35,18 @@ public class WelcomeController {
 
 
     @RequestMapping(value = "/welcomePage", method = RequestMethod.GET)
-    public ModelAndView welcomePage(@RequestParam("firstname") String firstname) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("welcomePage");
+    public ModelAndView welcomePage(@ModelAttribute(name = "welcome") WelcomeDTO welcomeDTO,
+                                    BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return new ModelAndView("error");
+        }
 
-        List<TrainDTO> trains = trainService.allTrains();
-        modelAndView.addObject("trainList", trains);
+        ModelAndView modelAndView = new ModelAndView("welcomePage");
+
+        welcomeDTO.setStationNames(stationService.getAvailableStationNames(true));
+        welcomeDTO.setTrains(trainService.allTrains(welcomeDTO.getSelectedStation()));
+        log.info("metod GET, welcome=" + welcomeDTO.toString());
+        modelAndView.addObject("welcome", welcomeDTO);
 
         return modelAndView;
     }
@@ -53,11 +61,20 @@ public class WelcomeController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "tickets/", method = RequestMethod.GET)
-    public ModelAndView tickets() {
+    @RequestMapping(value = "tickets/{userId}/{trainId}", method = RequestMethod.GET)
+    public ModelAndView tickets(@PathVariable("userId") int userId, @PathVariable("trainId") int trainId) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("tickets");
-//        modelAndView.addObject("tickets", tickets());
+
+        List<String> errors = trainService.addTicket(trainId, userId);
+        if(errors.isEmpty()){
+            modelAndView.setViewName("tickets");
+        } else {
+            //show error
+        }
+
+
+
+//        modelAndView.addObject("tickets", tickets);
         return modelAndView;
     }
 

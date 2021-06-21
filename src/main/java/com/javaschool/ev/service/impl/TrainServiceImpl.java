@@ -3,9 +3,11 @@ package com.javaschool.ev.service.impl;
 import com.javaschool.ev.dao.api.StationDAO;
 import com.javaschool.ev.dao.api.TimetableDAO;
 import com.javaschool.ev.dao.api.TrainDAO;
+import com.javaschool.ev.dao.api.UserDao;
 import com.javaschool.ev.dao.impl.TrainDAOImpl;
 import com.javaschool.ev.domain.Ticket;
 import com.javaschool.ev.domain.Train;
+import com.javaschool.ev.domain.User;
 import com.javaschool.ev.dto.TimetableItemDTO;
 import com.javaschool.ev.dto.TrainDTO;
 import com.javaschool.ev.mapper.TrainMapper;
@@ -19,7 +21,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+
 import java.util.List;
+
+import static com.javaschool.ev.service.impl.StationServiceImpl.ALL_AVAILABLE_STATIONS;
 
 @Service
 @Transactional
@@ -46,6 +51,9 @@ TrainServiceImpl<addTicket> implements TrainService {
     @Autowired
     private TimetableDAO timetableDAO;
 
+    @Autowired
+    private UserDao userDao;
+
     public void timetableDAO(TimetableDAO timetableDAO) {
         this.timetableDAO = timetableDAO;
     }
@@ -57,12 +65,16 @@ TrainServiceImpl<addTicket> implements TrainService {
         this.stationDAO = stationDAO;
     }
 
-    @Override
-    public List<TrainDTO> allTrains() {
-        List<Train> trains = trainDAO.allTrains();
+    public List<TrainDTO> allTrains(String stationName) {
+        List<Train> trains;
+        if(stationName.equalsIgnoreCase(ALL_AVAILABLE_STATIONS)) {
+            trains = trainDAO.allTrains(null);
+        } else {
+            trains = trainDAO.allTrains(stationName);
+        }
         List<TrainDTO> dtos = new ArrayList<>();
 
-        for (Train train : trains) {
+        for(Train train : trains) {
             dtos.add(trainMapper.convertToDto(train));
         }
         return dtos;
@@ -94,14 +106,14 @@ TrainServiceImpl<addTicket> implements TrainService {
         } else {
             trainDTO = trainMapper.convertToDto(trainDAO.getById(trainId));
         }
-        trainDTO.setStationNames(stationService.getAvailableStationNames());
+        trainDTO.setStationNames(stationService.getAvailableStationNames(false));
         return trainDTO;
     }
 
     @Override
     public TrainDTO updateStationNames(TrainDTO trainDTO) {
         if (null != trainDTO && trainDTO.getStationNames().size() == 0) {
-            trainDTO.setStationNames(stationService.getAvailableStationNames());
+            trainDTO.setStationNames(stationService.getAvailableStationNames(false));
         }
         return trainDTO;
     }
@@ -143,13 +155,19 @@ TrainServiceImpl<addTicket> implements TrainService {
         return trainDAO.checkTrain(number);
     }
 
-    public void addTicket() {
-        Train train = trainDAO.getById(1);
 
-        Ticket ticket = new Ticket();
+    public List<String> addTicket(int trainID, int userID) {
+
+        List<String> errors = new ArrayList<>();
+        //check the ticket from user
+
+        //train does not exist
+
+        //train has left
 
 
-        train.addTicket(new Ticket());
-        trainDAO.update(train);
+        trainDAO.addTicket(userID,trainID);
+
+        return errors;
     }
 }

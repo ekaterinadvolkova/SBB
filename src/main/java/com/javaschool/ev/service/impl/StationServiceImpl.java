@@ -15,11 +15,13 @@ import java.util.Set;
 @Service
 @Transactional
 public class StationServiceImpl implements StationService {
+    public static final String ALL_AVAILABLE_STATIONS = "All Stations";
 
     private StationDAO stationDAO;
+
     @Autowired
-    public void setPassengerDAO (StationDAO stationDAO){
-        this.stationDAO=stationDAO;
+    public void setPassengerDAO(StationDAO stationDAO) {
+        this.stationDAO = stationDAO;
     }
 
     @Override
@@ -59,10 +61,15 @@ public class StationServiceImpl implements StationService {
     }
 
     @Override
-    public Set<String> getAvailableStationNames() {
+    public Set<String> getAvailableStationNames(boolean addAllSelector) {
         Set<String> names = new HashSet<>();
 
-        for(Station station : stationDAO.allStations()) {
+        if (addAllSelector) {
+            names.add(ALL_AVAILABLE_STATIONS);
+        }
+
+
+        for (Station station : stationDAO.allStations()) {
             names.add(station.getName());
         }
         return names;

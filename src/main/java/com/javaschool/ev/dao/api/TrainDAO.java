@@ -1,11 +1,12 @@
 package com.javaschool.ev.dao.api;
 
+import com.javaschool.ev.domain.Ticket;
 import com.javaschool.ev.domain.Train;
 
 import java.util.List;
 
 public interface TrainDAO<date> {
-    List<Train> allTrains();
+    List<Train> allTrains(String stationName);
 
     void add(Train train);
 
@@ -17,5 +18,6 @@ public interface TrainDAO<date> {
 
     boolean checkTrain(int number);
 
+    void addTicket(int userId,int trainID);
 
 }

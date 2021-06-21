@@ -5,7 +5,7 @@ import com.javaschool.ev.dto.TrainDTO;
 import java.util.List;
 
 public interface TrainService {
-    List<TrainDTO> allTrains();
+    List<TrainDTO> allTrains(String stationName);
 
     void add(TrainDTO trainDTO);
 
@@ -21,5 +21,5 @@ public interface TrainService {
 
     boolean checkTrain(int number);
 
-    void addTicket();
+    List<String> addTicket(int trainID, int userID);
 }

@@ -24,7 +24,7 @@ public class TrainController extends HttpServlet {
 
     @RequestMapping(value = "staff/trains/", method = RequestMethod.GET)
     public ModelAndView allTrains() {
-        List<TrainDTO> trains = trainService.allTrains();
+        List<TrainDTO> trains = trainService.allTrains(null);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("trains");
         modelAndView.addObject("trainList", trains);
@@ -108,7 +108,7 @@ public class TrainController extends HttpServlet {
         }
         // Check for errors and return back
         List<String> errors = trainService.validateTrain(train);
-        if(errors.size() > 0) {
+        if (errors.size() > 0) {
             ModelAndView modelAndView = new ModelAndView("editTrain");
             train.setErrors(errors);
             train.setUpdated(true);
@@ -189,7 +189,7 @@ public class TrainController extends HttpServlet {
         }
         // Check for errors and return back
         List<String> errors = trainService.validateTrain(train);
-        if(errors.size() > 0) {
+        if (errors.size() > 0) {
             ModelAndView modelAndView = new ModelAndView("editTrain");
             train.setUpdated(true);
             train.setErrors(errors);
@@ -199,7 +199,7 @@ public class TrainController extends HttpServlet {
         }
 
         // No errors
-        trainService.addTicket();
+        trainService.addTicket(trainId, 1);
 
         trainService.update(train);
         ModelAndView modelAndView = new ModelAndView("redirect:/staff/trains/");

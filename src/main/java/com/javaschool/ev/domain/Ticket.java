@@ -4,16 +4,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.lang.NonNull;
+
 import javax.persistence.*;
 
-
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
-@Table(name="ticket")
+@Table(name = "ticket")
 public class Ticket {
 
     @Id
-    @Column(name="ticketID")
+    @Column(name = "ticketID")
     @NonNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ticketID;
@@ -24,6 +26,7 @@ public class Ticket {
     private Train train;
 
     @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
 
 
@@ -40,5 +43,7 @@ public class Ticket {
                 '}';
     }
 
-
+    public void setUser(User user) {
+        this.user=user;
+    }
 }

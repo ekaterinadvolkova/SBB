@@ -15,6 +15,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServlet;
 import java.util.List;
 
+import static com.javaschool.ev.service.impl.StationServiceImpl.ALL_AVAILABLE_STATIONS;
+
 @RestController
 public class TrainController extends HttpServlet {
     private static final Logger log = LoggerFactory.getLogger(TrainController.class);
@@ -24,7 +26,7 @@ public class TrainController extends HttpServlet {
 
     @RequestMapping(value = "staff/trains/", method = RequestMethod.GET)
     public ModelAndView allTrains() {
-        List<TrainDTO> trains = trainService.allTrains();
+        List<TrainDTO> trains = trainService.allTrains(ALL_AVAILABLE_STATIONS);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("trains");
         modelAndView.addObject("trainList", trains);
@@ -49,7 +51,7 @@ public class TrainController extends HttpServlet {
 
         ModelAndView modelAndView = new ModelAndView();
 
-        modelAndView.setViewName("editTrain");
+        modelAndView.setViewName("manageTrain");
 
         if (train.isUpdated()) {
             trainService.updateStationNames(train);
@@ -70,7 +72,7 @@ public class TrainController extends HttpServlet {
             return new ModelAndView("error");
         }
 
-        ModelAndView modelAndView = new ModelAndView("editTrain");
+        ModelAndView modelAndView = new ModelAndView("manageTrain");
 
         train.getTimetable().add(new TimetableItemDTO());
         train.setUpdated(true);
@@ -89,7 +91,7 @@ public class TrainController extends HttpServlet {
             return new ModelAndView("error");
         }
 
-        ModelAndView modelAndView = new ModelAndView("editTrain");
+        ModelAndView modelAndView = new ModelAndView("manageTrain");
 
         train.getTimetable().remove(index);
         train.setUpdated(true);
@@ -109,7 +111,7 @@ public class TrainController extends HttpServlet {
         // Check for errors and return back
         List<String> errors = trainService.validateTrain(train);
         if(errors.size() > 0) {
-            ModelAndView modelAndView = new ModelAndView("editTrain");
+            ModelAndView modelAndView = new ModelAndView("manageTrain");
             train.setErrors(errors);
             train.setUpdated(true);
             redirectAttributes.addFlashAttribute("train", train);
@@ -131,7 +133,7 @@ public class TrainController extends HttpServlet {
             return new ModelAndView("error");
         }
 
-        ModelAndView modelAndView = new ModelAndView("editTrain");
+        ModelAndView modelAndView = new ModelAndView("manageTrain");
 
         if (train.isUpdated()) {
             modelAndView.addObject("train", train);
@@ -149,7 +151,7 @@ public class TrainController extends HttpServlet {
             return new ModelAndView("error");
         }
 
-        ModelAndView modelAndView = new ModelAndView("editTrain");
+        ModelAndView modelAndView = new ModelAndView("manageTrain");
 
         train.getTimetable().add(new TimetableItemDTO());
         train.setUpdated(true);
@@ -170,7 +172,7 @@ public class TrainController extends HttpServlet {
             return new ModelAndView("error");
         }
 
-        ModelAndView modelAndView = new ModelAndView("editTrain");
+        ModelAndView modelAndView = new ModelAndView("manageTrain");
 
         train.getTimetable().remove(index);
         train.setUpdated(true);
@@ -190,7 +192,7 @@ public class TrainController extends HttpServlet {
         // Check for errors and return back
         List<String> errors = trainService.validateTrain(train);
         if(errors.size() > 0) {
-            ModelAndView modelAndView = new ModelAndView("editTrain");
+            ModelAndView modelAndView = new ModelAndView("manageTrain");
             train.setUpdated(true);
             train.setErrors(errors);
             redirectAttributes.addFlashAttribute("train", train);
@@ -199,7 +201,7 @@ public class TrainController extends HttpServlet {
         }
 
         // No errors
-        trainService.addTicket();
+        trainService.addTicket(trainId, 1);
 
         trainService.update(train);
         ModelAndView modelAndView = new ModelAndView("redirect:/staff/trains/");

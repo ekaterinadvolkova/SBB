@@ -7,7 +7,7 @@
 <html>
 <head>
     <title >Passengers </title>
-    <link href="<c:url value="/res/style.css"/>" rel="stylesheet" type="text/css"/>
+    <link href="<c:url value="${contextPath}/res/style.css"/>" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 

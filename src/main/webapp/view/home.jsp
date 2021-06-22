@@ -68,7 +68,7 @@
         </td>
       </tr>
     </table>
-
+</div>
 </main>
 <script src="./res/frontend/js/inputmask.js"></script>
 <script src="./res/frontend/js/bootstrap.bundle.min.js"></script>

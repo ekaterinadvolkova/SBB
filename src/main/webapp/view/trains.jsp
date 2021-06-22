@@ -111,12 +111,12 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="staff/passengers/" action="staff/stations/add" name="station" method="POST"
-                       class="nav-link">
-                        View passengers
-                    </a>
-                </li>
+                <%--                <li class="nav-item">--%>
+                <%--                    <a href="staff/passengers/" action="staff/stations/add" name="station" method="POST"--%>
+                <%--                       class="nav-link">--%>
+                <%--                        View passengers--%>
+                <%--                    </a>--%>
+                <%--                </li>--%>
 
             </ul>
         </div>

@@ -35,7 +35,8 @@ public class LoginController {
 
         if (null != user) {
             mav = new ModelAndView("welcomePage");
-            mav.addObject("firstname", user.getFirstname());
+            mav.addObject("userId", user.getId());
+
             mav.setViewName("redirect:/welcomePage/");
         } else {
             mav = new ModelAndView("login");

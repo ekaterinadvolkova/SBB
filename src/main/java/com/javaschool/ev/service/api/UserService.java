@@ -3,6 +3,7 @@ package com.javaschool.ev.service.api;
 
 import com.javaschool.ev.domain.Login;
 import com.javaschool.ev.domain.User;
+import com.javaschool.ev.dto.UserDTO;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,7 +15,7 @@ public interface UserService {
 
     User validateUser(Login login);
 
-    List<User> allUsers();
+    List<UserDTO> allUsers();
 
     void add(User user);
 

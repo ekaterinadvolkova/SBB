@@ -3,12 +3,15 @@ package com.javaschool.ev.service.impl;
 import com.javaschool.ev.dao.api.UserDao;
 import com.javaschool.ev.domain.Login;
 import com.javaschool.ev.domain.User;
+import com.javaschool.ev.dto.UserDTO;
+import com.javaschool.ev.mapper.UserMapper;
 import com.javaschool.ev.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,9 +37,18 @@ public class UserServiceImpl implements UserService {
         return userDao.validateUser(login);
     }
 
+    @Autowired
+    private UserMapper userMapper;
+
     @Override
-    public List<User> allUsers() {
-        return userDao.allUsers();
+    public List<UserDTO> allUsers() {
+        List<User> users = userDao.allUsers();
+        List<UserDTO> dtos = new ArrayList<>();
+        for (User user: users){
+            dtos.add(userMapper.convertToDto(user));
+        }
+
+        return dtos;
     }
 
     @Override

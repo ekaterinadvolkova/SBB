@@ -99,11 +99,11 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="staff/passengers/" class="nav-link ">
-                        View passengers
-                    </a>
-                </li>
+                <%--                <li class="nav-item">--%>
+                <%--                    <a href="staff/passengers/" class="nav-link ">--%>
+                <%--                        View passengers--%>
+                <%--                    </a>--%>
+                <%--                </li>--%>
 
             </ul>
         </div>

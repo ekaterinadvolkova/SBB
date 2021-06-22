@@ -1,11 +1,11 @@
 package com.javaschool.ev.controller;
 
 import com.javaschool.ev.domain.Timetable;
+import com.javaschool.ev.domain.Train;
 import com.javaschool.ev.service.api.TimetableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import java.util.List;
 
 @RestController
@@ -13,13 +13,12 @@ public class TimetableController {
 
 
     private TimetableService timetableService;
-
     @Autowired
-    public void setTimetableService(TimetableService timetableService) {
-        this.timetableService = timetableService;
+    public void setTimetableService (TimetableService timetableService){
+        this.timetableService=timetableService;
     }
 
-    @RequestMapping(value = "timetables/", method = RequestMethod.GET)
+    @RequestMapping(value="timetables/", method = RequestMethod.GET)
     public ModelAndView getAllTimetableItems() {
         List<Timetable> timetableItems = timetableService.getAllTimetableItems();
         ModelAndView modelAndView = new ModelAndView();
@@ -35,13 +34,13 @@ public class TimetableController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "timetables/add", method = RequestMethod.POST)
+    @RequestMapping (value ="timetables/add", method = RequestMethod.POST)
     public String addTimetable(@ModelAttribute("timetableItem") Timetable timetableItem) {
         timetableService.createNewTimetableItem(timetableItem);
         return "redirect:/staff";
     }
 
-    @RequestMapping(value = "timetables/delete/{timetableID}}", method = RequestMethod.GET)
+    @RequestMapping(value="timetables/delete/{timetableID}}", method = RequestMethod.GET)
     public ModelAndView deleteTimetableItem(@PathVariable("timetableID") int timetableID) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");

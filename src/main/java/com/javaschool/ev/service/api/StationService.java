@@ -8,18 +8,11 @@ import java.util.Set;
 public interface StationService {
 
     List<Station> allStations();
-
     void add(Station station);
-
     void delete(Station station);
-
     void edit(Station station);
-
     Station getById(int stationID);
-
     boolean doesStationExist(String name);
-
     Station getByName(String name);
-
-    Set<String> getAvailableStationNames();
+    Set<String> getAvailableStationNames(boolean addAllSelector);
 }

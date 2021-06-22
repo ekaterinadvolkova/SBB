@@ -1,8 +1,7 @@
 package com.javaschool.ev.dao.impl;
 
 import com.javaschool.ev.dao.api.TrainDAO;
-import com.javaschool.ev.domain.TimetableItem;
-import com.javaschool.ev.domain.Train;
+import com.javaschool.ev.domain.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -25,9 +24,17 @@ public class TrainDAOImpl implements TrainDAO {
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<Train> allTrains() {
+    public List<Train> allTrains(String stationName) {
         Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("from Train").list();
+
+        if(null == stationName) {
+            return session.createQuery("from Train").list();
+        } else {
+            Query queryTimetableItems = session.createQuery("select item.train from TimetableItem item" +
+                    " where item.station=(select station from Station station where station.name=:stationName)");
+            queryTimetableItems.setParameter("stationName", stationName);
+            return queryTimetableItems.list();
+        }
     }
 
     @Override
@@ -63,6 +70,7 @@ public class TrainDAOImpl implements TrainDAO {
                 existing.addTimetableItem(item);
             }
             session.update(existing);
+
         }
     }
 
@@ -81,6 +89,21 @@ public class TrainDAOImpl implements TrainDAO {
         query.setParameter("number", number);
         return query.list().isEmpty();
     }
+
+    @Override
+    public void addTicket(int userId, int trainID) {
+        Session session = sessionFactory.getCurrentSession();
+
+        User user = session.get(User.class, userId);
+
+        Ticket ticket = new Ticket();
+        ticket.setUser(user);
+
+        Train train = getById(trainID);
+        train.addTicket(ticket);
+        session.update(train);
+    }
+
     //allTrains ofor station
     //station id
     //query select from train where trainID in (select trainID from timetableItems where stationID = XXX)

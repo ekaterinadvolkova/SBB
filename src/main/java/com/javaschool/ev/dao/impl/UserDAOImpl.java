@@ -3,6 +3,7 @@ package com.javaschool.ev.dao.impl;
 import com.javaschool.ev.dao.api.UserDao;
 import com.javaschool.ev.domain.Login;
 import com.javaschool.ev.domain.User;
+import com.javaschool.ev.mapper.UserMapper;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -19,12 +20,7 @@ import java.util.List;
 @Transactional
 public class UserDAOImpl implements UserDao {
 
-//    @Autowired
-//    DataSource datasource;
-
     private static final Logger log = LoggerFactory.getLogger(UserDAOImpl.class);
-
-//    JdbcTemplate jdbcTemplate;
 
     private SessionFactory sessionFactory;
 
@@ -33,7 +29,7 @@ public class UserDAOImpl implements UserDao {
         this.sessionFactory = sessionFactory;
     }
 
-//    UserMapper userMapper;
+    UserMapper userMapper;
 
     public int register(User user) {
         log.info("method register", user.toString());
@@ -43,17 +39,18 @@ public class UserDAOImpl implements UserDao {
 
     public User validateUser(Login login) {
 
-        String sql = "select * from myusers where username='" + login.getUsername() + "' and password='" + login.getPassword();
-//                + "'";
-//        List<User> users = jdbcTemplate.query(sql, new UserMapper());
-        List<User> users = allUsers();
-//
-        return users.size() > 0 ? users.get(0) : null;
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from User where username=:username");
+
+        query.setParameter("username", login.getUsername());
+        User user = (User) query.getSingleResult();
+        return user;
     }
 
     @Override
     public User getById(int id) {
         Session session = sessionFactory.getCurrentSession();
+
         return session.get(User.class, id);
     }
 
